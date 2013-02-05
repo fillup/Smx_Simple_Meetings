@@ -9,6 +9,7 @@ The purpose of the SmxSimple_Meetings library is to provide a simple and consist
 
 ## Service Providers ##
 Below is the initial list of service providers we intend to support with this library. It is our hope that by developing this library as open source that additional service providers or developers will extend the functionality.
+
 1. WebEx Meeting Center
 2. Citrix GoToMeeting
 3. BigBlueButton
