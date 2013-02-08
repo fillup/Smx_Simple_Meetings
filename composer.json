@@ -1,0 +1,22 @@
+{
+    "name": "smx/simplemeetings",
+    "description": "Simple and abstracted library for integrating with web meetings providers such as WebEx and Citrix.",
+    "type": "library",
+    "keywords": [
+        "simple meetings",
+        "webex",
+        "citrix",
+        "bbb",
+        "web meetings"
+    ],
+    "homepage": "https://github.com/fillup/Smx_Simple_Meetings",
+    "license": "GPLv2",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zend-http": "2.0.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}
+
