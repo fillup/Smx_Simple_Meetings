@@ -38,4 +38,5 @@ class Site implements \Smx\SimpleMeetings\Site
     public function setPassword($password) {
         $this->password = $password;
     }
+    
 }

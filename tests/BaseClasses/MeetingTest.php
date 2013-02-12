@@ -1,8 +1,11 @@
 <?php
+namespace Smx\SimpleMeetings\Tests\Base;
+
 require_once __DIR__.'/../../SmxSimpleMeetings.php';
+
 use Smx\SimpleMeetings\Factory;
 
-class MeetingTest extends PHPUnit_Framework_TestCase
+class MeetingTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructWithAllOptions()
     {
@@ -21,7 +24,7 @@ class MeetingTest extends PHPUnit_Framework_TestCase
         $password = 'testpass';
         $sitename = 'testsite';
         
-        $meeting = Factory::SmxSimpleMeeting('WebEx','Meeting', $username, $password, $sitename, $options);
+        $meeting = Factory::SmxSimpleMeeting('Base','Meeting', $username, $password, $sitename, $options);
         
         $this->assertEquals($options['isPublic'],$meeting->isPublic);
         $this->assertEquals($options['enforcePassword'],$meeting->enforcePassword);
@@ -40,7 +43,7 @@ class MeetingTest extends PHPUnit_Framework_TestCase
         $password = 'testpass';
         $sitename = 'testsite';
         
-        $meeting = new Smx\SimpleMeetings\WebEx\Meeting($username, $password, $sitename);
+        $meeting = Factory::SmxSimpleMeeting('Base','Meeting', $username, $password, $sitename);
         
         $this->assertNotNull($meeting->isPublic);
         $this->assertNotNull($meeting->enforcePassword);
@@ -53,4 +56,5 @@ class MeetingTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull($meeting->getUsername());
         $this->assertNotNull($meeting->getPassword());
     }
+    
 }

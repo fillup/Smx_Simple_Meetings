@@ -31,3 +31,4 @@ require_once 'adapters/WebEx/Meeting.php';
 require_once 'adapters/WebEx/MeetingList.php';
 require_once 'adapters/WebEx/User.php';
 require_once 'adapters/WebEx/UserList.php';
+require_once 'adapters/WebEx/Utilities.php';
