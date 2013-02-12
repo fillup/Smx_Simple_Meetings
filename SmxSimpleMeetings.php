@@ -12,6 +12,7 @@
 require_once 'Interfaces.php';
 require_once 'adapters/BaseClasses/Site.php';
 require_once 'adapters/BaseClasses/Meeting.php';
+require_once 'adapters/BaseClasses/ItemList.php';
 if(!class_exists('\\Zend\\Http\\Client')){
     require_once 'vendor/zendframework/zendframework/library/Zend/Http/Client.php';
 }
@@ -26,9 +27,6 @@ require_once 'adapters/Factory.php';
  * This section can be commented out if you do not plan to use WebEx.
  */
 require_once 'adapters/WebEx/Attendee.php';
-require_once 'adapters/WebEx/AttendeeList.php';
 require_once 'adapters/WebEx/Meeting.php';
-require_once 'adapters/WebEx/MeetingList.php';
 require_once 'adapters/WebEx/User.php';
-require_once 'adapters/WebEx/UserList.php';
 require_once 'adapters/WebEx/Utilities.php';

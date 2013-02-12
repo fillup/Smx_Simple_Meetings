@@ -17,14 +17,10 @@
             </listControl>
             <order>
                 <orderBy>STARTTIME</orderBy>
-                <orderAD>ASC
-                </orderAD>
+                <orderAD>ASC</orderAD>
             </order>
             <hostWebExID></hostWebExID>
-            <dateScope>
-                <startDateStart></startDateStart>
-                <startDateEnd></startDateEnd>
-            </dateScope>
+            
         </bodyContent> 
     </body>
 </message>

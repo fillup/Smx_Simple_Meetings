@@ -2,7 +2,7 @@
 
 namespace Smx\SimpleMeetings\WebEx;
 use Smx\SimpleMeetings\Base\Meeting as MeetingBase;
-use Smx\SimpleMeetings\MeetingList;
+use Smx\SimpleMeetings\Base\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
 use Zend\Http\Client;
 
@@ -15,6 +15,13 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         parent::__construct($username, $password, $sitename, $options);
     }
     
+    /*
+     * This method accepts an array of meeting settings. It calls the API
+     * to schedule the meeting.
+     * @param array $options If false, API will still be called with current properties
+     * @return Meeting Returns $this on success
+     * @throws ErrorException on API call failure
+     */
     public function createMeeting($options=false){
         if($options && is_array($options)){
             foreach($options as $option => $value){
@@ -32,7 +39,7 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
             $xml->body->bodyContent->accessControl->meetingPassword = $this->meetingPassword;
         }
         
-        $result = Utilities::callApi($xml->asXML(),$this->getSitename());
+        $result = $this->callApi($xml->asXML());
         if($result){
             $this->meetingKey = $result->meetingkey->__toString();
             return $this;
@@ -65,10 +72,10 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
      * search will only work if $this->hostUsername is a site admin user.
      * 
      * @param Array $options Array containing options for searchUsername, startTime, endTime, startFrom, maximumNum
-     * @return \Smx\SimpleMeetings\MeetingList An iterator object of Meeting objects
+     * @return \Smx\SimpleMeetings\Base\MeetingList An iterator object of Meeting objects
      */
     public function getMeetingList($options=false){
-        $meetingList = new MeetingList();
+        $meetingList = new ItemList();
         $xml = $this->loadXml('LstSummaryMeeting');
         if($xml){
             if($options){
@@ -99,14 +106,14 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
                             'hostUsername' => $meet->hostWebExID->__toString(),
                             'startTime' => $meet->startDate->__toString(),
                             'duration' => $meet->duration->__toString(),
-                            'sitename' => $this->sitename
+                            'sitename' => $this->getSitename()
                         );
                         if($meet->listStatus->__toString == 'PUBLIC'){
                             $mtgDetails['isPublic'] = true;
                         } else {
                             $mtgDetails['isPublic'] = false;
                         }
-                        $meetingList->addMeeting(
+                        $meetingList->addItem(
                                 new Meeting(
                                         $this->getUsername(),
                                         $this->getPassword(),
@@ -120,21 +127,127 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         }
         return $meetingList;
     }
+    
+    /*
+     * This method will generate the url for hosts to start the meeting.
+     * @param boolean $urlOnly If true, the method will return a string with
+     *  the url, if empty or false the url can be accessed via the hostUrl property.
+     * @return Meeting|string The host url if $urlOnly=true or $this if false
+     */
     public function startMeeting($urlOnly=false){
-        
+        $xml = $this->loadXml('GetHostUrlMeeting');
+        if($xml && $this->meetingKey){
+            $xml->body->bodyContent->sessionKey = $this->meetingKey;
+            $result = $this->callApi($xml->asXML());
+            if($result){
+                $this->hostUrl = $result->hostMeetingURL->__toString();
+                if($urlOnly){
+                    return $this->hostUrl;
+                }
+            }
+        }
+        return $this;
     }
-    public function joinMeeting($urlOnly=false){
-        
+    
+    /*
+     * This method will generate the url for attendees to join the meeting.
+     * If attendeeName, attendeeEmail, and meetingPassword are included the 
+     * url will put the user directly into the meeting without prompting for
+     * the information. If using the parameters to generate multiple join urls, 
+     * be sure to pass different information each time.
+     * @param boolean $urlOnly If true, the method will return a string with
+     *  the url, if empty or false the url can be accessed via the joinUrl property.
+     * @param string $attendeeName If provided this will be included in the join url.
+     * @param string $attendeeEmail If provided this will be included in the join url.
+     * @param string $meetingPassword If provided this will be included in the join url.
+     * @return Meeting|string The join url if $urlOnly=true or $this if false
+     */
+    public function joinMeeting($urlOnly=false,$attendeeName=false,
+            $attendeeEmail=false,$meetingPassword=false){
+        $xml = $this->loadXml('GetJoinUrlMeeting');
+        if($xml && $this->meetingKey){
+            $xml->body->bodyContent->sessionKey = $this->meetingKey;
+            if($attendeeName){
+                $xml->body->bodyContent->attendeeName = $attendeeName;
+            }
+            if($attendeeEmail){
+                $xml->body->bodyContent->attendeeEmail = $attendeeEmail;
+            }
+            if($meetingPassword){
+                $xml->body->bodyContent->meetingPW = $meetingPassword;
+            }
+            $result = $this->callApi($xml->asXML());
+            if($result){
+                $this->joinUrl = $result->joinMeetingURL->__toString();
+                if($urlOnly){
+                    return $this->joinUrl;
+                }
+            }
+        }
+        return $this;
     }
-    public function editMeeting(){
+    
+    /*
+     * This method accepts an array of meeting settings. It calls the API
+     * to update the meeting.
+     * @param array $options If false, API will still be called with current 
+     *  properties in case they have been modified directly
+     * @return Meeting Returns $this on success
+     * @throws ErrorException on API call failure
+     */
+    public function editMeeting($options=false){
+        if($options && is_array($options)){
+            foreach($options as $option => $value){
+                $this->$option = $value;
+            }
+        }
+       
+        $xml = $this->loadXml('EditMeeting');
+        $xml->body->bodyContent->meetingkey = $this->meetingKey;
+        $xml->body->bodyContent->metaData->confName = $this->meetingName;
+        $xml->body->bodyContent->schedule->startDate = $this->startTime;
+        $xml->body->bodyContent->schedule->duration = $this->duration;
+        $xml->body->bodyContent->accessControl->isPublic = $this->isPublic;
+        $xml->body->bodyContent->accessControl->enforcePassword = $this->enforcePassword;
+        if(!is_null($this->meetingPassword)){
+            $xml->body->bodyContent->accessControl->meetingPassword = $this->meetingPassword;
+        }
         
+        $result = $this->callApi($xml->asXML());
+        if($result){
+            return $this;
+        }
     }
+    
+    /*
+     * Deletes this meeting from WebEx
+     * @return Meeting Returns $this on success
+     * @throws ErrorException on API call failure
+     */
     public function deleteMeeting(){
-        
+        $xml = $this->loadXml('DeleteMeeting');
+        if($xml){
+            $xml->body->bodyContent->meetingKey = $this->meetingKey;
+            $results = $this->callApi($xml->asXML());
+            if($results){
+                return $this;
+            }
+        }
     }
+    
+    /*
+     * This method will get a list of meetings currently in progress. If the
+     * user making the API call is a site admin it will include all open meetings.
+     * If the user making the API call is just a host it will only return their
+     * open meetings.
+     * @return MeetingList An iteratable list of meeting objects
+     * @throws ErrorException on API call failure
+     */
     public function getActiveMeetings(){
         
     }
+    
+    
     public function getRecordingList(){
         
     }
@@ -180,6 +293,10 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
     public function loadXml($action){
         return Utilities::loadXml($action, $this->getUsername(), 
                 $this->getPassword(), $this->getSitename());
+    }
+    
+    public function callApi($xml){
+        return Utilities::callApi($xml, $this->getSitename());
     }
 }
 

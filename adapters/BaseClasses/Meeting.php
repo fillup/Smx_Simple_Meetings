@@ -11,6 +11,8 @@ class Meeting extends Site {
     public $startTime = null;
     public $duration = 60;
     public $meetingKey = null;
+    public $hostUrl = null;
+    public $joinUrl = null;
     
     public function __construct($username, $password, $sitename, $options=false) {
         parent::__construct($username, $password, $sitename);

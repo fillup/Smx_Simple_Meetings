@@ -14,12 +14,13 @@ interface Site
 
 interface Meeting
 {
-    public function createMeeting();
+    public function createMeeting($options=false);
     public function getServerMeetingDetails();
     public function getMeetingList();
     public function startMeeting($urlOnly=false);
-    public function joinMeeting($urlOnly=false);
-    public function editMeeting();
+    public function joinMeeting($urlOnly=false,$attendeeName=false,
+            $attendeeEmail=false,$meetingPassword=false);
+    public function editMeeting($options=false);
     public function deleteMeeting();
     public function getActiveMeetings();
     public function getRecordingList();
@@ -32,20 +33,10 @@ interface Meeting
     public function getOption($name);
 }
 
-interface MeetingList extends \Iterator
-{
-    public function getArray();
-}
-
 interface Attendee
 {
     public function addAttendee();
     public function getAttendeeList();
-}
-
-interface AttendeeList extends \Iterator
-{
-    public function getArray();
 }
 
 interface User
@@ -55,9 +46,4 @@ interface User
     public function loginUser($urlOnly=false);
     public function getUserDetails();
     public function getUserList();
-}
-
-interface UserList extends \Iterator
-{
-    public function getArray();
 }
