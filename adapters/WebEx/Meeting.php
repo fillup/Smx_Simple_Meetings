@@ -1,16 +1,17 @@
 <?php
-require_once '../../autoload.php';
 
-namespace Smx\SimpleMeetings;
+namespace Smx\SimpleMeetings\WebEx;
 use Smx\SimpleMeetings\Base\Meeting as MeetingBase;
+use Smx\SimpleMeetings\MeetingList;
 use Zend\Http\Client;
+
 
 class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
 {
     private $error = null;
     
-    public function __construct($hostUsername, $hostPassword, $sitename, $options = false) {
-        parent::__construct($hostUsername, $hostPassword, $sitename, $options);
+    public function __construct($username, $password, $sitename, $options = false) {
+        parent::__construct($username, $password, $sitename, $options);
     }
     
     public function createMeeting($options=false){
@@ -37,11 +38,86 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         }
         
     }
-    public function getRawMeetingDetails(){
-        
+    /*
+     * Method calls API to retrieve all meeting details.
+     * This class only maintains the most common/necessary meeting details, 
+     * so if you want to know every detail about the meeting use this method.
+     * Results from this method will not be consistent across service providers.
+     * 
+     * @return SimpleXMLElement XML object for body content of API resposne
+     */
+    public function getServerMeetingDetails(){
+        $xml = $this->loadXml('GetMeeting');
+        $xml->body->bodyContent->meetingKey = $this->meetingKey;
+        $result = $this->callApi($xml->asXML());
+        return $result;
     }
-    public function getMeetingList(){
-        
+    
+    /*
+     * Method uses options to query API to return list of meetings based on
+     * criteria such as all meetings for a given host or all meetings between
+     * a date range. In order for the API to retern meetings for other hosts, 
+     * $this->hostUsername and $this->hostPassword must be a site admin account,
+     * otherwise when searching for a date range it will only return meetings 
+     * scheduled by $this->hostUsername. Also if an option for searchUsername 
+     * as been provided and it does not match $this->hostUsername, the query 
+     * search will only work if $this->hostUsername is a site admin user.
+     * 
+     * @param Array $options Array containing options for searchUsername, startTime, endTime, startFrom, maximumNum
+     * @return \Smx\SimpleMeetings\MeetingList An iterator object of Meeting objects
+     */
+    public function getMeetingList($options=false){
+        $meetingList = new MeetingList();
+        $xml = $this->loadXml('LstSummaryMeeting');
+        if($xml){
+            if($options){
+                if($options['searchUsername']){
+                    $xml->body->bodyContent->hostWebExID = $options['searchUsername'];
+                }
+                if($options['startTime']){
+                    $xml->body->bodyContent->dateScope->startDateStart = $options['startTime'];
+                }
+                if($options['endTime']){
+                    $xml->body->bodyContent->dateScope->startDateEnd = $options['endTime'];
+                }
+                if($options['startFrom']){
+                    $xml->body->bodyContent->listControl->startFrom = $options['startFrom'];
+                }
+                if($options['maximumNum']){
+                    $xml->body->bodyContent->listControl->maximumNum = $options['maximumNum'];
+                }
+            }
+            
+            $results = $this->callApi($xml->asXML());
+            if($results){
+                if((int)$results->matchingRecords->returned->__toString() > 0){
+                    foreach($results->meeting as $meet){
+                        $mtgDetails = array(
+                            'meetingKey' => $meet->meetingKey->__toString(),
+                            'meetingName' => $meet->confName->__toString(),
+                            'hostUsername' => $meet->hostWebExID->__toString(),
+                            'startTime' => $meet->startDate->__toString(),
+                            'duration' => $meet->duration->__toString(),
+                            'sitename' => $this->sitename
+                        );
+                        if($meet->listStatus->__toString == 'PUBLIC'){
+                            $mtgDetails['isPublic'] = true;
+                        } else {
+                            $mtgDetails['isPublic'] = false;
+                        }
+                        $meetingList->addMeeting(
+                                new Meeting(
+                                        $this->getUsername(),
+                                        $this->getPassword(),
+                                        $this->getSitename(),
+                                        $mtgDetails
+                                )
+                        );
+                    }
+                }
+            }
+        }
+        return $meetingList;
     }
     public function startMeeting($urlOnly=false){
         
@@ -112,9 +188,9 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         $file = '.xml/'.$action.'.xml';
         $xml = new \SimpleXMLElement($file);
         if($xml){
-            $xml->header->securityContext->webExID = $this->hostUsername;
-            $xml->header->securityContext->password = $this->hostPassword;
-            $xml->header->securityContext->siteName = $this->sitename;
+            $xml->header->securityContext->webExID = $this->getUsername();
+            $xml->header->securityContext->password = $this->getPassword();
+            $xml->header->securityContext->siteName = $this->getSitename();
             return $xml;
         } else {
             $errors = '';

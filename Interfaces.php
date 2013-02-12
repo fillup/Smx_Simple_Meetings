@@ -2,10 +2,20 @@
 
 namespace Smx\SimpleMeetings;
 
+interface Site
+{
+    public function getSitename();
+    public function getUsername();
+    public function getPassword();
+    public function setSitename($sitename);
+    public function setUsername($username);
+    public function setPassword($password);
+}
+
 interface Meeting
 {
     public function createMeeting();
-    public function getMeetingDetails();
+    public function getServerMeetingDetails();
     public function getMeetingList();
     public function startMeeting($urlOnly=false);
     public function joinMeeting($urlOnly=false);

@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__).'/../../vendor/autoload.php';
-use Smx\SimpleMeetings\Meeting;
+require_once __DIR__.'/../../SmxSimpleMeetings.php';
+use Smx\SimpleMeetings\Factory;
 
 class MeetingTest extends PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ class MeetingTest extends PHPUnit_Framework_TestCase
         $password = 'testpass';
         $sitename = 'testsite';
         
-        $meeting = new Smx\SimpleMeetings\Meeting($username, $password, $sitename, $options);
+        $meeting = Factory::SmxSimpleMeeting('WebEx','Meeting', $username, $password, $sitename, $options);
         
         $this->assertEquals($options['isPublic'],$meeting->isPublic);
         $this->assertEquals($options['enforcePassword'],$meeting->enforcePassword);
@@ -29,9 +29,9 @@ class MeetingTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($options['meetingName'],$meeting->meetingName);
         $this->assertEquals($options['startTime'],$meeting->startTime);
         $this->assertEquals($options['duration'],$meeting->duration);
-        $this->assertEquals($options['username'],$meeting->username);
-        $this->assertEquals($options['password'],$meeting->password);
-        $this->assertEquals($options['sitename'],$meeting->sitename);
+        $this->assertEquals($username,$meeting->getUsername());
+        $this->assertEquals($password,$meeting->getPassword());
+        $this->assertEquals($sitename,$meeting->getSitename());
     }
     
     public function testConstructWithNoOptions()
@@ -40,7 +40,7 @@ class MeetingTest extends PHPUnit_Framework_TestCase
         $password = 'testpass';
         $sitename = 'testsite';
         
-        $meeting = new Smx\SimpleMeetings\Meeting($username, $password, $sitename);
+        $meeting = new Smx\SimpleMeetings\WebEx\Meeting($username, $password, $sitename);
         
         $this->assertNotNull($meeting->isPublic);
         $this->assertNotNull($meeting->enforcePassword);
@@ -48,9 +48,9 @@ class MeetingTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull($meeting->meetingName);
         $this->assertNotNull($meeting->startTime);
         $this->assertNotNull($meeting->duration);
-        $this->assertNotNull($meeting->sitename);
+        $this->assertNotNull($meeting->getSitename());
         $this->assertNull($meeting->meetingKey);
-        $this->assertNotNull($meeting->username);
-        $this->assertNotNull($meeting->password);
+        $this->assertNotNull($meeting->getUsername());
+        $this->assertNotNull($meeting->getPassword());
     }
 }

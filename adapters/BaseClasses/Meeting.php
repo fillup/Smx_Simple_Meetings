@@ -1,23 +1,19 @@
 <?php
 
 namespace Smx\SimpleMeetings\Base;
+use Smx\SimpleMeetings\Base\Site;
 
-class Meeting {
+class Meeting extends Site {
     public $isPublic = false;
     public $enforcePassword = true;
     public $meetingPassword = null;
     public $meetingName = null;
     public $startTime = null;
     public $duration = 60;
-    public $hostUsername = null;
-    public $hostPassword = null;
-    public $sitename = null;
     public $meetingKey = null;
     
-    public function __construct($hostUsername, $hostPassword, $sitename, $options=false) {
-        $this->hostUsername = $hostUsername;
-        $this->hostPassword = $hostPassword;
-        $this->sitename = $sitename;
+    public function __construct($username, $password, $sitename, $options=false) {
+        parent::__construct($username, $password, $sitename);
         
         if($options && is_array($options)){
             foreach($options as $name => $value){
@@ -25,8 +21,9 @@ class Meeting {
             }
         }
         if(is_null($this->meetingName)){
-            $this->meetingName = $this->hostUsername."'s meeting";
-        } elseif(is_null($this->startTime)){
+            $this->meetingName = $this->getUsername()."'s meeting";
+        }
+        if(is_null($this->startTime)){
             $this->startTime = date('m/d/Y H:i:00',time()+300);
         }
     }
