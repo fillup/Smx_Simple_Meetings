@@ -13,3 +13,8 @@ Below is the initial list of service providers we intend to support with this li
 1. WebEx Meeting Center
 2. Citrix GoToMeeting
 3. BigBlueButton
+
+## Improvement Ideas / TODO ##
+
+1. Create Smx\SimpleMeetings\Exception to create consistent error reporting and exception interface. Primarily to ensure errors from service providers are translated and returned to developer consistently.
+2. Create Smx\SimpleMeetings\Base\Time class to create consistent/standard way to handle dates internally and require each service provider to convert them to proper format.
