@@ -7,13 +7,25 @@
         "webex",
         "citrix",
         "bbb",
-        "web meetings"
+        "web meetings",
+        "sumilux",
+        "smx",
+        "webinar",
+        "presentation"
     ],
     "homepage": "https://github.com/fillup/Smx_Simple_Meetings",
-    "license": "GPLv2",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Phillip Shipley",
+            "email": "phillip@phillipshipley.com",
+            "homepage": "http://phillipshipley.com/",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zend-http": "2.0.*"
+        "zendframework/zend-http": "2.*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
