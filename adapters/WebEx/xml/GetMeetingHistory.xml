@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <header> 
+        <securityContext>
+            <webExID></webExID> 
+            <password></password> 
+            <siteName></siteName>
+        </securityContext> 
+    </header>
+    <body>
+        <bodyContent xsi:type="java:com.webex.service.binding.history.LstmeetingusageHistory"> 
+            <listControl>
+                <serv:startFrom>1</serv:startFrom> 
+                <serv:maximumNum>100</serv:maximumNum> 
+                <serv:listMethod>OR</serv:listMethod>
+            </listControl> 
+            <order>
+                <orderBy>STARTTIME</orderBy>
+                <orderAD>ASC</orderAD> 
+            </order>
+        </bodyContent> 
+    </body>
+</message>

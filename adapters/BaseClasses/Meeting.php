@@ -14,6 +14,13 @@ class Meeting extends Site {
     public $hostUrl = null;
     public $joinUrl = null;
     
+    /*
+     * History details is an array of the actual meeting usage data for a meeting
+     * that has taken place. The expected fields are startTime, endTime, duration,
+     * totalParticipants, totalPeopleMinutes, totalVoip, totalPhone
+     */
+    public $historyDetails = array();
+    
     public function __construct($username, $password, $sitename, $options=false) {
         parent::__construct($username, $password, $sitename);
         

@@ -393,9 +393,116 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         }
     }
     
-    public function getMeetingHistory(){
-        
+    /*
+     * Retrieve meeting usage history and store in $this->historyDetails. If 
+     * $onlyThisMeeting is true, only this one meeting will be returned. If it
+     * is false, a list of meetings will be returned ordered by start time.
+     * @param boolean $onlyThisMeeting If true, the history call will only get
+     *   history details for this meeting, if false, you can use $options
+     *   to specify search criteria for multiple meetings. If false this method
+     *   returns an ItemList of meetings.
+     * @param array|false $options Search options when wanting to retrieve 
+     *   history for more meetings than just this one. Valid options are: 
+     *   startTimeRangeStart, startTimeRangeEnd, hostUsername, startFrom, 
+     *   maximumNum
+     * @return Meeting|ItemList If $onlyThisMeeting is false, returns ItemList
+     *   of meetings.
+     * @throws ErrorException In case of API failure
+     */
+    public function getMeetingHistory($onlyThisMeeting=true, $options=false){
+        $xml = $this->loadXml('GetMeetingHistory');
+        if($xml){
+            if($onlyThisMeeting){
+                $xml->body->bodyContent->meetingKey = $this->meetingKey;
+            }
+            if(is_array($options)){
+                if(isset($options['startTimeRangeStart'])){
+                    $xml->body->bodyContent->startTimeScope
+                            ->sessionStartTimeStart = $options['startTimeRangeStart'];
+                }
+                if(isset($options['startTimeRangeEnd'])){
+                    $xml->body->bodyContent->startTimeScope
+                            ->sessionStartTimeEnd = $options['startTimeRangeEnd'];
+                }
+                if(isset($options['hostUsername'])){
+                    $xml->body->bodyContent->hostWebExID = $options['hostUsername'];
+                }
+                if(isset($options['startFrom'])){
+                    $xml->body->bodyContent->listControl->startFrom = $options['startFrom'];
+                }
+                if(isset($options['maximumNum'])){
+                    $xml->body->bodyContent->hostWebExID = $options['maximumNum'];
+                }
+            }
+            $historyList = new ItemList();
+            try{
+                $results = $this->callApi($xml->asXML());
+                if($results){
+                    if($onlyThisMeeting){
+                        $meet = $results->meetingUsageHistory;
+                        $totalPhone = $meet->totalCallInMinutes->__toString() +
+                                $meet->totalCallInTollfreeMinutes->__toString() +
+                                $meet->totalCallOutDomestic->__toString() +
+                                $meet->totalCallOutInternational->__toString();
+                        $this->historyDetails = array(
+                            'startTime' => $meet->meetingStartTime->__toString(), 
+                            'endTime' => $meet->meetingEndTime->__toString(), 
+                            'duration' => $meet->duration->__toString(),
+                            'totalParticipants' => $meet->totalParticipants->__toString(), 
+                            'totalPeopleMinutes' => $meet->totalPeopleMinutes->__toString(), 
+                            'totalVoip' => $meet->totalVoipMinutes->__toString(), 
+                            'totalPhone' => $totalPhone
+                        );
+                        return $this;
+                    }
+                    else {
+                        foreach($results->meetingUsageHistory as $meet){
+                            $totalPhone = $meet->totalCallInMinutes->__toString() +
+                                $meet->totalCallInTollfreeMinutes->__toString() +
+                                $meet->totalCallOutDomestic->__toString() +
+                                $meet->totalCallOutInternational->__toString();
+                            
+                            $mtgDetails = array(
+                                'meetingKey' => $meet->sessionKey->__toString(),
+                                'meetingName' => $meet->confName->__toString(),
+                                'hostUsername' => $meet->hostWebExID->__toString(),
+                                'startTime' => $meet->meetingStartTime->__toString(),
+                                'duration' => $meet->duration->__toString(),
+                                'sitename' => $this->getSitename()
+                            );
+                                                        
+                            $historyDetails = array(
+                                'startTime' => $meet->meetingStartTime->__toString(), 
+                                'endTime' => $meet->meetingEndTime->__toString(), 
+                                'duration' => $meet->duration->__toString(),
+                                'totalParticipants' => $meet->totalParticipants->__toString(), 
+                                'totalPeopleMinutes' => $meet->totalPeopleMinutes->__toString(), 
+                                'totalVoip' => $meet->totalVoipMinutes->__toString(), 
+                                'totalPhone' => $totalPhone
+                            );
+                            
+                            $newMeeting = new Meeting($this->getUsername(),
+                                    $this->getPassword(), $this->getSitename(),
+                                    $mtgDetails);
+                            $newMeeting->historyDetails = $historyDetails;
+                            $historyList->addItem($newMeeting);
+                        }
+                        
+                        
+                        return $historyList;
+                    }
+                }
+            } catch (\ErrorException $e) {
+                if(!preg_match('/000015/', $e->getMessage())){
+                    throw $e;
+                } elseif(!$onlyThisMeeting) {
+                    return $historyList;
+                }
+            }
+        }
+        return $this;
     }
+    
     public function getAttendeeHistory(){
         
     }

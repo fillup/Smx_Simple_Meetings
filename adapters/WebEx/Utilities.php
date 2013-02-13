@@ -55,12 +55,8 @@ class Utilities
             /*
              * Clear out unnecessary namespaces from returned XML
              */
-            $body = preg_replace('/serv\:/', '', $body);
-            $body = preg_replace('/use\:/', '', $body);
-            $body = preg_replace('/com\:/', '', $body);
-            $body = preg_replace('/meet\:/', '', $body);
-            $body = preg_replace('/ep\:/', '', $body);
-            $body = preg_replace('/att\:/', '', $body);
+            $body = preg_replace('/<[a-z]{1,}:/','<',$body);
+            $body = preg_replace('/<\/[a-z]{1,}:/','</',$body);
             
             libxml_use_internal_errors(true);
             $results = new \SimpleXMLElement($body);
