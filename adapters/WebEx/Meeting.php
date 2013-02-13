@@ -503,8 +503,104 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         return $this;
     }
     
-    public function getAttendeeHistory(){
+    /*
+     * Retrieve meeting attendee history and store in $this->attendeeHistoryDetails. If 
+     * $onlyThisMeeting is true, only this one meeting will be returned. If it
+     * is false, a list of meetings will be returned ordered by start time.
+     * @param boolean $onlyThisMeeting If true, the history call will only get
+     *   history details for this meeting, if false, you can use $options
+     *   to specify search criteria for multiple meetings. If false this method
+     *   returns an ItemList of meetings.
+     * @param array|false $options Search options when wanting to retrieve 
+     *   history for more meetings than just this one. Valid options are: 
+     *   startTimeRangeStart, startTimeRangeEnd, hostUsername, startFrom, 
+     *   maximumNum
+     * @return Meeting|ItemList If $onlyThisMeeting is false, returns ItemList
+     *   of meetings.
+     * @throws ErrorException In case of API failure
+     */
+    public function getAttendeeHistory($onlyThisMeeting=true, $options=false){
+        $xml = $this->loadXml('GetMeetingAttendeeHistory');
+        if($xml){
+            if($onlyThisMeeting){
+                $xml->body->bodyContent->meetingKey = $this->meetingKey;
+            }
+            if(is_array($options)){
+                if(isset($options['startTimeRangeStart'])){
+                    $xml->body->bodyContent->startTimeScope
+                            ->sessionStartTimeStart = $options['startTimeRangeStart'];
+                }
+                if(isset($options['startTimeRangeEnd'])){
+                    $xml->body->bodyContent->startTimeScope
+                            ->sessionStartTimeEnd = $options['startTimeRangeEnd'];
+                }
+                if(isset($options['hostUsername'])){
+                    $xml->body->bodyContent->hostWebExID = $options['hostUsername'];
+                }
+                if(isset($options['startFrom'])){
+                    $xml->body->bodyContent->listControl->startFrom = $options['startFrom'];
+                }
+                if(isset($options['maximumNum'])){
+                    $xml->body->bodyContent->hostWebExID = $options['maximumNum'];
+                }
+            }
+            $historyList = new ItemList();
+            try{
+                $results = $this->callApi($xml->asXML());
+                if($results){
+                    if($onlyThisMeeting){
+                        $meet = $results->meetingAttendeeHistory;
+                        $this->attendeeHistoryDetails = array(
+                            'joinTime' => $meet->joinTime->__toString(), 
+                            'leaveTime' => $meet->leaveTime->__toString(), 
+                            'duration' => $meet->duration->__toString(),
+                            'name' => $meet->name->__toString(), 
+                            'email' => $meet->email->__toString(), 
+                            'ipAddress' => $meet->ipAddress->__toString(),
+                            'voipDuration' => $meet->voipDuration->__toString()
+                        );
+                        return $this;
+                    } else {
+                        foreach($results->meetingAttendeeHistory as $meet){
+                            $mtgDetails = array(
+                                'meetingKey' => $meet->meetingKey->__toString(),
+                                'meetingName' => $meet->confName->__toString(),
+                                'startTime' => $meet->joinTime->__toString(),
+                                'duration' => $meet->duration->__toString(),
+                                'sitename' => $this->getSitename()
+                            );
+                                                        
+                            $attendeeDetails = array(
+                                'joinTime' => $meet->joinTime->__toString(), 
+                                'leaveTime' => $meet->leaveTime->__toString(), 
+                                'duration' => $meet->duration->__toString(),
+                                'name' => $meet->name->__toString(), 
+                                'email' => $meet->email->__toString(), 
+                                'ipAddress' => $meet->ipAddress->__toString(),
+                                'voipDuration' => $meet->voipDuration->__toString()
+                            );
+                            
+                            $newMeeting = new Meeting($this->getUsername(),
+                                    $this->getPassword(), $this->getSitename(),
+                                    $mtgDetails);
+                            $newMeeting->attendeeHistoryDetails = $attendeeDetails;
+                            $historyList->addItem($newMeeting);
+                        }
+                        
+                        
+                        return $historyList;
+                    }
+                }
+            } catch (\ErrorException $e) {
+                if(!preg_match('/000015/', $e->getMessage())){
+                    throw $e;
+                } elseif(!$onlyThisMeeting) {
+                    return $historyList;
+                }
+            }
+        }
         
+        return $this;
     }
     
     public function getLastError(){

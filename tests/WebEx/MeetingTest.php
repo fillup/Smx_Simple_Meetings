@@ -149,4 +149,36 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         
         $this->assertGreaterThanOrEqual(7, count($newMeeting->historyDetails));
     }
+    
+    public function testGetAttendeeHistory()
+    {
+        /*
+         * Test getting a list of all attendee usage for past month
+         */
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
+                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        
+        // Get meetings for past month
+        $searchOptions = array(
+            'startTimeRangeStart' => date('m/d/Y 00:00:00',time()-2592000),
+            'startTimeRangeEnd' => date('m/d/Y 00:00:00',time())
+        );
+        
+        $list = $meeting->getAttendeeHistory(false,$searchOptions);
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
+        
+        /*
+         * Use one of the results to test pulling history for a single meeting
+         */
+        $sample = $list->current();
+        
+        $newMeeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
+                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $newMeeting->setOptions(array(
+            'meetingKey' => $sample->meetingKey
+        ));
+        $newMeeting->getAttendeeHistory();
+        
+        $this->assertGreaterThanOrEqual(7, count($newMeeting->attendeeHistoryDetails));
+    }
 }
