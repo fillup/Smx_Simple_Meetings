@@ -12,6 +12,7 @@
 require_once 'Interfaces.php';
 require_once 'adapters/BaseClasses/Site.php';
 require_once 'adapters/BaseClasses/Meeting.php';
+require_once 'adapters/BaseClasses/Attendee.php';
 require_once 'adapters/BaseClasses/ItemList.php';
 if(!class_exists('\\Zend\\Http\\Client')){
     require_once 'vendor/zendframework/zendframework/library/Zend/Http/Client.php';

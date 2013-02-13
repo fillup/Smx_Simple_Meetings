@@ -30,6 +30,14 @@ class Meeting extends Site {
         }
     }
     
+    public function setOptions($options){
+        if($options && is_array($options)){
+            foreach($options as $name => $value){
+                $this->$name = $value;
+            }
+        }
+    }
+    
     public function setOption($name,$value){
         $this->$name = $value;
     }

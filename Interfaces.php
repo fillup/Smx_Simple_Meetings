@@ -23,8 +23,8 @@ interface Meeting
     public function editMeeting($options=false);
     public function deleteMeeting();
     public function getActiveMeetings();
-    public function getRecordingList();
-    public function addAttendee();
+    public function getRecordingList($options=false);
+    public function addAttendee($name, $email, $sendInvite=false);
     public function getAttendeeList();
     public function getMeetingHistory();
     public function getAttendeeHistory();

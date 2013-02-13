@@ -39,7 +39,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         
         $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
                 $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
-        $meeting->createMeeting(array('meetingPassword'=>'Sumi123'));
+        $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
         $this->assertRegExp('/[0-9]{1,}/', $meeting->meetingKey);
         
         return $meeting;
@@ -52,7 +52,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     {
         $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
                 $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
-        $meeting->createMeeting(array('meetingPassword'=>'Sumi123'));
+        $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
         
         $hostUrl = $meeting->startMeeting(true);
         $this->assertStringStartsWith('http', $hostUrl);
@@ -69,10 +69,10 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     {
         $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
                 $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
-        $meeting->createMeeting(array('meetingPassword'=>'Sumi123'));
+        $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
         
         $options = array(
-            'meetingName' => 'New Meeting Name',
+            'meetingName' => __FUNCTION__.' - Has been edited!',
             'duration' => '15'
         );
         
@@ -89,7 +89,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     {
         $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
                 $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
-        $meeting->createMeeting(array('meetingPassword'=>'Sumi123'));
+        $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
         
         $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\Meeting', $meeting->deleteMeeting());
     }
@@ -99,6 +99,22 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
                 $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
         $list = $meeting->getMeetingList();
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
+    }
+    
+    public function testGetActiveMeetings()
+    {
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
+                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $list = $meeting->getActiveMeetings();
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
+    }
+    
+    public function testGetRecordingList()
+    {
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
+                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $list = $meeting->getRecordingList();
         $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
     }
 }

@@ -60,6 +60,7 @@ class Utilities
             $body = preg_replace('/com\:/', '', $body);
             $body = preg_replace('/meet\:/', '', $body);
             $body = preg_replace('/ep\:/', '', $body);
+            $body = preg_replace('/att\:/', '', $body);
             
             libxml_use_internal_errors(true);
             $results = new \SimpleXMLElement($body);

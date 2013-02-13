@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+    <header>
+        <securityContext> 
+            <webExID></webExID> 
+            <password></password> 
+            <siteName></siteName>
+        </securityContext> 
+    </header>
+    <body> 
+        <bodyContent
+            xsi:type="java:com.webex.service.binding.ep.LstRecording"> 
+            <listControl>
+                <startFrom>0</startFrom>
+                <maximumNum>100</maximumNum>
+            </listControl> 
+            <sessionKey></sessionKey>
+        </bodyContent> 
+    </body>
+</message>

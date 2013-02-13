@@ -4,6 +4,7 @@ namespace Smx\SimpleMeetings\WebEx;
 use Smx\SimpleMeetings\Base\Meeting as MeetingBase;
 use Smx\SimpleMeetings\Base\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
+use Smx\SimpleMeetings\WebEx\Attendee;
 use Zend\Http\Client;
 
 
@@ -95,33 +96,38 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
                     $xml->body->bodyContent->listControl->maximumNum = $options['maximumNum'];
                 }
             }
-            
-            $results = $this->callApi($xml->asXML());
-            if($results){
-                if((int)$results->matchingRecords->returned->__toString() > 0){
-                    foreach($results->meeting as $meet){
-                        $mtgDetails = array(
-                            'meetingKey' => $meet->meetingKey->__toString(),
-                            'meetingName' => $meet->confName->__toString(),
-                            'hostUsername' => $meet->hostWebExID->__toString(),
-                            'startTime' => $meet->startDate->__toString(),
-                            'duration' => $meet->duration->__toString(),
-                            'sitename' => $this->getSitename()
-                        );
-                        if($meet->listStatus->__toString == 'PUBLIC'){
-                            $mtgDetails['isPublic'] = true;
-                        } else {
-                            $mtgDetails['isPublic'] = false;
+            try{
+                $results = $this->callApi($xml->asXML());
+                if($results){
+                    if((int)$results->matchingRecords->returned->__toString() > 0){
+                        foreach($results->meeting as $meet){
+                            $mtgDetails = array(
+                                'meetingKey' => $meet->meetingKey->__toString(),
+                                'meetingName' => $meet->confName->__toString(),
+                                'hostUsername' => $meet->hostWebExID->__toString(),
+                                'startTime' => $meet->startDate->__toString(),
+                                'duration' => $meet->duration->__toString(),
+                                'sitename' => $this->getSitename()
+                            );
+                            if($meet->listStatus->__toString == 'PUBLIC'){
+                                $mtgDetails['isPublic'] = true;
+                            } else {
+                                $mtgDetails['isPublic'] = false;
+                            }
+                            $meetingList->addItem(
+                                    new Meeting(
+                                            $this->getUsername(),
+                                            $this->getPassword(),
+                                            $this->getSitename(),
+                                            $mtgDetails
+                                    )
+                            );
                         }
-                        $meetingList->addItem(
-                                new Meeting(
-                                        $this->getUsername(),
-                                        $this->getPassword(),
-                                        $this->getSitename(),
-                                        $mtgDetails
-                                )
-                        );
                     }
+                }
+            } catch (\ErrorException $e) {
+                if(!preg_match('/000015/', $e->getMessage())){
+                    throw $e;
                 }
             }
         }
@@ -240,36 +246,157 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
      * user making the API call is a site admin it will include all open meetings.
      * If the user making the API call is just a host it will only return their
      * open meetings.
-     * @return MeetingList An iteratable list of meeting objects
+     * @return ItemList An iteratable list of meeting objects
      * @throws ErrorException on API call failure
      */
     public function getActiveMeetings(){
-        
+        $meetingList = new ItemList();
+        $xml = $this->loadXml('ListOpenSessions');
+        if($xml){
+            try{
+                $results = $this->callApi($xml->asXML());
+                if($results){
+                    if((int)$results->matchingRecords->returned->__toString() > 0){
+                        foreach($results->services->sessions as $meet){
+                            $mtgDetails = array(
+                                'meetingKey' => $meet->sessionKey->__toString(),
+                                'meetingName' => $meet->sessionName->__toString(),
+                                'hostUsername' => $meet->hostWebExID->__toString(),
+                                'startTime' => $meet->startDate->__toString(),
+                                'sitename' => $this->getSitename()
+                            );
+                            if($meet->listStatus->__toString == 'PUBLIC'){
+                                $mtgDetails['isPublic'] = true;
+                            } else {
+                                $mtgDetails['isPublic'] = false;
+                            }
+                            $meetingList->addItem(
+                                    new Meeting(
+                                            $this->getUsername(),
+                                            $this->getPassword(),
+                                            $this->getSitename(),
+                                            $mtgDetails
+                                    )
+                            );
+                        }
+                    }
+                }
+            } catch (\ErrorException $e) {
+                if(!preg_match('/000015/', $e->getMessage())){
+                    throw $e;
+                }
+            }
+        }
+        return $meetingList;
     }
     
     
-    public function getRecordingList(){
-        
+    public function getRecordingList($options=false){
+        $recordingList = new ItemList();
+        $xml = $this->loadXml('ListRecordings');
+        if($xml){
+            if($options){
+                if($options['searchUsername']){
+                    $xml->body->bodyContent->hostWebExID = $options['searchUsername'];
+                }
+                if($options['startTime']){
+                    $xml->body->bodyContent->createTimeScope->createTimeStart = $options['startTime'];
+                }
+                if($options['endTime']){
+                    $xml->body->bodyContent->createTimeScope->createTimeEnd = $options['endTime'];
+                }
+                if($options['startFrom']){
+                    $xml->body->bodyContent->listControl->startFrom = $options['startFrom'];
+                }
+                if($options['maximumNum']){
+                    $xml->body->bodyContent->listControl->maximumNum = $options['maximumNum'];
+                }
+                if($options['meetingKey']){
+                    $xml->body->bodyContent->sessionKey = $options['meetingKey'];
+                }
+            }
+            
+            $results = $this->callApi($xml->asXML());
+            if($results){
+                if((int)$results->matchingRecords->returned->__toString() > 0){
+                    foreach($results->recording as $meet){
+                        $mtgDetails = array(
+                            'meetingKey' => $meet->sessionKey->__toString(),
+                            'meetingName' => $meet->name->__toString(),
+                            'hostUsername' => $meet->hostWebExID->__toString(),
+                            'startTime' => $meet->createTime->__toString(),
+                            'sitename' => $this->getSitename(),
+                            'hostUrl' => $meet->fileURL->__toString(),
+                            'joinUrl' => $meet->streamURL->__toString()
+                        );
+                        if($meet->listing->__toString == 'PUBLIC'){
+                            $mtgDetails['isPublic'] = true;
+                        } else {
+                            $mtgDetails['isPublic'] = false;
+                        }
+                        $recordingList->addItem(
+                                new Meeting(
+                                        $this->getUsername(),
+                                        $this->getPassword(),
+                                        $this->getSitename(),
+                                        $mtgDetails
+                                )
+                        );
+                    }
+                }
+            }
+        }
+        return $recordingList;
     }
-    public function addAttendee(){
-        
+    
+    /*
+     * Add an attendee to the meeting
+     * @param string $name Attendee's name
+     * @param string $email Attendee's email address
+     * @param boolean $sendInvite Whether or not the API should send the 
+     *   attendee an email invite
+     * @return string $attendeeId The unique ID for the attendee from the API
+     * @throws ErrorException Exception thrown if there is an API error
+     */
+    public function addAttendee($name, $email, $sendInvite=false){
+        if(!is_null($this->meetingKey)){
+            $attendee = new Attendee($this->getUsername(), $this->getPassword(),
+                    $this->getSitename(), array(
+                        'name' => $name,
+                        'email' => $email,
+                        'meetingKey' => $this->meetingKey
+                    ));
+            $attendee->addAttendee();
+            return $attendee->getAttendeeId();
+        } else {
+            $this->error = 'Meeting must be scheduled before an 
+                attendee can be added.';
+            throw new \ErrorException($this->error, 111);
+        }
     }
+    
+    /*
+     * Return a list of all attendees that have been added to this meeting
+     * @return ItemList Iteratable list of Attendee objects
+     */
     public function getAttendeeList(){
-        
+        if(!is_null($this->meetingKey)){
+            $attendee = new Attendee($this->getUsername(), $this->getPassword(),
+                    $this->getSitename(), array(
+                        'meetingKey' => $this->meetingKey
+                    ));
+            return $attendee->getAttendeeList();
+        } else {
+            $this->error = 'Meeting must be scheduled before you can pull a 
+                list of attendees.';
+            throw new \ErrorException($this->error, 112);
+        }
     }
+    
     public function getMeetingHistory(){
         
     }
     public function getAttendeeHistory(){
-        
-    }
-    public function setOptions($options){
-        
-    }
-    public function setOption($name,$value){
-        
-    }
-    public function getOption($name){
         
     }
     
