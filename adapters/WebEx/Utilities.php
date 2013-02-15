@@ -31,13 +31,62 @@ class Utilities
         }
     }
     
+    public static function callApi($xml,$sitename){
+        if(is_object($xml)){
+            $xml = $xml->asXML();
+        }
+        
+        $apiUrl = "https://$sitename.webex.com/WBXService/XMLService";
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $xml);
+        
+        $body = curl_exec($ch);
+        
+        if($body){
+            /*
+             * Clear out unnecessary namespaces from returned XML
+             */
+            $body = preg_replace('/<[a-z]{1,}:/','<',$body);
+            $body = preg_replace('/<\/[a-z]{1,}:/','</',$body);
+            
+            libxml_use_internal_errors(true);
+            $results = new \SimpleXMLElement($body);
+            if($results){
+                if($results->header->response->result == 'SUCCESS'){
+                    return $results->body->bodyContent;
+                } else {
+                    $error = "An error was returned from the API: ".
+                            $results->header->response->reason->__toString().' ('.
+                            $results->header->response->exceptionID->__toString().')';
+                    throw new \ErrorException($error,108);
+                }
+            } else {
+                $errors = '';
+                foreach(libxml_get_errors() as $error) {
+                    $errors .= ",\t" . $error->message;
+                }
+                $error = "Unable to parse XML response, errors occured: $errors";
+                throw new \ErrorException($error,106);
+            }
+        } else {
+            $error = "API call returned an HTTP status code of ".  curl_errno($ch);
+            throw new \ErrorException($error,107);
+        }
+        
+        
+    }
+    
     /*
      * Performs API call to WebEx XML API
      * @param String|SimpleXMLElement $xml Either the full XML to be sent or a SimpleXMLElement object
      * @return SimpleXMLElement The bodyContent section of successful API response
      * @throws ErrorException when the API call fails or it is unable to parse response.
      */
-    public static function callApi($xml, $sitename){
+    public static function callApiOld($xml, $sitename){
         if(is_object($xml)){
             $xml = $xml->asXML();
         }
