@@ -14,6 +14,7 @@ require_once 'adapters/BaseClasses/Site.php';
 require_once 'adapters/BaseClasses/Meeting.php';
 require_once 'adapters/BaseClasses/Attendee.php';
 require_once 'adapters/BaseClasses/ItemList.php';
+require_once 'adapters/BaseClasses/HttpRequest.php';
 
 // Removing dependency on Zend\Http for now due to problems with composer
 /*if(!class_exists('\\Zend\\Http\\Client')){
