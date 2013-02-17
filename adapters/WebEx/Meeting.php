@@ -1,4 +1,11 @@
 <?php
+/**
+ * Smx\SimpleMeetings (https://github.com/fillup/Smx_Simple_Meetings/)
+ *
+ * @link      https://github.com/fillup/Smx_Simple_Meetings for the canonical source repository
+ * @copyright Copyright (c) 2012-2013 Sumilux Technologies (http://sumilux.com)
+ * @license   GPLv2+
+ */
 
 namespace Smx\SimpleMeetings\WebEx;
 use Smx\SimpleMeetings\Base\Meeting as MeetingBase;
@@ -7,7 +14,12 @@ use Smx\SimpleMeetings\WebEx\Utilities;
 use Smx\SimpleMeetings\WebEx\Attendee;
 use Zend\Http\Client;
 
-
+/**
+ * WebEx Meetings class to extend base meeting. Adds functionality for calling
+ * WebEx XML APIs.
+ * 
+ * @author Phillip Shipley <phillip@phillipshipley.com>
+ */
 class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
 {
     private $error = null;
@@ -16,12 +28,13 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         parent::__construct($username, $password, $sitename, $options);
     }
     
-    /*
+    /**
      * This method accepts an array of meeting settings. It calls the API
      * to schedule the meeting.
+     * 
      * @param array $options If false, API will still be called with current properties
-     * @return Meeting Returns $this on success
-     * @throws ErrorException on API call failure
+     * @return \Smx\SimpleMeetings\WebEx\Meeting
+     * @throws \ErrorException on API call failure
      */
     public function createMeeting($options=false){
         if($options && is_array($options)){
@@ -47,13 +60,15 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         }
         
     }
-    /*
+    
+    /**
      * Method calls API to retrieve all meeting details.
+     * 
      * This class only maintains the most common/necessary meeting details, 
      * so if you want to know every detail about the meeting use this method.
      * Results from this method will not be consistent across service providers.
      * 
-     * @return SimpleXMLElement XML object for body content of API resposne
+     * @return \SimpleXMLElement XML object for body content of API resposne
      */
     public function getServerMeetingDetails(){
         $xml = $this->loadXml('GetMeeting');
@@ -62,7 +77,9 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         return $result;
     }
     
-    /*
+    /**
+     * Retrieve a list of meetings
+     * 
      * Method uses options to query API to return list of meetings based on
      * criteria such as all meetings for a given host or all meetings between
      * a date range. In order for the API to retern meetings for other hosts, 
@@ -134,11 +151,12 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         return $meetingList;
     }
     
-    /*
+    /**
      * This method will generate the url for hosts to start the meeting.
+     * 
      * @param boolean $urlOnly If true, the method will return a string with
      *  the url, if empty or false the url can be accessed via the hostUrl property.
-     * @return Meeting|string The host url if $urlOnly=true or $this if false
+     * @return \Smx\SimpleMeetings\WebEx\Meeting|String
      */
     public function startMeeting($urlOnly=false){
         $xml = $this->loadXml('GetHostUrlMeeting');
@@ -155,18 +173,20 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         return $this;
     }
     
-    /*
+    /**
      * This method will generate the url for attendees to join the meeting.
+     * 
      * If attendeeName, attendeeEmail, and meetingPassword are included the 
      * url will put the user directly into the meeting without prompting for
      * the information. If using the parameters to generate multiple join urls, 
      * be sure to pass different information each time.
+     * 
      * @param boolean $urlOnly If true, the method will return a string with
      *  the url, if empty or false the url can be accessed via the joinUrl property.
      * @param string $attendeeName If provided this will be included in the join url.
      * @param string $attendeeEmail If provided this will be included in the join url.
      * @param string $meetingPassword If provided this will be included in the join url.
-     * @return Meeting|string The join url if $urlOnly=true or $this if false
+     * @return \Smx\SimpleMeetings\WebEx\Meeting|String
      */
     public function joinMeeting($urlOnly=false,$attendeeName=false,
             $attendeeEmail=false,$meetingPassword=false){
@@ -193,13 +213,14 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         return $this;
     }
     
-    /*
+    /**
      * This method accepts an array of meeting settings. It calls the API
      * to update the meeting.
+     * 
      * @param array $options If false, API will still be called with current 
      *  properties in case they have been modified directly
-     * @return Meeting Returns $this on success
-     * @throws ErrorException on API call failure
+     * @return \Smx\SimpleMeetings\WebEx\Meeting 
+     * @throws \ErrorException on API call failure
      */
     public function editMeeting($options=false){
         if($options && is_array($options)){
@@ -225,10 +246,11 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         }
     }
     
-    /*
+    /**
      * Deletes this meeting from WebEx
-     * @return Meeting Returns $this on success
-     * @throws ErrorException on API call failure
+     * 
+     * @return \Smx\SimpleMeetings\WebEx\Meeting
+     * @throws \ErrorException on API call failure
      */
     public function deleteMeeting(){
         $xml = $this->loadXml('DeleteMeeting');
@@ -241,12 +263,14 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         }
     }
     
-    /*
-     * This method will get a list of meetings currently in progress. If the
-     * user making the API call is a site admin it will include all open meetings.
-     * If the user making the API call is just a host it will only return their
-     * open meetings.
-     * @return ItemList An iteratable list of meeting objects
+    /**
+     * This method will get a list of meetings currently in progress. 
+     * 
+     * If the user making the API call is a site admin it will include all 
+     * open meetings. If the user making the API call is just a host it will 
+     * only return their open meetings.
+     * 
+     * @return \Smx\SimpleMeetings\Base\ItemList
      * @throws ErrorException on API call failure
      */
     public function getActiveMeetings(){
@@ -290,7 +314,15 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         return $meetingList;
     }
     
-    
+    /**
+     * Retrieve a list of meeting recordings.
+     * 
+     * The returned list makes use of the hostUrl and joinUrl parameters to 
+     * store the download link and the playback link respectively.
+     * 
+     * @param Array $options
+     * @return \Smx\SimpleMeetings\Base\ItemList
+     */
     public function getRecordingList($options=false){
         $recordingList = new ItemList();
         $xml = $this->loadXml('ListRecordings');
@@ -349,14 +381,15 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         return $recordingList;
     }
     
-    /*
+    /**
      * Add an attendee to the meeting
+     * 
      * @param string $name Attendee's name
      * @param string $email Attendee's email address
      * @param boolean $sendInvite Whether or not the API should send the 
      *   attendee an email invite
-     * @return string $attendeeId The unique ID for the attendee from the API
-     * @throws ErrorException Exception thrown if there is an API error
+     * @return String $attendeeId
+     * @throws \ErrorException Exception thrown if there is an API error
      */
     public function addAttendee($name, $email, $sendInvite=false){
         if(!is_null($this->meetingKey)){
@@ -375,8 +408,9 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         }
     }
     
-    /*
+    /**
      * Return a list of all attendees that have been added to this meeting
+     * 
      * @return ItemList Iteratable list of Attendee objects
      */
     public function getAttendeeList(){
@@ -393,10 +427,12 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         }
     }
     
-    /*
-     * Retrieve meeting usage history and store in $this->historyDetails. If 
-     * $onlyThisMeeting is true, only this one meeting will be returned. If it
-     * is false, a list of meetings will be returned ordered by start time.
+    /**
+     * Retrieve meeting usage history and store in $this->historyDetails. 
+     * 
+     * If $onlyThisMeeting is true, only this one meeting will be returned. If 
+     * it is false, a list of meetings will be returned ordered by start time.
+     * 
      * @param boolean $onlyThisMeeting If true, the history call will only get
      *   history details for this meeting, if false, you can use $options
      *   to specify search criteria for multiple meetings. If false this method
@@ -405,9 +441,9 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
      *   history for more meetings than just this one. Valid options are: 
      *   startTimeRangeStart, startTimeRangeEnd, hostUsername, startFrom, 
      *   maximumNum
-     * @return Meeting|ItemList If $onlyThisMeeting is false, returns ItemList
-     *   of meetings.
-     * @throws ErrorException In case of API failure
+     * @return \Smx\SimpleMeetings\WebEx\Meeting|\Smx\SimpleMeetings\Base\ItemList 
+     *   If $onlyThisMeeting is false, returns ItemList of meetings.
+     * @throws \ErrorException In case of API failure
      */
     public function getMeetingHistory($onlyThisMeeting=true, $options=false){
         $xml = $this->loadXml('GetMeetingHistory');
@@ -503,10 +539,12 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
         return $this;
     }
     
-    /*
-     * Retrieve meeting attendee history and store in $this->attendeeHistoryDetails. If 
-     * $onlyThisMeeting is true, only this one meeting will be returned. If it
+    /**
+     * Retrieve meeting attendee history and store in $this->attendeeHistoryDetails. 
+     * 
+     * If $onlyThisMeeting is true, only this one meeting will be returned. If it
      * is false, a list of meetings will be returned ordered by start time.
+     * 
      * @param boolean $onlyThisMeeting If true, the history call will only get
      *   history details for this meeting, if false, you can use $options
      *   to specify search criteria for multiple meetings. If false this method
@@ -515,9 +553,9 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
      *   history for more meetings than just this one. Valid options are: 
      *   startTimeRangeStart, startTimeRangeEnd, hostUsername, startFrom, 
      *   maximumNum
-     * @return Meeting|ItemList If $onlyThisMeeting is false, returns ItemList
-     *   of meetings.
-     * @throws ErrorException In case of API failure
+     * @return \Smx\SimpleMeetings\WebEx\Meeting|\Smx\SimpleMeetings\Base\ItemList 
+     *   If $onlyThisMeeting is false, returns ItemList of meetings.
+     * @throws \ErrorException In case of API failure
      */
     public function getAttendeeHistory($onlyThisMeeting=true, $options=false){
         $xml = $this->loadXml('GetMeetingAttendeeHistory');

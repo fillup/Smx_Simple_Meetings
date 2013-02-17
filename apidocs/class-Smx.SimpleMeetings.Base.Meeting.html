@@ -7,7 +7,7 @@
 	<title>Class Smx\SimpleMeetings\Base\Meeting | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?671347685"></script>
+	<script type="text/javascript" src="elementlist.js?1229490731"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -49,6 +49,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Smx.SimpleMeetings.Base.Attendee.html">Attendee</a></li>
+				<li><a href="class-Smx.SimpleMeetings.Base.HttpRequest.html">HttpRequest</a></li>
 				<li><a href="class-Smx.SimpleMeetings.Base.ItemList.html">ItemList</a></li>
 				<li class="active"><a href="class-Smx.SimpleMeetings.Base.Meeting.html">Meeting</a></li>
 				<li><a href="class-Smx.SimpleMeetings.Base.Site.html">Site</a></li>
@@ -100,6 +101,15 @@
 	<h1>Class Meeting</h1>
 
 
+	<div class="description">
+	
+<p>Basic meeting class to represent a meeting/session.</p>
+
+<p>Provides methods for scheduling, editing, deleting, listing, etc. Base class
+models the meeting and provides common methods, however each adapter must
+individually implement API calls to perform actions.</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -135,7 +145,10 @@
 		<b>Namespace:</b> <a href="namespace-Smx.html">Smx</a>\<a href="namespace-Smx.SimpleMeetings.html">SimpleMeetings</a>\<a href="namespace-Smx.SimpleMeetings.Base.html">Base</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#6-62" title="Go to source code">src/adapters/BaseClasses/Meeting.php</a><br />
+				<b>Author:</b>
+				Phillip Shipley &lt;<a
+href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#13-86" title="Go to source code">src/adapters/BaseClasses/Meeting.php</a><br />
 	</div>
 
 
@@ -153,7 +166,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#24-38" title="Go to source code">__construct</a>( <span>mixed <var>$username</var></span>, <span>mixed <var>$password</var></span>, <span>mixed <var>$sitename</var></span>, <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#40-61" title="Go to source code">__construct</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$sitename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -163,6 +176,17 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd><code>string</code><br>$username</dd>
+					<dt><var>$password</var></dt>
+					<dd><code>string</code><br>$password</dd>
+					<dt><var>$sitename</var></dt>
+					<dd><code>string</code><br>$sitename</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options</dd>
+				</dl></div>
 
 
 
@@ -184,7 +208,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOptions">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#40-46" title="Go to source code">setOptions</a>( <span>mixed <var>$options</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#63-69" title="Go to source code">setOptions</a>( <span>mixed <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -213,7 +237,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setOption">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#48-50" title="Go to source code">setOption</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$value</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#71-73" title="Go to source code">setOption</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -242,7 +266,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getOption">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#52-61" title="Go to source code">getOption</a>( <span>mixed <var>$name</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#75-84" title="Go to source code">getOption</a>( <span>mixed <var>$name</var></span> )</code>
 
 		<div class="description short">
 			
@@ -295,7 +319,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#7" title="Go to source code"><var>$isPublic</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#23" title="Go to source code"><var>$isPublic</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -318,7 +342,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#8" title="Go to source code"><var>$enforcePassword</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#24" title="Go to source code"><var>$enforcePassword</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">true</span></code></td>
 		<td class="description"><div>
@@ -341,7 +365,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#9" title="Go to source code"><var>$meetingPassword</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#25" title="Go to source code"><var>$meetingPassword</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -364,7 +388,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#10" title="Go to source code"><var>$meetingName</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#26" title="Go to source code"><var>$meetingName</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -387,7 +411,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#11" title="Go to source code"><var>$startTime</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#27" title="Go to source code"><var>$startTime</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -410,7 +434,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#12" title="Go to source code"><var>$duration</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#28" title="Go to source code"><var>$duration</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">60</span></code></td>
 		<td class="description"><div>
@@ -433,7 +457,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#13" title="Go to source code"><var>$meetingKey</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#29" title="Go to source code"><var>$meetingKey</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -456,7 +480,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#14" title="Go to source code"><var>$hostUrl</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#30" title="Go to source code"><var>$hostUrl</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -479,7 +503,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#15" title="Go to source code"><var>$joinUrl</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#31" title="Go to source code"><var>$joinUrl</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -502,7 +526,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#22" title="Go to source code"><var>$historyDetails</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Meeting.html#33-38" title="Go to source code"><var>$historyDetails</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>
@@ -510,10 +534,18 @@
 
 			<div class="description short">
 				
+<p>History details is an array of the actual meeting usage data for a meeting
+that has taken place. The expected fields are startTime, endTime, duration,
+totalParticipants, totalPeopleMinutes, totalVoip, totalPhone</p>
+
 			</div>
 
 			<div class="description detailed hidden">
 				
+<p>History details is an array of the actual meeting usage data for a meeting
+that has taken place. The expected fields are startTime, endTime, duration,
+totalParticipants, totalPeopleMinutes, totalVoip, totalPhone</p>
+
 
 			</div>
 		</div></td>

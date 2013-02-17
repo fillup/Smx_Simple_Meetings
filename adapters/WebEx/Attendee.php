@@ -1,4 +1,11 @@
 <?php
+/**
+ * Smx\SimpleMeetings (https://github.com/fillup/Smx_Simple_Meetings/)
+ *
+ * @link      https://github.com/fillup/Smx_Simple_Meetings for the canonical source repository
+ * @copyright Copyright (c) 2012-2013 Sumilux Technologies (http://sumilux.com)
+ * @license   GPLv2+
+ */
 
 namespace Smx\SimpleMeetings\WebEx;
 use Smx\SimpleMeetings\Base\Attendee as AttendeeBase;
@@ -6,10 +13,17 @@ use Smx\SimpleMeetings\Base\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
 use Zend\Http\Client;
 
+/**
+ * WebEx Attendee class to represent a meeting attendee and provide functions
+ * to add attendees to a meeting and retrieve lists of attendees.
+ * 
+ * @author Phillip Shipley <phillip@phillipshipley.com>
+ */
 class Attendee extends AttendeeBase implements \Smx\SimpleMeetings\Attendee
 {
-    /*
+    /**
      * Add attendee(s) to a meeting or retrieve a list of attendees
+     * 
      * @param string $username Username for making API calls
      * @param string $password Password for making API calls
      * @param string $sitename Sitename for making API calls
@@ -20,10 +34,12 @@ class Attendee extends AttendeeBase implements \Smx\SimpleMeetings\Attendee
         parent::__construct($username, $password, $sitename, $options);
     }
     
-    /*
+    /**
      * Add a single attendee to a meeting.
+     * 
      * This method requires that at least hte attendee email address and meeting
      * key are already set.
+     * 
      * @return Attendee If successful, the $this->attendeeId property will be set
      * @throws ErrorException If missing required properties or there is an 
      *   error with the API call
@@ -50,8 +66,9 @@ class Attendee extends AttendeeBase implements \Smx\SimpleMeetings\Attendee
         }
     }
     
-    /*
+    /**
      * Retrieve a list of attendees
+     * 
      * @return ItemList
      * @throws ErrorException If there is a problem with API call.
      */

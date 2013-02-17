@@ -7,7 +7,7 @@
 	<title>Class Smx\SimpleMeetings\Base\ItemList | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?671347685"></script>
+	<script type="text/javascript" src="elementlist.js?1229490731"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -49,6 +49,7 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Smx.SimpleMeetings.Base.Attendee.html">Attendee</a></li>
+				<li><a href="class-Smx.SimpleMeetings.Base.HttpRequest.html">HttpRequest</a></li>
 				<li class="active"><a href="class-Smx.SimpleMeetings.Base.ItemList.html">ItemList</a></li>
 				<li><a href="class-Smx.SimpleMeetings.Base.Meeting.html">Meeting</a></li>
 				<li><a href="class-Smx.SimpleMeetings.Base.Site.html">Site</a></li>
@@ -100,6 +101,15 @@
 	<h1>Class ItemList</h1>
 
 
+	<div class="description">
+	
+<p>Generic Iteratable Object for storing lists of meetings, attendees, or
+users.</p>
+
+<p>Class extends \Iterator and adds an addItem($item) method for adding objects
+to the list.</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -124,7 +134,10 @@
 		<b>Namespace:</b> <a href="namespace-Smx.html">Smx</a>\<a href="namespace-Smx.SimpleMeetings.html">SimpleMeetings</a>\<a href="namespace-Smx.SimpleMeetings.Base.html">Base</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#5-50" title="Go to source code">src/adapters/BaseClasses/ItemList.php</a><br />
+				<b>Author:</b>
+				Phillip Shipley &lt;<a
+href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#12-66" title="Go to source code">src/adapters/BaseClasses/ItemList.php</a><br />
 	</div>
 
 
@@ -142,7 +155,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#10-12" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#25-27" title="Go to source code">__construct</a>( )</code>
 
 		<div class="description short">
 			
@@ -171,16 +184,25 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addItem">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#19-21" title="Go to source code">addItem</a>( <span>mixed <var>$item</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#29-37" title="Go to source code">addItem</a>( <span><code><a href="class-Smx.SimpleMeetings.Base.Meeting.html">Smx\SimpleMeetings\Base\Meeting</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.Attendee.html">Smx\SimpleMeetings\Base\Attendee</a></code>|User <var>$item</var></span> )</code>
 
 		<div class="description short">
 			
+<p>Add a Meeting, Attende, or User object to list</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Add a Meeting, Attende, or User object to list</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$item</var></dt>
+					<dd><code><code><a href="class-Smx.SimpleMeetings.Base.Meeting.html">Smx\SimpleMeetings\Base\Meeting</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.Attendee.html">Smx\SimpleMeetings\Base\Attendee</a></code>|User</code><br>Object should extend \Smx\SimpleMeetings\Base\Meeting|Attendee|User</dd>
+				</dl></div>
 
 
 
@@ -200,14 +222,18 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_size">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#26-29" title="Go to source code">size</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#39-45" title="Go to source code">size</a>( )</code>
 
 		<div class="description short">
 			
+<p>Return size of list</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Return size of list</p>
+
 
 
 
@@ -229,7 +255,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_rewind">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#31-33" title="Go to source code">rewind</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#47-49" title="Go to source code">rewind</a>( )</code>
 
 		<div class="description short">
 			
@@ -260,7 +286,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_current">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#35-37" title="Go to source code">current</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#51-53" title="Go to source code">current</a>( )</code>
 
 		<div class="description short">
 			
@@ -291,7 +317,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_key">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#39-41" title="Go to source code">key</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#55-57" title="Go to source code">key</a>( )</code>
 
 		<div class="description short">
 			
@@ -322,7 +348,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_next">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#43-45" title="Go to source code">next</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#59-61" title="Go to source code">next</a>( )</code>
 
 		<div class="description short">
 			
@@ -353,7 +379,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_valid">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#47-49" title="Go to source code">valid</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#63-65" title="Go to source code">valid</a>( )</code>
 
 		<div class="description short">
 			
@@ -395,7 +421,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#7" title="Go to source code"><var>$position</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#22" title="Go to source code"><var>$position</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -418,7 +444,7 @@
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#8" title="Go to source code"><var>$items</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#23" title="Go to source code"><var>$items</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
 		<td class="description"><div>

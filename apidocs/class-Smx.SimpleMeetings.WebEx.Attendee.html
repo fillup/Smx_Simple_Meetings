@@ -7,7 +7,7 @@
 	<title>Class Smx\SimpleMeetings\WebEx\Attendee | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?671347685"></script>
+	<script type="text/javascript" src="elementlist.js?1229490731"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -99,6 +99,12 @@
 	<h1>Class Attendee</h1>
 
 
+	<div class="description">
+	
+<p>WebEx Attendee class to represent a meeting attendee and provide functions to
+add attendees to a meeting and retrieve lists of attendees.</p>
+
+	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
@@ -139,7 +145,10 @@
 		<b>Namespace:</b> <a href="namespace-Smx.html">Smx</a>\<a href="namespace-Smx.SimpleMeetings.html">SimpleMeetings</a>\<a href="namespace-Smx.SimpleMeetings.WebEx.html">WebEx</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#9-110" title="Go to source code">src/adapters/WebEx/Attendee.php</a><br />
+				<b>Author:</b>
+				Phillip Shipley &lt;<a
+href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#16-127" title="Go to source code">src/adapters/WebEx/Attendee.php</a><br />
 	</div>
 
 
@@ -157,16 +166,31 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___contstruct">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#18-21" title="Go to source code">__contstruct</a>( <span>mixed <var>$username</var></span>, <span>mixed <var>$password</var></span>, <span>mixed <var>$sitename</var></span>, <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#24-35" title="Go to source code">__contstruct</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$sitename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Add attendee(s) to a meeting or retrieve a list of attendees</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Add attendee(s) to a meeting or retrieve a list of attendees</p>
 
 
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd><code>string</code><br>$username Username for making API calls</dd>
+					<dt><var>$password</var></dt>
+					<dd><code>string</code><br>$password Password for making API calls</dd>
+					<dt><var>$sitename</var></dt>
+					<dd><code>string</code><br>$sitename Sitename for making API calls</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array</code><br>$options An array of options such as name, email, meetingKey</dd>
+				</dl></div>
 
 
 
@@ -179,25 +203,40 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Smx.SimpleMeetings.WebEx.Attendee.html">Smx\SimpleMeetings\WebEx\Attendee</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addAttendee">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#31-51" title="Go to source code">addAttendee</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#37-67" title="Go to source code">addAttendee</a>( )</code>
 
 		<div class="description short">
 			
+<p>Add a single attendee to a meeting.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Add a single attendee to a meeting.</p>
+
+<p>This method requires that at least hte attendee email address and meeting key
+are already set.</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Smx.SimpleMeetings.WebEx.Attendee.html">Smx\SimpleMeetings\WebEx\Attendee</a></code></code><br>If successful, the $this-&gt;attendeeId property will be set<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br>If missing required properties or there is an error with the API call<br />
+				</div>
 
 
 
@@ -210,25 +249,37 @@
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttendeeList">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#58-92" title="Go to source code">getAttendeeList</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#69-109" title="Go to source code">getAttendeeList</a>( )</code>
 
 		<div class="description short">
 			
+<p>Retrieve a list of attendees</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Retrieve a list of attendees</p>
 
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br>If there is a problem with API call.<br />
+				</div>
 
 
 
@@ -248,7 +299,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValid">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#94-100" title="Go to source code">isValid</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#111-117" title="Go to source code">isValid</a>( )</code>
 
 		<div class="description short">
 			
@@ -277,7 +328,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadXml">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#102-105" title="Go to source code">loadXml</a>( <span>mixed <var>$action</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#119-122" title="Go to source code">loadXml</a>( <span>mixed <var>$action</var></span> )</code>
 
 		<div class="description short">
 			
@@ -306,7 +357,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_callApi">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#107-109" title="Go to source code">callApi</a>( <span>mixed <var>$xml</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Attendee.html#124-126" title="Go to source code">callApi</a>( <span>mixed <var>$xml</var></span> )</code>
 
 		<div class="description short">
 			

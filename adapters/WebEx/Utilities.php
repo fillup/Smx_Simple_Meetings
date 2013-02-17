@@ -1,13 +1,26 @@
 <?php
+/**
+ * Smx\SimpleMeetings (https://github.com/fillup/Smx_Simple_Meetings/)
+ *
+ * @link      https://github.com/fillup/Smx_Simple_Meetings for the canonical source repository
+ * @copyright Copyright (c) 2012-2013 Sumilux Technologies (http://sumilux.com)
+ * @license   GPLv2+
+ */
 
 namespace Smx\SimpleMeetings\WebEx;
 use Smx\SimpleMeetings\Base\HttpRequest;
 
+/**
+ * Utilities class to perform common functions for WebEx API activities.
+ * 
+ * @author Phillip Shipley <phillip@phillipshipley.com>
+ */
 class Utilities
 {
-    /*
+    /**
      * Method to load XML template file, create XML object, inject user credentials
      * and return a SimpleXMLElement object for further alterations.
+     * 
      * @param $action Should be a valid action name mapping to an XML file
      * @return SimpleXMLElement
      * @throws ErrorException Exception thrown when unable to load or parse the XML file.
@@ -32,8 +45,9 @@ class Utilities
         }
     }
     
-    /*
+    /**
      * Performs API call to WebEx XML API
+     * 
      * @param String|SimpleXMLElement $xml Either the full XML to be sent or a SimpleXMLElement object
      * @return SimpleXMLElement The bodyContent section of successful API response
      * @throws ErrorException when the API call fails or it is unable to parse response.
