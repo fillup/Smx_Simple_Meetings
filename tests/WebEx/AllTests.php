@@ -4,6 +4,7 @@ namespace Smx\SimpleMeetings\Tests\WebEx;
 
 require_once 'MeetingTest.php';
 require_once 'AttendeeTest.php';
+require_once 'UserTest.php';
 
 
 class WebEx_AllTests
@@ -14,6 +15,7 @@ class WebEx_AllTests
         
         $suite->addTestSuite('\\Smx\\SimpleMeetings\\Tests\\WebEx\\MeetingTest');
         $suite->addTestSuite('\\Smx\\SimpleMeetings\\Tests\\WebEx\\AttendeeTest');
+        $suite->addTestSuite('\\Smx\\SimpleMeetings\\Tests\\WebEx\\UserTest');
         
         return $suite;
         

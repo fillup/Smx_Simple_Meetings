@@ -22,6 +22,7 @@ require_once 'Interfaces.php';
 require_once 'adapters/BaseClasses/Site.php';
 require_once 'adapters/BaseClasses/Meeting.php';
 require_once 'adapters/BaseClasses/Attendee.php';
+require_once 'adapters/BaseClasses/User.php';
 require_once 'adapters/BaseClasses/ItemList.php';
 require_once 'adapters/BaseClasses/HttpRequest.php';
 

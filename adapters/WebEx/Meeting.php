@@ -12,7 +12,6 @@ use Smx\SimpleMeetings\Base\Meeting as MeetingBase;
 use Smx\SimpleMeetings\Base\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
 use Smx\SimpleMeetings\WebEx\Attendee;
-use Zend\Http\Client;
 
 /**
  * WebEx Meetings class to extend base meeting. Adds functionality for calling

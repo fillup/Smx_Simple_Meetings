@@ -8,7 +8,7 @@
 	<title>File src/adapters/WebEx/Attendee.php | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?1229490731"></script>
+	<script type="text/javascript" src="elementlist.js?2394749687"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -51,6 +51,7 @@
 			<ul>
 				<li class="active"><a href="class-Smx.SimpleMeetings.WebEx.Attendee.html">Attendee</a></li>
 				<li><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Meeting</a></li>
+				<li><a href="class-Smx.SimpleMeetings.WebEx.User.html">User</a></li>
 				<li><a href="class-Smx.SimpleMeetings.WebEx.Utilities.html">Utilities</a></li>
 			</ul>
 
@@ -110,120 +111,119 @@
 </span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-keyword1">use</span> Smx\SimpleMeetings\Base\Attendee <span class="php-keyword1">as</span> AttendeeBase;
 </span><span id="12" class="l"><a class="l" href="#12"> 12: </a><span class="php-keyword1">use</span> Smx\SimpleMeetings\Base\ItemList;
 </span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-keyword1">use</span> Smx\SimpleMeetings\WebEx\Utilities;
-</span><span id="14" class="l"><a class="l" href="#14"> 14: </a><span class="php-keyword1">use</span> Zend\Http\Client;
-</span><span id="15" class="l"><a class="l" href="#15"> 15: </a>
-</span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment">/**
-</span></span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-comment"> * WebEx Attendee class to represent a meeting attendee and provide functions
-</span></span><span id="18" class="l"><a class="l" href="#18"> 18: </a><span class="php-comment"> * to add attendees to a meeting and retrieve lists of attendees.
-</span></span><span id="19" class="l"><a class="l" href="#19"> 19: </a><span class="php-comment"> * 
-</span></span><span id="20" class="l"><a class="l" href="#20"> 20: </a><span class="php-comment"> * @author Phillip Shipley &lt;phillip@phillipshipley.com&gt;
-</span></span><span id="21" class="l"><a class="l" href="#21"> 21: </a><span class="php-comment"> */</span>
-</span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-keyword1">class</span> <a id="Attendee" href="#Attendee">Attendee</a> <span class="php-keyword1">extends</span> AttendeeBase <span class="php-keyword1">implements</span> \Smx\SimpleMeetings\Attendee
-</span><span id="23" class="l"><a class="l" href="#23"> 23: </a>{
-</span><span id="24" class="l"><a class="l" href="#24"> 24: </a>    <span class="php-comment">/**
-</span></span><span id="25" class="l"><a class="l" href="#25"> 25: </a><span class="php-comment">     * Add attendee(s) to a meeting or retrieve a list of attendees
-</span></span><span id="26" class="l"><a class="l" href="#26"> 26: </a><span class="php-comment">     * 
-</span></span><span id="27" class="l"><a class="l" href="#27"> 27: </a><span class="php-comment">     * @param string $username Username for making API calls
-</span></span><span id="28" class="l"><a class="l" href="#28"> 28: </a><span class="php-comment">     * @param string $password Password for making API calls
-</span></span><span id="29" class="l"><a class="l" href="#29"> 29: </a><span class="php-comment">     * @param string $sitename Sitename for making API calls
-</span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment">     * @param array $options An array of options such as name, email, meetingKey
-</span></span><span id="31" class="l"><a class="l" href="#31"> 31: </a><span class="php-comment">     */</span>
-</span><span id="32" class="l"><a class="l" href="#32"> 32: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___contstruct" href="#___contstruct">__contstruct</a>(<span class="php-var">$username</span>, <span class="php-var">$password</span>, <span class="php-var">$sitename</span>, <span class="php-var">$options</span>=<span class="php-keyword1">false</span>)
-</span><span id="33" class="l"><a class="l" href="#33"> 33: </a>    {
-</span><span id="34" class="l"><a class="l" href="#34"> 34: </a>        parent::__construct(<span class="php-var">$username</span>, <span class="php-var">$password</span>, <span class="php-var">$sitename</span>, <span class="php-var">$options</span>);
-</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>    }
-</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>    
-</span><span id="37" class="l"><a class="l" href="#37"> 37: </a>    <span class="php-comment">/**
-</span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">     * Add a single attendee to a meeting.
-</span></span><span id="39" class="l"><a class="l" href="#39"> 39: </a><span class="php-comment">     * 
-</span></span><span id="40" class="l"><a class="l" href="#40"> 40: </a><span class="php-comment">     * This method requires that at least hte attendee email address and meeting
-</span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     * key are already set.
-</span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment">     * 
-</span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment">     * @return Attendee If successful, the $this-&gt;attendeeId property will be set
-</span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     * @throws ErrorException If missing required properties or there is an 
-</span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment">     *   error with the API call
-</span></span><span id="46" class="l"><a class="l" href="#46"> 46: </a><span class="php-comment">     */</span>
-</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_addAttendee" href="#_addAttendee">addAttendee</a>()
-</span><span id="48" class="l"><a class="l" href="#48"> 48: </a>    {
-</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;isValid()){
-</span><span id="50" class="l"><a class="l" href="#50"> 50: </a>            <span class="php-var">$xml</span> = <span class="php-var">$this</span>-&gt;loadXml(<span class="php-quote">'CreateAttendee'</span>);
-</span><span id="51" class="l"><a class="l" href="#51"> 51: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$xml</span>){
-</span><span id="52" class="l"><a class="l" href="#52"> 52: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;name)){
-</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>                    <span class="php-var">$xml</span>-&gt;body-&gt;bodyContent-&gt;person-&gt;name = <span class="php-var">$this</span>-&gt;getName();
-</span><span id="54" class="l"><a class="l" href="#54"> 54: </a>                }
-</span><span id="55" class="l"><a class="l" href="#55"> 55: </a>                <span class="php-var">$xml</span>-&gt;body-&gt;bodyContent-&gt;person-&gt;email = <span class="php-var">$this</span>-&gt;getEmail();
-</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>                <span class="php-var">$xml</span>-&gt;body-&gt;bodyContent-&gt;sessionKey = <span class="php-var">$this</span>-&gt;getMeetingKey();
-</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>                <span class="php-var">$results</span> = <span class="php-var">$this</span>-&gt;callApi(<span class="php-var">$xml</span>-&gt;asXML());
-</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$results</span>){
-</span><span id="59" class="l"><a class="l" href="#59"> 59: </a>                    <span class="php-var">$this</span>-&gt;setAttendeeId(<span class="php-var">$results</span>-&gt;attendeeId-&gt;__toString());
-</span><span id="60" class="l"><a class="l" href="#60"> 60: </a>                    <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
-</span><span id="61" class="l"><a class="l" href="#61"> 61: </a>                }
-</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>            }
-</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>        } <span class="php-keyword1">else</span> {
-</span><span id="64" class="l"><a class="l" href="#64"> 64: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \ErrorException(<span class="php-quote">'Attendee is missing either email address
-</span></span><span id="65" class="l"><a class="l" href="#65"> 65: </a><span class="php-quote">                or meeting key.'</span>,<span class="php-num">110</span>);
-</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>        }
-</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>    }
-</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>    
-</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>    <span class="php-comment">/**
-</span></span><span id="70" class="l"><a class="l" href="#70"> 70: </a><span class="php-comment">     * Retrieve a list of attendees
-</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     * 
-</span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">     * @return ItemList
-</span></span><span id="73" class="l"><a class="l" href="#73"> 73: </a><span class="php-comment">     * @throws ErrorException If there is a problem with API call.
-</span></span><span id="74" class="l"><a class="l" href="#74"> 74: </a><span class="php-comment">     */</span>
-</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAttendeeList" href="#_getAttendeeList">getAttendeeList</a>()
-</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>    {
-</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>        <span class="php-var">$attendeeList</span> = <span class="php-keyword1">new</span> ItemList();
-</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>        <span class="php-var">$xml</span> = <span class="php-var">$this</span>-&gt;loadXml(<span class="php-quote">'ListAttendees'</span>);
-</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$xml</span>){
-</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>            <span class="php-var">$xml</span>-&gt;body-&gt;bodyContent-&gt;sessionKey = <span class="php-var">$this</span>-&gt;getMeetingKey();
-</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>            <span class="php-keyword1">try</span>{
-</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>                <span class="php-var">$results</span> = <span class="php-var">$this</span>-&gt;callApi(<span class="php-var">$xml</span>-&gt;asXML());
-</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$results</span>){
-</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>                    <span class="php-keyword1">if</span>((int)<span class="php-var">$results</span>-&gt;matchingRecords-&gt;returned-&gt;__toString() &gt; <span class="php-num">0</span>){
-</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>                        <span class="php-keyword1">foreach</span>(<span class="php-var">$results</span>-&gt;attendee <span class="php-keyword1">as</span> <span class="php-var">$person</span>){
-</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>                            <span class="php-var">$personDetails</span> = <span class="php-keyword1">array</span>(
-</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>                                <span class="php-quote">'name'</span> =&gt; <span class="php-var">$person</span>-&gt;person-&gt;name-&gt;__toString(),
-</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>                                <span class="php-quote">'email'</span> =&gt; <span class="php-var">$person</span>-&gt;person-&gt;email-&gt;__toString(),
-</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>                                <span class="php-quote">'meetingKey'</span> =&gt; <span class="php-var">$this</span>-&gt;getMeetingKey()
-</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>                            );
-</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>                            <span class="php-var">$attendeeList</span>-&gt;addItem(
-</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>                                    <span class="php-keyword1">new</span> Attendee(
-</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>                                            <span class="php-var">$this</span>-&gt;getUsername(),
-</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>                                            <span class="php-var">$this</span>-&gt;getPassword(),
-</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>                                            <span class="php-var">$this</span>-&gt;getSitename(),
-</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>                                            <span class="php-var">$personDetails</span>
-</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>                                    )
-</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>                            );
-</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>                        }
-</span><span id="100" class="l"><a class="l" href="#100">100: </a>                    }
-</span><span id="101" class="l"><a class="l" href="#101">101: </a>                }
-</span><span id="102" class="l"><a class="l" href="#102">102: </a>            } <span class="php-keyword1">catch</span> (\ErrorException <span class="php-var">$e</span>) {
-</span><span id="103" class="l"><a class="l" href="#103">103: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword2">preg_match</span>(<span class="php-quote">'/000015/'</span>, <span class="php-var">$e</span>-&gt;getMessage())){
-</span><span id="104" class="l"><a class="l" href="#104">104: </a>                    <span class="php-keyword1">throw</span> <span class="php-var">$e</span>;
-</span><span id="105" class="l"><a class="l" href="#105">105: </a>                }
-</span><span id="106" class="l"><a class="l" href="#106">106: </a>            }
-</span><span id="107" class="l"><a class="l" href="#107">107: </a>        }
-</span><span id="108" class="l"><a class="l" href="#108">108: </a>        <span class="php-keyword1">return</span> <span class="php-var">$attendeeList</span>;
-</span><span id="109" class="l"><a class="l" href="#109">109: </a>    }
-</span><span id="110" class="l"><a class="l" href="#110">110: </a>    
-</span><span id="111" class="l"><a class="l" href="#111">111: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValid" href="#_isValid">isValid</a>()
-</span><span id="112" class="l"><a class="l" href="#112">112: </a>    {
-</span><span id="113" class="l"><a class="l" href="#113">113: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;email) &amp;&amp; !<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;meetingKey)){
-</span><span id="114" class="l"><a class="l" href="#114">114: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
-</span><span id="115" class="l"><a class="l" href="#115">115: </a>        }
-</span><span id="116" class="l"><a class="l" href="#116">116: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
-</span><span id="117" class="l"><a class="l" href="#117">117: </a>    }
-</span><span id="118" class="l"><a class="l" href="#118">118: </a>    
-</span><span id="119" class="l"><a class="l" href="#119">119: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_loadXml" href="#_loadXml">loadXml</a>(<span class="php-var">$action</span>){
-</span><span id="120" class="l"><a class="l" href="#120">120: </a>        <span class="php-keyword1">return</span> Utilities::loadXml(<span class="php-var">$action</span>, <span class="php-var">$this</span>-&gt;getUsername(), 
-</span><span id="121" class="l"><a class="l" href="#121">121: </a>                <span class="php-var">$this</span>-&gt;getPassword(), <span class="php-var">$this</span>-&gt;getSitename());
-</span><span id="122" class="l"><a class="l" href="#122">122: </a>    }
-</span><span id="123" class="l"><a class="l" href="#123">123: </a>    
-</span><span id="124" class="l"><a class="l" href="#124">124: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_callApi" href="#_callApi">callApi</a>(<span class="php-var">$xml</span>){
-</span><span id="125" class="l"><a class="l" href="#125">125: </a>        <span class="php-keyword1">return</span> Utilities::callApi(<span class="php-var">$xml</span>, <span class="php-var">$this</span>-&gt;getSitename());
-</span><span id="126" class="l"><a class="l" href="#126">126: </a>    }
-</span><span id="127" class="l"><a class="l" href="#127">127: </a></span>}</code></pre>
+</span><span id="14" class="l"><a class="l" href="#14"> 14: </a>
+</span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-comment">/**
+</span></span><span id="16" class="l"><a class="l" href="#16"> 16: </a><span class="php-comment"> * WebEx Attendee class to represent a meeting attendee and provide functions
+</span></span><span id="17" class="l"><a class="l" href="#17"> 17: </a><span class="php-comment"> * to add attendees to a meeting and retrieve lists of attendees.
+</span></span><span id="18" class="l"><a class="l" href="#18"> 18: </a><span class="php-comment"> * 
+</span></span><span id="19" class="l"><a class="l" href="#19"> 19: </a><span class="php-comment"> * @author Phillip Shipley &lt;phillip@phillipshipley.com&gt;
+</span></span><span id="20" class="l"><a class="l" href="#20"> 20: </a><span class="php-comment"> */</span>
+</span><span id="21" class="l"><a class="l" href="#21"> 21: </a><span class="php-keyword1">class</span> <a id="Attendee" href="#Attendee">Attendee</a> <span class="php-keyword1">extends</span> AttendeeBase <span class="php-keyword1">implements</span> \Smx\SimpleMeetings\Attendee
+</span><span id="22" class="l"><a class="l" href="#22"> 22: </a>{
+</span><span id="23" class="l"><a class="l" href="#23"> 23: </a>    <span class="php-comment">/**
+</span></span><span id="24" class="l"><a class="l" href="#24"> 24: </a><span class="php-comment">     * Add attendee(s) to a meeting or retrieve a list of attendees
+</span></span><span id="25" class="l"><a class="l" href="#25"> 25: </a><span class="php-comment">     * 
+</span></span><span id="26" class="l"><a class="l" href="#26"> 26: </a><span class="php-comment">     * @param string $username Username for making API calls
+</span></span><span id="27" class="l"><a class="l" href="#27"> 27: </a><span class="php-comment">     * @param string $password Password for making API calls
+</span></span><span id="28" class="l"><a class="l" href="#28"> 28: </a><span class="php-comment">     * @param string $sitename Sitename for making API calls
+</span></span><span id="29" class="l"><a class="l" href="#29"> 29: </a><span class="php-comment">     * @param array $options An array of options such as name, email, meetingKey
+</span></span><span id="30" class="l"><a class="l" href="#30"> 30: </a><span class="php-comment">     */</span>
+</span><span id="31" class="l"><a class="l" href="#31"> 31: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="___contstruct" href="#___contstruct">__contstruct</a>(<span class="php-var">$username</span>, <span class="php-var">$password</span>, <span class="php-var">$sitename</span>, <span class="php-var">$options</span>=<span class="php-keyword1">false</span>)
+</span><span id="32" class="l"><a class="l" href="#32"> 32: </a>    {
+</span><span id="33" class="l"><a class="l" href="#33"> 33: </a>        parent::__construct(<span class="php-var">$username</span>, <span class="php-var">$password</span>, <span class="php-var">$sitename</span>, <span class="php-var">$options</span>);
+</span><span id="34" class="l"><a class="l" href="#34"> 34: </a>    }
+</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>    
+</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>    <span class="php-comment">/**
+</span></span><span id="37" class="l"><a class="l" href="#37"> 37: </a><span class="php-comment">     * Add a single attendee to a meeting.
+</span></span><span id="38" class="l"><a class="l" href="#38"> 38: </a><span class="php-comment">     * 
+</span></span><span id="39" class="l"><a class="l" href="#39"> 39: </a><span class="php-comment">     * This method requires that at least hte attendee email address and meeting
+</span></span><span id="40" class="l"><a class="l" href="#40"> 40: </a><span class="php-comment">     * key are already set.
+</span></span><span id="41" class="l"><a class="l" href="#41"> 41: </a><span class="php-comment">     * 
+</span></span><span id="42" class="l"><a class="l" href="#42"> 42: </a><span class="php-comment">     * @return Attendee If successful, the $this-&gt;attendeeId property will be set
+</span></span><span id="43" class="l"><a class="l" href="#43"> 43: </a><span class="php-comment">     * @throws ErrorException If missing required properties or there is an 
+</span></span><span id="44" class="l"><a class="l" href="#44"> 44: </a><span class="php-comment">     *   error with the API call
+</span></span><span id="45" class="l"><a class="l" href="#45"> 45: </a><span class="php-comment">     */</span>
+</span><span id="46" class="l"><a class="l" href="#46"> 46: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_addAttendee" href="#_addAttendee">addAttendee</a>()
+</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>    {
+</span><span id="48" class="l"><a class="l" href="#48"> 48: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;isValid()){
+</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>            <span class="php-var">$xml</span> = <span class="php-var">$this</span>-&gt;loadXml(<span class="php-quote">'CreateAttendee'</span>);
+</span><span id="50" class="l"><a class="l" href="#50"> 50: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$xml</span>){
+</span><span id="51" class="l"><a class="l" href="#51"> 51: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;name)){
+</span><span id="52" class="l"><a class="l" href="#52"> 52: </a>                    <span class="php-var">$xml</span>-&gt;body-&gt;bodyContent-&gt;person-&gt;name = <span class="php-var">$this</span>-&gt;getName();
+</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>                }
+</span><span id="54" class="l"><a class="l" href="#54"> 54: </a>                <span class="php-var">$xml</span>-&gt;body-&gt;bodyContent-&gt;person-&gt;email = <span class="php-var">$this</span>-&gt;getEmail();
+</span><span id="55" class="l"><a class="l" href="#55"> 55: </a>                <span class="php-var">$xml</span>-&gt;body-&gt;bodyContent-&gt;sessionKey = <span class="php-var">$this</span>-&gt;getMeetingKey();
+</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>                <span class="php-var">$results</span> = <span class="php-var">$this</span>-&gt;callApi(<span class="php-var">$xml</span>-&gt;asXML());
+</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$results</span>){
+</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>                    <span class="php-var">$this</span>-&gt;setAttendeeId(<span class="php-var">$results</span>-&gt;attendeeId-&gt;__toString());
+</span><span id="59" class="l"><a class="l" href="#59"> 59: </a>                    <span class="php-keyword1">return</span> <span class="php-var">$this</span>;
+</span><span id="60" class="l"><a class="l" href="#60"> 60: </a>                }
+</span><span id="61" class="l"><a class="l" href="#61"> 61: </a>            }
+</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> \ErrorException(<span class="php-quote">'Attendee is missing either email address
+</span></span><span id="64" class="l"><a class="l" href="#64"> 64: </a><span class="php-quote">                or meeting key.'</span>,<span class="php-num">110</span>);
+</span><span id="65" class="l"><a class="l" href="#65"> 65: </a>        }
+</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>    }
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>    
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>    <span class="php-comment">/**
+</span></span><span id="69" class="l"><a class="l" href="#69"> 69: </a><span class="php-comment">     * Retrieve a list of attendees
+</span></span><span id="70" class="l"><a class="l" href="#70"> 70: </a><span class="php-comment">     * 
+</span></span><span id="71" class="l"><a class="l" href="#71"> 71: </a><span class="php-comment">     * @return ItemList
+</span></span><span id="72" class="l"><a class="l" href="#72"> 72: </a><span class="php-comment">     * @throws ErrorException If there is a problem with API call.
+</span></span><span id="73" class="l"><a class="l" href="#73"> 73: </a><span class="php-comment">     */</span>
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAttendeeList" href="#_getAttendeeList">getAttendeeList</a>()
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>    {
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>        <span class="php-var">$attendeeList</span> = <span class="php-keyword1">new</span> ItemList();
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>        <span class="php-var">$xml</span> = <span class="php-var">$this</span>-&gt;loadXml(<span class="php-quote">'ListAttendees'</span>);
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$xml</span>){
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>            <span class="php-var">$xml</span>-&gt;body-&gt;bodyContent-&gt;sessionKey = <span class="php-var">$this</span>-&gt;getMeetingKey();
+</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>            <span class="php-keyword1">try</span>{
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>                <span class="php-var">$results</span> = <span class="php-var">$this</span>-&gt;callApi(<span class="php-var">$xml</span>-&gt;asXML());
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$results</span>){
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>                    <span class="php-keyword1">if</span>((int)<span class="php-var">$results</span>-&gt;matchingRecords-&gt;returned-&gt;__toString() &gt; <span class="php-num">0</span>){
+</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>                        <span class="php-keyword1">foreach</span>(<span class="php-var">$results</span>-&gt;attendee <span class="php-keyword1">as</span> <span class="php-var">$person</span>){
+</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>                            <span class="php-var">$personDetails</span> = <span class="php-keyword1">array</span>(
+</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>                                <span class="php-quote">'name'</span> =&gt; <span class="php-var">$person</span>-&gt;person-&gt;name-&gt;__toString(),
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>                                <span class="php-quote">'email'</span> =&gt; <span class="php-var">$person</span>-&gt;person-&gt;email-&gt;__toString(),
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>                                <span class="php-quote">'meetingKey'</span> =&gt; <span class="php-var">$this</span>-&gt;getMeetingKey()
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>                            );
+</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>                            <span class="php-var">$attendeeList</span>-&gt;addItem(
+</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>                                    <span class="php-keyword1">new</span> Attendee(
+</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>                                            <span class="php-var">$this</span>-&gt;getUsername(),
+</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>                                            <span class="php-var">$this</span>-&gt;getPassword(),
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>                                            <span class="php-var">$this</span>-&gt;getSitename(),
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>                                            <span class="php-var">$personDetails</span>
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>                                    )
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>                            );
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>                        }
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>                    }
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>                }
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>            } <span class="php-keyword1">catch</span> (\ErrorException <span class="php-var">$e</span>) {
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>                <span class="php-keyword1">if</span>(!<span class="php-keyword2">preg_match</span>(<span class="php-quote">'/000015/'</span>, <span class="php-var">$e</span>-&gt;getMessage())){
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>                    <span class="php-keyword1">throw</span> <span class="php-var">$e</span>;
+</span><span id="104" class="l"><a class="l" href="#104">104: </a>                }
+</span><span id="105" class="l"><a class="l" href="#105">105: </a>            }
+</span><span id="106" class="l"><a class="l" href="#106">106: </a>        }
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>        <span class="php-keyword1">return</span> <span class="php-var">$attendeeList</span>;
+</span><span id="108" class="l"><a class="l" href="#108">108: </a>    }
+</span><span id="109" class="l"><a class="l" href="#109">109: </a>    
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValid" href="#_isValid">isValid</a>()
+</span><span id="111" class="l"><a class="l" href="#111">111: </a>    {
+</span><span id="112" class="l"><a class="l" href="#112">112: </a>        <span class="php-keyword1">if</span>(!<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;email) &amp;&amp; !<span class="php-keyword2">is_null</span>(<span class="php-var">$this</span>-&gt;meetingKey)){
+</span><span id="113" class="l"><a class="l" href="#113">113: </a>            <span class="php-keyword1">return</span> <span class="php-keyword1">true</span>;
+</span><span id="114" class="l"><a class="l" href="#114">114: </a>        }
+</span><span id="115" class="l"><a class="l" href="#115">115: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>    }
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>    
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_loadXml" href="#_loadXml">loadXml</a>(<span class="php-var">$action</span>){
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>        <span class="php-keyword1">return</span> Utilities::loadXml(<span class="php-var">$action</span>, <span class="php-var">$this</span>-&gt;getUsername(), 
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>                <span class="php-var">$this</span>-&gt;getPassword(), <span class="php-var">$this</span>-&gt;getSitename());
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>    }
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>    
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> <a id="_callApi" href="#_callApi">callApi</a>(<span class="php-var">$xml</span>){
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>        <span class="php-keyword1">return</span> Utilities::callApi(<span class="php-var">$xml</span>, <span class="php-var">$this</span>-&gt;getSitename());
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>    }
+</span><span id="126" class="l"><a class="l" href="#126">126: </a></span>}</code></pre>
 
 	<div id="footer">
 		SmxSimple_Meetings API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

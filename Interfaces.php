@@ -23,7 +23,7 @@ interface Meeting
 {
     public function createMeeting($options=false);
     public function getServerMeetingDetails();
-    public function getMeetingList();
+    public function getMeetingList($options=false);
     public function startMeeting($urlOnly=false);
     public function joinMeeting($urlOnly=false,$attendeeName=false,
             $attendeeEmail=false,$meetingPassword=false);
@@ -48,9 +48,9 @@ interface Attendee
 
 interface User
 {
-    public function createUser();
-    public function editUser();
+    public function createUser($options=false);
+    public function editUser($options=false);
     public function loginUser($urlOnly=false);
-    public function getUserDetails();
-    public function getUserList();
+    public function getServerUserDetails($username=false);
+    public function getUserList($options=false);
 }

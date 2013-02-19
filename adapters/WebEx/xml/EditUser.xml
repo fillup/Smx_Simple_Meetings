@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <header> 
+        <securityContext>
+            <webExID></webExID> 
+            <password></password> 
+            <siteName></siteName>
+        </securityContext> 
+    </header>
+    <body>
+        <bodyContent xsi:type=
+"java:com.webex.service.binding.user.SetUser"> 
+            <firstName></firstName>
+            <lastName></lastName>
+            <webExId></webExId> 
+            <email></email>
+            <password></password> 
+            <privilege>
+                <host>true</host>
+                <siteAdmin>false</siteAdmin>
+            </privilege> 
+            <active>ACTIVATED</active>
+        </bodyContent>
+    </body> 
+</message>

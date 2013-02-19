@@ -11,7 +11,6 @@ namespace Smx\SimpleMeetings\WebEx;
 use Smx\SimpleMeetings\Base\Attendee as AttendeeBase;
 use Smx\SimpleMeetings\Base\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
-use Zend\Http\Client;
 
 /**
  * WebEx Attendee class to represent a meeting attendee and provide functions
