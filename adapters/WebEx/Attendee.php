@@ -8,9 +8,9 @@
  */
 
 namespace Smx\SimpleMeetings\WebEx;
-use Smx\SimpleMeetings\Base\Attendee as AttendeeBase;
-use Smx\SimpleMeetings\Base\ItemList;
+use Smx\SimpleMeetings\Shared\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
+use Smx\SimpleMeetings\WebEx\Account;
 
 /**
  * WebEx Attendee class to represent a meeting attendee and provide functions
@@ -18,19 +18,27 @@ use Smx\SimpleMeetings\WebEx\Utilities;
  * 
  * @author Phillip Shipley <phillip@phillipshipley.com>
  */
-class Attendee extends AttendeeBase implements \Smx\SimpleMeetings\Attendee
+class Attendee extends Account implements \Smx\SimpleMeetings\Attendee
 {
+    public $name = null;
+    public $email = null;
+    public $meetingKey = null;
+    public $attendeeId = null;
+    
     /**
      * Add attendee(s) to a meeting or retrieve a list of attendees
      * 
-     * @param string $username Username for making API calls
-     * @param string $password Password for making API calls
-     * @param string $sitename Sitename for making API calls
+     * @param Array $authInfo Array containg WebEx authentication details
      * @param array $options An array of options such as name, email, meetingKey
      */
-    public function __contstruct($username, $password, $sitename, $options=false)
+    public function __construct($authInfo, $options = false)
     {
-        parent::__construct($username, $password, $sitename, $options);
+        parent::__construct($authInfo);
+        if($options && is_array($options)){
+            foreach($options as $name => $value){
+                $this->$name = $value;
+            }
+        }
     }
     
     /**
@@ -43,8 +51,13 @@ class Attendee extends AttendeeBase implements \Smx\SimpleMeetings\Attendee
      * @throws ErrorException If missing required properties or there is an 
      *   error with the API call
      */
-    public function addAttendee()
+    public function addAttendee($options=false)
     {
+        if($options && is_array($options)){
+            foreach($options as $name => $value){
+                $this->$name = $value;
+            }
+        }
         if($this->isValid()){
             $xml = $this->loadXml('CreateAttendee');
             if($xml){
@@ -89,9 +102,7 @@ class Attendee extends AttendeeBase implements \Smx\SimpleMeetings\Attendee
                             );
                             $attendeeList->addItem(
                                     new Attendee(
-                                            $this->getUsername(),
-                                            $this->getPassword(),
-                                            $this->getSitename(),
+                                            $this->getAuthInfo(),
                                             $personDetails
                                     )
                             );
@@ -105,6 +116,38 @@ class Attendee extends AttendeeBase implements \Smx\SimpleMeetings\Attendee
             }
         }
         return $attendeeList;
+    }
+    
+    public function setName($name){
+        $this->name = $name;
+    }
+    
+    public function getName(){
+        return $this->name;
+    }
+    
+    public function setEmail($email){
+        $this->email = $email;
+    }
+    
+    public function getEmail(){
+        return $this->email;
+    }
+    
+    public function setMeetingKey($meetingKey){
+        $this->meetingKey = $meetingKey;
+    }
+    
+    public function getMeetingKey(){
+        return $this->meetingKey;
+    }
+    
+    public function setAttendeeId($attendeeId){
+        $this->attendeeId = $attendeeId;
+    }
+    
+    public function getAttendeeId(){
+        return $this->attendeeId;
     }
     
     public function isValid()

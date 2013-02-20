@@ -7,7 +7,7 @@
  * @license   GPLv2+
  */
 
-namespace Smx\SimpleMeetings\Base;
+namespace Smx\SimpleMeetings\Shared;
 
 /**
  * HttpRequest class provides a very simple wrapper for using cURL functions.

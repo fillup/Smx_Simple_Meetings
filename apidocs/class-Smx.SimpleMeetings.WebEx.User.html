@@ -7,7 +7,7 @@
 	<title>Class Smx\SimpleMeetings\WebEx\User | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?2394749687"></script>
+	<script type="text/javascript" src="elementlist.js?3607129735"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -29,9 +29,13 @@
 						<ul>
 				<li><a href="namespace-Smx.SimpleMeetings.Base.html">Base</a>
 						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Citrix.html">Citrix</a>
+						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Shared.html">Shared</a>
+						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.html">Tests<span></span></a>
 						<ul>
-				<li><a href="namespace-Smx.SimpleMeetings.Tests.Base.html">Base</a>
+				<li><a href="namespace-Smx.SimpleMeetings.Tests.Shared.html">Shared</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.WebEx.html">WebEx</a>
 						</li>
@@ -48,6 +52,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Smx.SimpleMeetings.WebEx.Account.html">Account</a></li>
 				<li><a href="class-Smx.SimpleMeetings.WebEx.Attendee.html">Attendee</a></li>
 				<li><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Meeting</a></li>
 				<li class="active"><a href="class-Smx.SimpleMeetings.WebEx.User.html">User</a></li>
@@ -100,30 +105,20 @@
 	<h1>Class User</h1>
 
 
-	<div class="description">
-	
-<p>User class provides methods for adding and listing users.</p>
-
-<p>User class extends the Site class in order to inherit common fields such as
-username, password, and sitename. Base class primariy provides a common user
-model and each adapter that extends User must implement actual functionality for
-interacing with APIs.</p>
-
-	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-			<a href="class-Smx.SimpleMeetings.Base.Site.html"><span>Smx\SimpleMeetings\Base\Site</span></a>
+			<a href="class-Smx.SimpleMeetings.Base.Account.html"><span>Smx\SimpleMeetings\Base\Account</span></a>
 			
-			 implements 
-				<a href="class-Smx.SimpleMeetings.Site.html"><span>Smx\SimpleMeetings\Site</span></a>
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by" />
-			<a href="class-Smx.SimpleMeetings.Base.User.html"><span>Smx\SimpleMeetings\Base\User</span></a>
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html"><span>Smx\SimpleMeetings\WebEx\Account</span></a>
 			
+			 implements 
+				<a href="class-Smx.SimpleMeetings.Account.html"><span>Smx\SimpleMeetings\Account</span></a>
 			
 			
 		</dd>
@@ -153,7 +148,7 @@ interacing with APIs.</p>
 				<b>Author:</b>
 				Phillip Shipley &lt;<a
 href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.WebEx.User.html#15-198" title="Go to source code">src/adapters/WebEx/User.php</a><br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.WebEx.User.html#15-237" title="Go to source code">src/adapters/WebEx/User.php</a><br />
 	</div>
 
 
@@ -171,7 +166,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#18-20" title="Go to source code">__construct</a>( <span>String <var>$username</var> = <span class="php-keyword1">false</span></span>, <span>String <var>$password</var> = <span class="php-keyword1">false</span></span>, <span>String <var>$sitename</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#33-40" title="Go to source code">__construct</a>( <span>mixed <var>$authInfo</var></span>, <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -181,23 +176,12 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 			
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$username</var></dt>
-					<dd><code>String</code><br>$username</dd>
-					<dt><var>$password</var></dt>
-					<dd><code>String</code><br>$password</dd>
-					<dt><var>$sitename</var></dt>
-					<dd><code>String</code><br>$sitename</dd>
-					<dt><var>$options</var></dt>
-					<dd></dd>
-				</dl></div>
 
 
 
 
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Smx.SimpleMeetings.Base.User.html#___construct">Smx\SimpleMeetings\Base\User::__construct()</a></code></div>
+				<div class="list"><code><a href="class-Smx.SimpleMeetings.WebEx.Account.html#___construct">Smx\SimpleMeetings\WebEx\Account::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -213,7 +197,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createUser">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#22-53" title="Go to source code">createUser</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#42-76" title="Go to source code">createUser</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -244,7 +228,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editUser">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#55-93" title="Go to source code">editUser</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#78-116" title="Go to source code">editUser</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -275,7 +259,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loginUser">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#95-110" title="Go to source code">loginUser</a>( <span>mixed <var>$urlOnly</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#118-133" title="Go to source code">loginUser</a>( <span>mixed <var>$urlOnly</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -306,7 +290,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getServerUserDetails">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#112-125" title="Go to source code">getServerUserDetails</a>( <span>mixed <var>$username</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#135-148" title="Go to source code">getServerUserDetails</a>( <span>mixed <var>$username</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -326,6 +310,37 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</div>
 		</div></td>
 	</tr>
+	<tr data-order="deactivate" id="_deactivate">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_deactivate">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#150-165" title="Go to source code">deactivate</a>( <span>mixed <var>$username</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Smx.SimpleMeetings.User.html#_deactivate">Smx\SimpleMeetings\User::deactivate()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
 	<tr data-order="getUserList" id="_getUserList">
 
 		<td class="attributes"><code>
@@ -337,7 +352,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getUserList">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#127-173" title="Go to source code">getUserList</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#167-212" title="Go to source code">getUserList</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -368,7 +383,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isValid">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#175-188" title="Go to source code">isValid</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#214-227" title="Go to source code">isValid</a>( )</code>
 
 		<div class="description short">
 			
@@ -405,7 +420,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadXml">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#190-193" title="Go to source code">loadXml</a>( <span>mixed <var>$action</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#229-232" title="Go to source code">loadXml</a>( <span>mixed <var>$action</var></span> )</code>
 
 		<div class="description short">
 			
@@ -434,7 +449,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_callApi">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#195-197" title="Go to source code">callApi</a>( <span>mixed <var>$xml</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.User.html#234-236" title="Go to source code">callApi</a>( <span>mixed <var>$xml</var></span> )</code>
 
 		<div class="description short">
 			
@@ -455,25 +470,29 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 	</table>
 
 	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.Base.User.html#methods">Smx\SimpleMeetings\Base\User</a></caption>
+	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.WebEx.Account.html#methods">Smx\SimpleMeetings\WebEx\Account</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Smx.SimpleMeetings.Base.User.html#_getOption">getOption()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#_setOption">setOption()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#_setOptions">setOptions()</a>
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_getPassword">getPassword()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_getSitename">getSitename()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_getUsername">getUsername()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_setAuthInfo">setAuthInfo()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_setPassword">setPassword()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_setSitename">setSitename()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_setUsername">setUsername()</a>
 		</code></td>
 	</tr>
 	</table>
 	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.Base.Site.html#methods">Smx\SimpleMeetings\Base\Site</a></caption>
+	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.Base.Account.html#methods">Smx\SimpleMeetings\Base\Account</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_getPassword">getPassword()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_getSitename">getSitename()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_getUsername">getUsername()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_setPassword">setPassword()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_setSitename">setSitename()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_setUsername">setUsername()</a>
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getAuthInfo">getAuthInfo()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getAuthType">getAuthType()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getOption">getOption()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setAuthType">setAuthType()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setOption">setOption()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setOptions">setOptions()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -484,38 +503,336 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="ROLE_HOST" id="ROLE_HOST">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#17" title="Go to source code"><b>ROLE_HOST</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'HOST'</span></code></td>
+		<td class="description"><div>
+			<a href="#ROLE_HOST" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ROLE_ADMIN" id="ROLE_ADMIN">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#18" title="Go to source code"><b>ROLE_ADMIN</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'ADMIN'</span></code></td>
+		<td class="description"><div>
+			<a href="#ROLE_ADMIN" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="STATUS_ACTIVE" id="STATUS_ACTIVE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#19" title="Go to source code"><b>STATUS_ACTIVE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'ACTIVE'</span></code></td>
+		<td class="description"><div>
+			<a href="#STATUS_ACTIVE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="STATUS_INACTIVE" id="STATUS_INACTIVE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#20" title="Go to source code"><b>STATUS_INACTIVE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'INACTIVE'</span></code></td>
+		<td class="description"><div>
+			<a href="#STATUS_INACTIVE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
 
 	<table class="summary inherited">
-	<caption>Constants inherited from <a href="class-Smx.SimpleMeetings.Base.User.html#constants">Smx\SimpleMeetings\Base\User</a></caption>
+	<caption>Constants inherited from <a href="class-Smx.SimpleMeetings.Base.Account.html#constants">Smx\SimpleMeetings\Base\Account</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Smx.SimpleMeetings.Base.User.html#ROLE_ADMIN"><b>ROLE_ADMIN</b></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#ROLE_HOST"><b>ROLE_HOST</b></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#STATUS_ACTIVE"><b>STATUS_ACTIVE</b></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#STATUS_INACTIVE"><b>STATUS_INACTIVE</b></a>
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#AUTH_OAUTH"><b>AUTH_OAUTH</b></a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#AUTH_SHAREDSECRET"><b>AUTH_SHAREDSECRET</b></a>
 		</code></td>
 	</tr>
 	</table>
 
 
 
-
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Smx.SimpleMeetings.Base.User.html#properties">Smx\SimpleMeetings\Base\User</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$email"><var>$email</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$firstName"><var>$firstName</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$lastName"><var>$lastName</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$loginUrl"><var>$loginUrl</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$password"><var>$password</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$role"><var>$role</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$status"><var>$status</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$userId"><var>$userId</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html#$username"><var>$username</var></a>
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="firstName" id="$firstName">
+		<td class="attributes"><code>
+			public  
+			mixed
 		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#22" title="Go to source code"><var>$firstName</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$firstName" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="lastName" id="$lastName">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#23" title="Go to source code"><var>$lastName</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$lastName" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="email" id="$email">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#24" title="Go to source code"><var>$email</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$email" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="username" id="$username">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#25" title="Go to source code"><var>$username</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$username" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="role" id="$role">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#26" title="Go to source code"><var>$role</var></a>
+		</td>
+		<td class="value"><code><code><a href="class-Smx.SimpleMeetings.WebEx.User.html#ROLE_HOST">Smx\SimpleMeetings\WebEx\User::<b>ROLE_HOST</b></a></code></code></td>
+		<td class="description"><div>
+			<a href="#$role" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="password" id="$password">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#27" title="Go to source code"><var>$password</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$password" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="userId" id="$userId">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#28" title="Go to source code"><var>$userId</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$userId" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="status" id="$status">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#29" title="Go to source code"><var>$status</var></a>
+		</td>
+		<td class="value"><code><code><a href="class-Smx.SimpleMeetings.WebEx.User.html#STATUS_ACTIVE">Smx\SimpleMeetings\WebEx\User::<b>STATUS_ACTIVE</b></a></code></code></td>
+		<td class="description"><div>
+			<a href="#$status" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="loginUrl" id="$loginUrl">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#30" title="Go to source code"><var>$loginUrl</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$loginUrl" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="sendWelcomeEmail" id="$sendWelcomeEmail">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.User.html#31" title="Go to source code"><var>$sendWelcomeEmail</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$sendWelcomeEmail" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
 	</tr>
 	</table>
+
 
 
 

@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Interface Smx\SimpleMeetings\Site | SmxSimple_Meetings</title>
+	<title>Interface Smx\SimpleMeetings\Account | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?2394749687"></script>
+	<script type="text/javascript" src="elementlist.js?3607129735"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -29,9 +29,13 @@
 						<ul>
 				<li><a href="namespace-Smx.SimpleMeetings.Base.html">Base</a>
 						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Citrix.html">Citrix</a>
+						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Shared.html">Shared</a>
+						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.html">Tests<span></span></a>
 						<ul>
-				<li><a href="namespace-Smx.SimpleMeetings.Tests.Base.html">Base</a>
+				<li><a href="namespace-Smx.SimpleMeetings.Tests.Shared.html">Shared</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.WebEx.html">WebEx</a>
 						</li>
@@ -53,9 +57,9 @@
 
 			<h3>Interfaces</h3>
 			<ul>
+				<li class="active"><a href="class-Smx.SimpleMeetings.Account.html">Account</a></li>
 				<li><a href="class-Smx.SimpleMeetings.Attendee.html">Attendee</a></li>
 				<li><a href="class-Smx.SimpleMeetings.Meeting.html">Meeting</a></li>
-				<li class="active"><a href="class-Smx.SimpleMeetings.Site.html">Site</a></li>
 				<li><a href="class-Smx.SimpleMeetings.User.html">User</a></li>
 			</ul>
 
@@ -101,7 +105,7 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Interface Site</h1>
+	<h1>Interface Account</h1>
 
 
 
@@ -111,14 +115,11 @@
 
 	<div>
 		<h4>Direct known implementers</h4>
-			<a href="class-Smx.SimpleMeetings.Base.Site.html">Smx\SimpleMeetings\Base\Site</a>
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html">Smx\SimpleMeetings\WebEx\Account</a>
 	</div>
 
 	<div>
 		<h4>Indirect known implementers</h4>
-			<a href="class-Smx.SimpleMeetings.Base.Attendee.html">Smx\SimpleMeetings\Base\Attendee</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html">Smx\SimpleMeetings\Base\Meeting</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.User.html">Smx\SimpleMeetings\Base\User</a>, 
 			<a href="class-Smx.SimpleMeetings.WebEx.Attendee.html">Smx\SimpleMeetings\WebEx\Attendee</a>, 
 			<a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a>, 
 			<a href="class-Smx.SimpleMeetings.WebEx.User.html">Smx\SimpleMeetings\WebEx\User</a>
@@ -132,14 +133,14 @@
 		<b>Namespace:</b> <a href="namespace-Smx.html">Smx</a>\<a href="namespace-Smx.SimpleMeetings.html">SimpleMeetings</a><br />
 		
 
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Site.html#12-20" title="Go to source code">src/Interfaces.php</a><br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Account.html#12-19" title="Go to source code">src/Interfaces.php</a><br />
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="getSitename" id="_getSitename">
+	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
 			 public 
@@ -149,8 +150,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getSitename">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Site.html#14" title="Go to source code">getSitename</a>( )</code>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Account.html#14" title="Go to source code">__construct</a>( <span>mixed <var>$authInfo</var></span> )</code>
 
 		<div class="description short">
 			
@@ -168,7 +169,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getUsername" id="_getUsername">
+	<tr data-order="getAuthInfo" id="_getAuthInfo">
 
 		<td class="attributes"><code>
 			 public 
@@ -178,8 +179,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getUsername">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Site.html#15" title="Go to source code">getUsername</a>( )</code>
+		<a class="anchor" href="#_getAuthInfo">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Account.html#15" title="Go to source code">getAuthInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -197,7 +198,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="getPassword" id="_getPassword">
+	<tr data-order="setAuthInfo" id="_setAuthInfo">
 
 		<td class="attributes"><code>
 			 public 
@@ -207,8 +208,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_getPassword">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Site.html#16" title="Go to source code">getPassword</a>( )</code>
+		<a class="anchor" href="#_setAuthInfo">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Account.html#16" title="Go to source code">setAuthInfo</a>( <span>mixed <var>$authInfo</var></span> )</code>
 
 		<div class="description short">
 			
@@ -226,7 +227,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setSitename" id="_setSitename">
+	<tr data-order="getAuthType" id="_getAuthType">
 
 		<td class="attributes"><code>
 			 public 
@@ -236,8 +237,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setSitename">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Site.html#17" title="Go to source code">setSitename</a>( <span>mixed <var>$sitename</var></span> )</code>
+		<a class="anchor" href="#_getAuthType">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Account.html#17" title="Go to source code">getAuthType</a>( )</code>
 
 		<div class="description short">
 			
@@ -255,7 +256,7 @@
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="setUsername" id="_setUsername">
+	<tr data-order="setAuthType" id="_setAuthType">
 
 		<td class="attributes"><code>
 			 public 
@@ -265,37 +266,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_setUsername">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Site.html#18" title="Go to source code">setUsername</a>( <span>mixed <var>$username</var></span> )</code>
-
-		<div class="description short">
-			
-		</div>
-
-		<div class="description detailed hidden">
-			
-
-
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="setPassword" id="_setPassword">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_setPassword">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Site.html#19" title="Go to source code">setPassword</a>( <span>mixed <var>$password</var></span> )</code>
+		<a class="anchor" href="#_setAuthType">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Account.html#18" title="Go to source code">setAuthType</a>( <span>mixed <var>$authType</var></span> )</code>
 
 		<div class="description short">
 			

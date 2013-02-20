@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Class Smx\SimpleMeetings\Base\ItemList | SmxSimple_Meetings</title>
+	<title>Class Smx\SimpleMeetings\Base\Account | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?2394749687"></script>
+	<script type="text/javascript" src="elementlist.js?3607129735"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -29,9 +29,13 @@
 						<ul>
 				<li class="active"><a href="namespace-Smx.SimpleMeetings.Base.html">Base</a>
 						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Citrix.html">Citrix</a>
+						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Shared.html">Shared</a>
+						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.html">Tests<span></span></a>
 						<ul>
-				<li><a href="namespace-Smx.SimpleMeetings.Tests.Base.html">Base</a>
+				<li><a href="namespace-Smx.SimpleMeetings.Tests.Shared.html">Shared</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.WebEx.html">WebEx</a>
 						</li>
@@ -48,12 +52,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-Smx.SimpleMeetings.Base.Attendee.html">Attendee</a></li>
-				<li><a href="class-Smx.SimpleMeetings.Base.HttpRequest.html">HttpRequest</a></li>
-				<li class="active"><a href="class-Smx.SimpleMeetings.Base.ItemList.html">ItemList</a></li>
-				<li><a href="class-Smx.SimpleMeetings.Base.Meeting.html">Meeting</a></li>
-				<li><a href="class-Smx.SimpleMeetings.Base.Site.html">Site</a></li>
-				<li><a href="class-Smx.SimpleMeetings.Base.User.html">User</a></li>
+				<li class="active"><a href="class-Smx.SimpleMeetings.Base.Account.html">Account</a></li>
 			</ul>
 
 
@@ -99,31 +98,23 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class ItemList</h1>
+	<h1>Class Account</h1>
 
 
-	<div class="description">
-	
-<p>Generic Iteratable Object for storing lists of meetings, attendees, or
-users.</p>
 
-<p>Class extends \Iterator and adds an addItem($item) method for adding objects
-to the list.</p>
 
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html">Smx\SimpleMeetings\WebEx\Account</a>
 	</div>
 
-	<dl class="tree">
-		<dd style="padding-left:0px">
-<b><span>Smx\SimpleMeetings\Base\ItemList</span></b>			
-			 implements 
-				<a href="class-Iterator.html"><span>Iterator</span></a>
-			
-			
-		</dd>
-	</dl>
-
-
-
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Smx.SimpleMeetings.WebEx.Attendee.html">Smx\SimpleMeetings\WebEx\Attendee</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.User.html">Smx\SimpleMeetings\WebEx\User</a>
+	</div>
 
 
 
@@ -138,7 +129,7 @@ to the list.</p>
 				<b>Author:</b>
 				Phillip Shipley &lt;<a
 href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#12-66" title="Go to source code">src/adapters/BaseClasses/ItemList.php</a><br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Base.Account.html#13-86" title="Go to source code">src/adapters/Shared/Account.php</a><br />
 	</div>
 
 
@@ -156,7 +147,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#25-27" title="Go to source code">__construct</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Account.html#27-29" title="Go to source code">__construct</a>( <span>mixed <var>$authInfo</var></span> )</code>
 
 		<div class="description short">
 			
@@ -174,7 +165,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="addItem" id="_addItem">
+	<tr data-order="getAuthType" id="_getAuthType">
 
 		<td class="attributes"><code>
 			 public 
@@ -184,57 +175,15 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_addItem">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#29-37" title="Go to source code">addItem</a>( <span><code><a href="class-Smx.SimpleMeetings.Base.Meeting.html">Smx\SimpleMeetings\Base\Meeting</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.Attendee.html">Smx\SimpleMeetings\Base\Attendee</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.User.html">Smx\SimpleMeetings\Base\User</a></code> <var>$item</var></span> )</code>
+		<a class="anchor" href="#_getAuthType">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Account.html#31-34" title="Go to source code">getAuthType</a>( )</code>
 
 		<div class="description short">
 			
-<p>Add a Meeting, Attende, or User object to list</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>Add a Meeting, Attende, or User object to list</p>
-
-
-
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$item</var></dt>
-					<dd><code><code><a href="class-Smx.SimpleMeetings.Base.Meeting.html">Smx\SimpleMeetings\Base\Meeting</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.Attendee.html">Smx\SimpleMeetings\Base\Attendee</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.User.html">Smx\SimpleMeetings\Base\User</a></code></code><br>Object should extend \Smx\SimpleMeetings\Base\Meeting|Attendee|User</dd>
-				</dl></div>
-
-
-
-
-
-		</div>
-		</div></td>
-	</tr>
-	<tr data-order="size" id="_size">
-
-		<td class="attributes"><code>
-			 public 
-			
-			
-			</code>
-		</td>
-
-		<td class="name"><div>
-		<a class="anchor" href="#_size">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#39-45" title="Go to source code">size</a>( )</code>
-
-		<div class="description short">
-			
-<p>Return size of list</p>
-
-		</div>
-
-		<div class="description detailed hidden">
-			
-<p>Return size of list</p>
-
 
 
 
@@ -245,7 +194,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="rewind" id="_rewind">
+	<tr data-order="setAuthType" id="_setAuthType">
 
 		<td class="attributes"><code>
 			 public 
@@ -255,8 +204,8 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_rewind">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#47-49" title="Go to source code">rewind</a>( )</code>
+		<a class="anchor" href="#_setAuthType">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Account.html#36-46" title="Go to source code">setAuthType</a>( <span>mixed <var>$authType</var></span> )</code>
 
 		<div class="description short">
 			
@@ -271,12 +220,10 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_rewind">Iterator::rewind()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="current" id="_current">
+	<tr data-order="getAuthInfo" id="_getAuthInfo">
 
 		<td class="attributes"><code>
 			 public 
@@ -286,8 +233,8 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_current">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#51-53" title="Go to source code">current</a>( )</code>
+		<a class="anchor" href="#_getAuthInfo">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Account.html#48-51" title="Go to source code">getAuthInfo</a>( )</code>
 
 		<div class="description short">
 			
@@ -302,12 +249,10 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_current">Iterator::current()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="key" id="_key">
+	<tr data-order="setAuthInfo" id="_setAuthInfo">
 
 		<td class="attributes"><code>
 			 public 
@@ -317,8 +262,8 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_key">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#55-57" title="Go to source code">key</a>( )</code>
+		<a class="anchor" href="#_setAuthInfo">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Account.html#53-62" title="Go to source code">setAuthInfo</a>( <span>mixed <var>$authInfo</var></span> )</code>
 
 		<div class="description short">
 			
@@ -333,12 +278,10 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_key">Iterator::key()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="next" id="_next">
+	<tr data-order="setOptions" id="_setOptions">
 
 		<td class="attributes"><code>
 			 public 
@@ -348,8 +291,8 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_next">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#59-61" title="Go to source code">next</a>( )</code>
+		<a class="anchor" href="#_setOptions">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Account.html#64-70" title="Go to source code">setOptions</a>( <span>mixed <var>$options</var></span> )</code>
 
 		<div class="description short">
 			
@@ -364,12 +307,10 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_next">Iterator::next()</a></code></div>
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="valid" id="_valid">
+	<tr data-order="setOption" id="_setOption">
 
 		<td class="attributes"><code>
 			 public 
@@ -379,8 +320,8 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_valid">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#63-65" title="Go to source code">valid</a>( )</code>
+		<a class="anchor" href="#_setOption">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Account.html#72-74" title="Go to source code">setOption</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$value</var></span> )</code>
 
 		<div class="description short">
 			
@@ -395,8 +336,35 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
-				<h4>Implementation of</h4>
-				<div class="list"><code><a href="class-Iterator.html#_valid">Iterator::valid()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getOption" id="_getOption">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getOption">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Base.Account.html#76-85" title="Go to source code">getOption</a>( <span>mixed <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
 		</div>
 		</div></td>
 	</tr>
@@ -409,24 +377,17 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="AUTH_OAUTH" id="AUTH_OAUTH">
 
-
-
-
-	<table class="summary" id="properties">
-	<caption>Properties summary</caption>
-	<tr data-order="position" id="$position">
-		<td class="attributes"><code>
-			private  
-			integer
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Smx.SimpleMeetings.Base.Account.html#21" title="Go to source code"><b>AUTH_OAUTH</b></a>
 		</code></td>
-
-		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#22" title="Go to source code"><var>$position</var></a>
-		</td>
-		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="value"><code><span class="php-quote">'OAUTH'</span></code></td>
 		<td class="description"><div>
-			<a href="#$position" class="anchor">#</a>
+			<a href="#AUTH_OAUTH" class="anchor">#</a>
 
 			<div class="description short">
 				
@@ -438,18 +399,68 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 			</div>
 		</div></td>
 	</tr>
-	<tr data-order="items" id="$items">
+	<tr data-order="AUTH_SHAREDSECRET" id="AUTH_SHAREDSECRET">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Smx.SimpleMeetings.Base.Account.html#22" title="Go to source code"><b>AUTH_SHAREDSECRET</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'SHAREDSECRET'</span></code></td>
+		<td class="description"><div>
+			<a href="#AUTH_SHAREDSECRET" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="authInfo" id="$authInfo">
 		<td class="attributes"><code>
 			private  
-			array
+			mixed
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Base.ItemList.html#23" title="Go to source code"><var>$items</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Base.Account.html#24" title="Go to source code"><var>$authInfo</var></a>
 		</td>
-		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="value"><code></code></td>
 		<td class="description"><div>
-			<a href="#$items" class="anchor">#</a>
+			<a href="#$authInfo" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="authType" id="$authType">
+		<td class="attributes"><code>
+			private  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Base.Account.html#25" title="Go to source code"><var>$authType</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$authType" class="anchor">#</a>
 
 			<div class="description short">
 				

@@ -8,17 +8,17 @@ use Smx\SimpleMeetings\Factory;
 class MeetingTest extends \PHPUnit_Framework_TestCase
 {
     
-    private $WebExUsername;
-    private $WebExPassword;
-    private $WebExSitename;
+    private $authInfo;
     
     protected function setUp()
     {
-        if(is_null($this->WebExUsername)){
+        if(is_null($this->authInfo)){
             include __DIR__.'/../../config.local.php';
-            $this->WebExUsername = $WebExUsername;
-            $this->WebExPassword = $WebExPassword;
-            $this->WebExSitename = $WebExSitename;
+            $this->authInfo = array(
+                'username' => $WebExUsername,
+                'password' => $WebExPassword,
+                'sitename' => $WebExSitename
+            );
         }
     }
     
@@ -28,7 +28,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         $password = 'testpass';
         $sitename = 'testsite';
         
-        $meeting = Factory::SmxSimpleMeeting('WebEx','Meeting', $username, $password, $sitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx','Meeting', $this->authInfo);
         
         $xml = $meeting->loadXml('CreateMeeting');
         $this->assertInstanceOf('SimpleXmlElement', $xml);
@@ -37,8 +37,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     public function testCreateMeetingWithDefaults()
     {
         
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
         $this->assertRegExp('/[0-9]{1,}/', $meeting->meetingKey);
         
@@ -50,8 +49,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetHostJoinUrls()
     {
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
         
         $hostUrl = $meeting->startMeeting(true);
@@ -67,8 +65,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     
     public function testEditMeeting()
     {
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
         
         $options = array(
@@ -87,35 +84,31 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     
     public function testDeleteMeeting()
     {
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
         
-        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\Meeting', $meeting->deleteMeeting());
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\WebEx\\Meeting', $meeting->deleteMeeting());
     }
     
     public function testGetMeetingList()
     {
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting',  $this->authInfo);
         $list = $meeting->getMeetingList();
-        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $list);
     }
     
     public function testGetActiveMeetings()
     {
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         $list = $meeting->getActiveMeetings();
-        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $list);
     }
     
     public function testGetRecordingList()
     {
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         $list = $meeting->getRecordingList();
-        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $list);
     }
     
     public function testGetMeetingHistory()
@@ -123,8 +116,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         /*
          * Test getting a list of all meeting usage for past month
          */
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         
         // Get meetings for past month
         $searchOptions = array(
@@ -133,15 +125,14 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         );
         
         $list = $meeting->getMeetingHistory(false,$searchOptions);
-        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $list);
         
         /*
          * Use one of the results to test pulling history for a single meeting
          */
         $sample = $list->current();
         
-        $newMeeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $newMeeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         $newMeeting->setOptions(array(
             'meetingKey' => $sample->meetingKey
         ));
@@ -155,8 +146,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         /*
          * Test getting a list of all attendee usage for past month
          */
-        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         
         // Get meetings for past month
         $searchOptions = array(
@@ -165,15 +155,14 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         );
         
         $list = $meeting->getAttendeeHistory(false,$searchOptions);
-        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $list);
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $list);
         
         /*
          * Use one of the results to test pulling history for a single meeting
          */
         $sample = $list->current();
         
-        $newMeeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $this->WebExUsername, $this->WebExPassword, $this->WebExSitename);
+        $newMeeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
         $newMeeting->setOptions(array(
             'meetingKey' => $sample->meetingKey
         ));

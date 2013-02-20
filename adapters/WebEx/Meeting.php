@@ -8,8 +8,8 @@
  */
 
 namespace Smx\SimpleMeetings\WebEx;
-use Smx\SimpleMeetings\Base\Meeting as MeetingBase;
-use Smx\SimpleMeetings\Base\ItemList;
+use Smx\SimpleMeetings\WebEx\Account;
+use Smx\SimpleMeetings\Shared\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
 use Smx\SimpleMeetings\WebEx\Attendee;
 
@@ -19,12 +19,39 @@ use Smx\SimpleMeetings\WebEx\Attendee;
  * 
  * @author Phillip Shipley <phillip@phillipshipley.com>
  */
-class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
+class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
 {
     private $error = null;
+    public $isPublic = false;
+    public $enforcePassword = true;
+    public $meetingPassword = null;
+    public $meetingName = null;
+    public $startTime = null;
+    public $duration = 60;
+    public $meetingKey = null;
+    public $hostUrl = null;
+    public $joinUrl = null;
     
-    public function __construct($username, $password, $sitename, $options = false) {
-        parent::__construct($username, $password, $sitename, $options);
+    /**
+     * History details is an array of the actual meeting usage data for a meeting
+     * that has taken place. The expected fields are startTime, endTime, duration,
+     * totalParticipants, totalPeopleMinutes, totalVoip, totalPhone
+     */
+    public $historyDetails = array();
+    
+    public function __construct($authInfo, $options = false) {
+        parent::__construct($authInfo);
+        if($options && is_array($options)){
+            foreach($options as $name => $value){
+                $this->$name = $value;
+            }
+        }
+        if(is_null($this->meetingName)){
+            $this->meetingName = $this->getUsername()."'s meeting";
+        }
+        if(is_null($this->startTime)){
+            $this->startTime = date('m/d/Y H:i:00',time()+300);
+        }
     }
     
     /**
@@ -132,9 +159,7 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
                             }
                             $meetingList->addItem(
                                     new Meeting(
-                                            $this->getUsername(),
-                                            $this->getPassword(),
-                                            $this->getSitename(),
+                                            $this->getAuthInfo(),
                                             $mtgDetails
                                     )
                             );
@@ -295,9 +320,7 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
                             }
                             $meetingList->addItem(
                                     new Meeting(
-                                            $this->getUsername(),
-                                            $this->getPassword(),
-                                            $this->getSitename(),
+                                            $this->getAuthInfo(),
                                             $mtgDetails
                                     )
                             );
@@ -367,9 +390,7 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
                         }
                         $recordingList->addItem(
                                 new Meeting(
-                                        $this->getUsername(),
-                                        $this->getPassword(),
-                                        $this->getSitename(),
+                                        $this->getAuthInfo(),
                                         $mtgDetails
                                 )
                         );
@@ -516,9 +537,7 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
                                 'totalPhone' => $totalPhone
                             );
                             
-                            $newMeeting = new Meeting($this->getUsername(),
-                                    $this->getPassword(), $this->getSitename(),
-                                    $mtgDetails);
+                            $newMeeting = new Meeting($this->getAuthInfo(), $mtgDetails);
                             $newMeeting->historyDetails = $historyDetails;
                             $historyList->addItem($newMeeting);
                         }
@@ -617,9 +636,7 @@ class Meeting extends MeetingBase implements \Smx\SimpleMeetings\Meeting
                                 'voipDuration' => $meet->voipDuration->__toString()
                             );
                             
-                            $newMeeting = new Meeting($this->getUsername(),
-                                    $this->getPassword(), $this->getSitename(),
-                                    $mtgDetails);
+                            $newMeeting = new Meeting($this->getAuthInfo(), $mtgDetails);
                             $newMeeting->attendeeHistoryDetails = $attendeeDetails;
                             $historyList->addItem($newMeeting);
                         }

@@ -7,7 +7,7 @@
  * @license   GPLv2+
  */
 
-namespace Smx\SimpleMeetings\Base;
+namespace Smx\SimpleMeetings\Shared;
 
 /**
  * Generic Iteratable Object for storing lists of meetings, attendees, or users.

@@ -9,14 +9,13 @@
 
 namespace Smx\SimpleMeetings;
 
-interface Site
+interface Account
 {
-    public function getSitename();
-    public function getUsername();
-    public function getPassword();
-    public function setSitename($sitename);
-    public function setUsername($username);
-    public function setPassword($password);
+    public function __construct($authInfo);
+    public function getAuthInfo();
+    public function setAuthInfo($authInfo);
+    public function getAuthType();
+    public function setAuthType($authType);
 }
 
 interface Meeting
@@ -35,14 +34,11 @@ interface Meeting
     public function getAttendeeList();
     public function getMeetingHistory();
     public function getAttendeeHistory();
-    public function setOptions($options);
-    public function setOption($name,$value);
-    public function getOption($name);
 }
 
 interface Attendee
 {
-    public function addAttendee();
+    public function addAttendee($options=false);
     public function getAttendeeList();
 }
 

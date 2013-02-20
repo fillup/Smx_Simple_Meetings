@@ -4,33 +4,31 @@ namespace Smx\SimpleMeetings\Tests\WebEx;
 require_once __DIR__.'/../../SmxSimpleMeetings.php';
 
 use Smx\SimpleMeetings\Factory;
-use Smx\SimpleMeetings\Base\User as BaseUser;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
-    private $WebExUsername;
-    private $WebExPassword;
-    private $WebExSitename;
+    private $authInfo;
     
     protected function setUp()
     {
-        if(is_null($this->WebExUsername)){
+        if(is_null($this->authInfo)){
             include __DIR__.'/../../config.local.php';
-            $this->WebExUsername = $WebExUsername;
-            $this->WebExPassword = $WebExPassword;
-            $this->WebExSitename = $WebExSitename;
+            $this->authInfo = array(
+                'username' => $WebExUsername,
+                'password' => $WebExPassword,
+                'sitename' => $WebExSitename
+            );
         }
     }
     
     public function testLoginUser()
     {
-        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->WebExUsername, 
-                $this->WebExPassword, $this->WebExSitename);
+        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->authInfo);
         
         $userInfo = array(
             'firstName' => 'Test',
             'lastName' => 'User',
-            'email' => $this->WebExUsername
+            'email' => $this->authInfo['username']
         );
         
         $user->setOptions($userInfo);
@@ -41,11 +39,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
     
     public function testGetServerUserDetails()
     {
-        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->WebExUsername, 
-                $this->WebExPassword, $this->WebExSitename);
+        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->authInfo);
         
         $userInfo = array(
-            'username' => $this->WebExUsername
+            'username' => $this->authInfo['username']
         );
         
         $user->setOptions($userInfo);
@@ -56,17 +53,14 @@ class UserTest extends \PHPUnit_Framework_TestCase
     
     public function testGetUserList()
     {
-        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->WebExUsername, 
-                $this->WebExPassword, $this->WebExSitename);
+        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->authInfo);
         $userList = $user->getUserList();
-        print_r($userList);
-        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Base\\ItemList', $userList);
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $userList);
     }
     
 //    public function testCreateEditDeactivateUser()
 //    {
-//        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->WebExUsername, 
-//                $this->WebExPassword, $this->WebExSitename);
+//        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->authInfo);
 //        
 //        /**
 //         * Create User
@@ -110,8 +104,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 //    
 //    public function testCreateDeactivateAdmin()
 //    {
-//        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->WebExUsername, 
-//                $this->WebExPassword, $this->WebExSitename);
+//        $user = Factory::SmxSimpleMeeting('WebEx', 'User', $this->authInfo);
 //        
 //        $num = rand(10, 999);
 //        

@@ -7,31 +7,36 @@
  * @license   GPLv2+
  */
 
-namespace Smx\SimpleMeetings\Base;
-use Smx\SimpleMeetings\Base\Site as SiteBase;
+
+namespace Smx\SimpleMeetings\WebEx;
+use Smx\SimpleMeetings\Base\Account as AccountBase;
 
 /**
- * Represents the most basic level of a web meetings site.
  * 
- * Class is used to store sitename/url, username, and password for use in each
- * child class to make api calls.
+ * 
+ * @author Phillip Shipley <phillip@phillipshipley.com>
+ * 
  */
-class Site implements \Smx\SimpleMeetings\Site
+class Account extends AccountBase implements \Smx\SimpleMeetings\Account
 {
-    private $sitename;
     private $username;
     private $password;
+    private $sitename;
     
-    /**
-     * 
-     * @param String $username
-     * @param String $password
-     * @param String $sitename
-     */
-    public function __construct($username=false,$password=false,$sitename=false) {
-        $this->sitename = $sitename ? $sitename : null;
-        $this->username = $username ? $username : null;
-        $this->password = $password ? $password : null;
+    public function __construct($authInfo) {
+        $authInfo['authType'] = Account::AUTH_SHAREDSECRET;
+        parent::__construct($authInfo);
+        $this->setAuthInfo($authInfo);
+    }
+    
+    public function setAuthInfo($authInfo) {
+        parent::setAuthInfo($authInfo);
+        $this->username = isset($authInfo['username']) ? 
+                $authInfo['username'] : null;
+        $this->password = isset($authInfo['password']) ?
+                $authInfo['password'] : null;
+        $this->sitename = isset($authInfo['sitename']) ?
+                $authInfo['sitename'] : null;
     }
     
     public function getSitename() {
@@ -57,5 +62,4 @@ class Site implements \Smx\SimpleMeetings\Site
     public function setPassword($password) {
         $this->password = $password;
     }
-    
 }

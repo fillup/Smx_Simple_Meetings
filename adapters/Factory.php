@@ -9,18 +9,18 @@
 
 namespace Smx\SimpleMeetings;
 
-if(!class_exists('\\Smx\\SimpleMeetings\\Base\\Site')){
+if(!class_exists('\\Smx\\SimpleMeetings\\Base\\Account')){
     require_once __DIR__.'/../SmxSimpleMeetings.php';
 }
 
 class Factory
 {
     public static function SmxSimpleMeeting($ServiceProvider, $ObjectType, 
-            $username, $password, $sitename, $options=false)
+            $authInfo, $options=false)
     {
         $className = "\\Smx\\SimpleMeetings\\$ServiceProvider\\$ObjectType";
         if(class_exists($className)){
-            return new $className($username, $password, $sitename, $options);
+            return new $className($authInfo, $options);
         }
     }
 }

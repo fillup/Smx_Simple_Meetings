@@ -8,15 +8,35 @@
  */
 
 namespace Smx\SimpleMeetings\WebEx;
-use Smx\SimpleMeetings\Base\ItemList;
-use Smx\SimpleMeetings\Base\User as UserBase;
+use Smx\SimpleMeetings\WebEx\Account;
+use Smx\SimpleMeetings\Shared\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
 
-class User extends UserBase implements \Smx\SimpleMeetings\User
+class User extends Account implements \Smx\SimpleMeetings\User
 {
+    const ROLE_HOST = 'HOST';
+    const ROLE_ADMIN = 'ADMIN';
+    const STATUS_ACTIVE = 'ACTIVE';
+    const STATUS_INACTIVE = 'INACTIVE';
     
-    public function __construct($username = false, $password = false, $sitename = false, $options=false) {
-        parent::__construct($username, $password, $sitename, $options);
+    public $firstName = null;
+    public $lastName = null;
+    public $email = null;
+    public $username = null;
+    public $role = User::ROLE_HOST;
+    public $password = null;
+    public $userId = null;
+    public $status = User::STATUS_ACTIVE;
+    public $loginUrl = null;
+    public $sendWelcomeEmail = false;
+    
+    public function __construct($authInfo, $options=false) {
+        parent::__construct($authInfo);
+        if(is_array($options)){
+            foreach ($options as $option => $value){
+                $this->$option = $value;
+            }
+        }
     }
     
     public function createUser($options=false)
@@ -183,8 +203,7 @@ class User extends UserBase implements \Smx\SimpleMeetings\User
                     $userInfo['status'] = User::STATUS_INACTIVE;
                 }
                 $userList->addItem(
-                    new User($this->getUsername(), $this->getPassword(),
-                        $this->getSitename(), $userInfo)
+                    new User($this->getAuthInfo(), $userInfo)
                 );
             }
         }

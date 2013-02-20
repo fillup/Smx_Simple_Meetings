@@ -7,7 +7,7 @@
 	<title>Class Smx\SimpleMeetings\WebEx\Meeting | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?2394749687"></script>
+	<script type="text/javascript" src="elementlist.js?3607129735"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -29,9 +29,13 @@
 						<ul>
 				<li><a href="namespace-Smx.SimpleMeetings.Base.html">Base</a>
 						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Citrix.html">Citrix</a>
+						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Shared.html">Shared</a>
+						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.html">Tests<span></span></a>
 						<ul>
-				<li><a href="namespace-Smx.SimpleMeetings.Tests.Base.html">Base</a>
+				<li><a href="namespace-Smx.SimpleMeetings.Tests.Shared.html">Shared</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.WebEx.html">WebEx</a>
 						</li>
@@ -48,6 +52,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Smx.SimpleMeetings.WebEx.Account.html">Account</a></li>
 				<li><a href="class-Smx.SimpleMeetings.WebEx.Attendee.html">Attendee</a></li>
 				<li class="active"><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Meeting</a></li>
 				<li><a href="class-Smx.SimpleMeetings.WebEx.User.html">User</a></li>
@@ -109,17 +114,17 @@ WebEx XML APIs.</p>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-			<a href="class-Smx.SimpleMeetings.Base.Site.html"><span>Smx\SimpleMeetings\Base\Site</span></a>
+			<a href="class-Smx.SimpleMeetings.Base.Account.html"><span>Smx\SimpleMeetings\Base\Account</span></a>
 			
-			 implements 
-				<a href="class-Smx.SimpleMeetings.Site.html"><span>Smx\SimpleMeetings\Site</span></a>
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
 			<img src="resources/inherit.png" alt="Extended by" />
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html"><span>Smx\SimpleMeetings\Base\Meeting</span></a>
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html"><span>Smx\SimpleMeetings\WebEx\Account</span></a>
 			
+			 implements 
+				<a href="class-Smx.SimpleMeetings.Account.html"><span>Smx\SimpleMeetings\Account</span></a>
 			
 			
 		</dd>
@@ -149,7 +154,7 @@ WebEx XML APIs.</p>
 				<b>Author:</b>
 				Phillip Shipley &lt;<a
 href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#16-668" title="Go to source code">src/adapters/WebEx/Meeting.php</a><br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#16-685" title="Go to source code">src/adapters/WebEx/Meeting.php</a><br />
 	</div>
 
 
@@ -167,7 +172,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#26-28" title="Go to source code">__construct</a>( <span>string <var>$username</var></span>, <span>string <var>$password</var></span>, <span>string <var>$sitename</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#42-55" title="Go to source code">__construct</a>( <span>mixed <var>$authInfo</var></span>, <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -177,23 +182,12 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 			
 
 
-				<h4>Parameters</h4>
-				<div class="list"><dl>
-					<dt><var>$username</var></dt>
-					<dd><code>string</code><br>$username</dd>
-					<dt><var>$password</var></dt>
-					<dd><code>string</code><br>$password</dd>
-					<dt><var>$sitename</var></dt>
-					<dd><code>string</code><br>$sitename</dd>
-					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>$options</dd>
-				</dl></div>
 
 
 
 
 				<h4>Overrides</h4>
-				<div class="list"><code><a href="class-Smx.SimpleMeetings.Base.Meeting.html#___construct">Smx\SimpleMeetings\Base\Meeting::__construct()</a></code></div>
+				<div class="list"><code><a href="class-Smx.SimpleMeetings.WebEx.Account.html#___construct">Smx\SimpleMeetings\WebEx\Account::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -209,7 +203,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#30-61" title="Go to source code">createMeeting</a>( <span>array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#57-88" title="Go to source code">createMeeting</a>( <span>array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -259,7 +253,7 @@ schedule the meeting.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getServerMeetingDetails">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#63-77" title="Go to source code">getServerMeetingDetails</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#90-104" title="Go to source code">getServerMeetingDetails</a>( )</code>
 
 		<div class="description short">
 			
@@ -302,7 +296,7 @@ this method will not be consistent across service providers.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getMeetingList">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#79-151" title="Go to source code">getMeetingList</a>( <span>Array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#106-176" title="Go to source code">getMeetingList</a>( <span>Array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -356,7 +350,7 @@ startFrom, maximumNum</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_startMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#153-173" title="Go to source code">startMeeting</a>( <span>boolean <var>$urlOnly</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#178-198" title="Go to source code">startMeeting</a>( <span>boolean <var>$urlOnly</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -401,7 +395,7 @@ false the url can be accessed via the hostUrl property.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_joinMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#175-213" title="Go to source code">joinMeeting</a>( <span>boolean <var>$urlOnly</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$attendeeName</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$attendeeEmail</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$meetingPassword</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#200-238" title="Go to source code">joinMeeting</a>( <span>boolean <var>$urlOnly</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$attendeeName</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$attendeeEmail</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$meetingPassword</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -457,7 +451,7 @@ false the url can be accessed via the joinUrl property.</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#215-246" title="Go to source code">editMeeting</a>( <span>array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#240-271" title="Go to source code">editMeeting</a>( <span>array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -508,7 +502,7 @@ have been modified directly</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#248-263" title="Go to source code">deleteMeeting</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#273-288" title="Go to source code">deleteMeeting</a>( )</code>
 
 		<div class="description short">
 			
@@ -544,14 +538,14 @@ have been modified directly</dd>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code>
+			Smx\SimpleMeetings\Base\ItemList
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getActiveMeetings">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#265-314" title="Go to source code">getActiveMeetings</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#290-337" title="Go to source code">getActiveMeetings</a>( )</code>
 
 		<div class="description short">
 			
@@ -572,7 +566,7 @@ their open meetings.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code></code><br />
+					<code>Smx\SimpleMeetings\Base\ItemList</code><br />
 				</div>
 
 				<h4>Throws</h4>
@@ -591,14 +585,14 @@ their open meetings.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code>
+			Smx\SimpleMeetings\Base\ItemList
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRecordingList">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#316-381" title="Go to source code">getRecordingList</a>( <span>Array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#339-402" title="Go to source code">getRecordingList</a>( <span>Array <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -623,7 +617,7 @@ the download link and the playback link respectively.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code></code><br />
+					<code>Smx\SimpleMeetings\Base\ItemList</code><br />
 				</div>
 
 
@@ -645,7 +639,7 @@ the download link and the playback link respectively.</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addAttendee">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#383-408" title="Go to source code">addAttendee</a>( <span>string <var>$name</var></span>, <span>string <var>$email</var></span>, <span>boolean <var>$sendInvite</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#404-429" title="Go to source code">addAttendee</a>( <span>string <var>$name</var></span>, <span>string <var>$email</var></span>, <span>boolean <var>$sendInvite</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -690,14 +684,14 @@ the download link and the playback link respectively.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code>
+			<code><a href="class-Smx.SimpleMeetings.Shared.ItemList.html">Smx\SimpleMeetings\Shared\ItemList</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttendeeList">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#410-427" title="Go to source code">getAttendeeList</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#431-448" title="Go to source code">getAttendeeList</a>( )</code>
 
 		<div class="description short">
 			
@@ -714,7 +708,7 @@ the download link and the playback link respectively.</p>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code></code><br>Iteratable list of Attendee objects<br />
+					<code><code><a href="class-Smx.SimpleMeetings.Shared.ItemList.html">Smx\SimpleMeetings\Shared\ItemList</a></code></code><br>Iteratable list of Attendee objects<br />
 				</div>
 
 
@@ -729,14 +723,14 @@ the download link and the playback link respectively.</p>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code>
+			<code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|Smx\SimpleMeetings\Base\ItemList
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getMeetingHistory">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#429-539" title="Go to source code">getMeetingHistory</a>( <span>boolean <var>$onlyThisMeeting</var> = <span class="php-keyword1">true</span></span>, <span>array|false <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#450-558" title="Go to source code">getMeetingHistory</a>( <span>boolean <var>$onlyThisMeeting</var> = <span class="php-keyword1">true</span></span>, <span>array|false <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -767,7 +761,7 @@ hostUsername, startFrom, maximumNum</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code></code><br>If $onlyThisMeeting is false, returns ItemList of meetings.<br />
+					<code><code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|Smx\SimpleMeetings\Base\ItemList</code><br>If $onlyThisMeeting is false, returns ItemList of meetings.<br />
 				</div>
 
 				<h4>Throws</h4>
@@ -786,14 +780,14 @@ hostUsername, startFrom, maximumNum</dd>
 
 		<td class="attributes"><code>
 			 public 
-			<code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code>
+			<code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|Smx\SimpleMeetings\Base\ItemList
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttendeeHistory">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#541-641" title="Go to source code">getAttendeeHistory</a>( <span>boolean <var>$onlyThisMeeting</var> = <span class="php-keyword1">true</span></span>, <span>array|false <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#560-658" title="Go to source code">getAttendeeHistory</a>( <span>boolean <var>$onlyThisMeeting</var> = <span class="php-keyword1">true</span></span>, <span>array|false <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -826,7 +820,7 @@ hostUsername, startFrom, maximumNum</dd>
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code><code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|<code><a href="class-Smx.SimpleMeetings.Base.ItemList.html">Smx\SimpleMeetings\Base\ItemList</a></code></code><br>If $onlyThisMeeting is false, returns ItemList of meetings.<br />
+					<code><code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|Smx\SimpleMeetings\Base\ItemList</code><br>If $onlyThisMeeting is false, returns ItemList of meetings.<br />
 				</div>
 
 				<h4>Throws</h4>
@@ -852,7 +846,7 @@ hostUsername, startFrom, maximumNum</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLastError">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#643-645" title="Go to source code">getLastError</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#660-662" title="Go to source code">getLastError</a>( )</code>
 
 		<div class="description short">
 			
@@ -881,7 +875,7 @@ hostUsername, startFrom, maximumNum</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isReady">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#647-658" title="Go to source code">isReady</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#664-675" title="Go to source code">isReady</a>( )</code>
 
 		<div class="description short">
 			
@@ -910,7 +904,7 @@ hostUsername, startFrom, maximumNum</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_loadXml">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#660-663" title="Go to source code">loadXml</a>( <span>mixed <var>$action</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#677-680" title="Go to source code">loadXml</a>( <span>mixed <var>$action</var></span> )</code>
 
 		<div class="description short">
 			
@@ -939,7 +933,7 @@ hostUsername, startFrom, maximumNum</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_callApi">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#665-667" title="Go to source code">callApi</a>( <span>mixed <var>$xml</var></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#682-684" title="Go to source code">callApi</a>( <span>mixed <var>$xml</var></span> )</code>
 
 		<div class="description short">
 			
@@ -960,25 +954,29 @@ hostUsername, startFrom, maximumNum</dd>
 	</table>
 
 	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.Base.Meeting.html#methods">Smx\SimpleMeetings\Base\Meeting</a></caption>
+	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.WebEx.Account.html#methods">Smx\SimpleMeetings\WebEx\Account</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#_getOption">getOption()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#_setOption">setOption()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#_setOptions">setOptions()</a>
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_getPassword">getPassword()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_getSitename">getSitename()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_getUsername">getUsername()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_setAuthInfo">setAuthInfo()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_setPassword">setPassword()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_setSitename">setSitename()</a>, 
+			<a href="class-Smx.SimpleMeetings.WebEx.Account.html#_setUsername">setUsername()</a>
 		</code></td>
 	</tr>
 	</table>
 	<table class="summary inherited">
-	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.Base.Site.html#methods">Smx\SimpleMeetings\Base\Site</a></caption>
+	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.Base.Account.html#methods">Smx\SimpleMeetings\Base\Account</a></caption>
 	<tr>
 		<td><code>
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_getPassword">getPassword()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_getSitename">getSitename()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_getUsername">getUsername()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_setPassword">setPassword()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_setSitename">setSitename()</a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Site.html#_setUsername">setUsername()</a>
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getAuthInfo">getAuthInfo()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getAuthType">getAuthType()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getOption">getOption()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setAuthType">setAuthType()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setOption">setOption()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setOptions">setOptions()</a>
 		</code></td>
 	</tr>
 	</table>
@@ -990,6 +988,15 @@ hostUsername, startFrom, maximumNum</dd>
 
 
 
+	<table class="summary inherited">
+	<caption>Constants inherited from <a href="class-Smx.SimpleMeetings.Base.Account.html#constants">Smx\SimpleMeetings\Base\Account</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#AUTH_OAUTH"><b>AUTH_OAUTH</b></a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#AUTH_SHAREDSECRET"><b>AUTH_SHAREDSECRET</b></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -1018,25 +1025,246 @@ hostUsername, startFrom, maximumNum</dd>
 			</div>
 		</div></td>
 	</tr>
-	</table>
-
-	<table class="summary inherited">
-	<caption>Properties inherited from <a href="class-Smx.SimpleMeetings.Base.Meeting.html#properties">Smx\SimpleMeetings\Base\Meeting</a></caption>
-	<tr>
-		<td><code>
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$duration"><var>$duration</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$enforcePassword"><var>$enforcePassword</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$historyDetails"><var>$historyDetails</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$hostUrl"><var>$hostUrl</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$isPublic"><var>$isPublic</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$joinUrl"><var>$joinUrl</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$meetingKey"><var>$meetingKey</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$meetingName"><var>$meetingName</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$meetingPassword"><var>$meetingPassword</var></a>, 
-			<a href="class-Smx.SimpleMeetings.Base.Meeting.html#$startTime"><var>$startTime</var></a>
+	<tr data-order="isPublic" id="$isPublic">
+		<td class="attributes"><code>
+			public  
+			boolean
 		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#25" title="Go to source code"><var>$isPublic</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$isPublic" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="enforcePassword" id="$enforcePassword">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#26" title="Go to source code"><var>$enforcePassword</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">true</span></code></td>
+		<td class="description"><div>
+			<a href="#$enforcePassword" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="meetingPassword" id="$meetingPassword">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#27" title="Go to source code"><var>$meetingPassword</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$meetingPassword" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="meetingName" id="$meetingName">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#28" title="Go to source code"><var>$meetingName</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$meetingName" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="startTime" id="$startTime">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#29" title="Go to source code"><var>$startTime</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$startTime" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="duration" id="$duration">
+		<td class="attributes"><code>
+			public  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#30" title="Go to source code"><var>$duration</var></a>
+		</td>
+		<td class="value"><code><span class="php-num">60</span></code></td>
+		<td class="description"><div>
+			<a href="#$duration" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="meetingKey" id="$meetingKey">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#31" title="Go to source code"><var>$meetingKey</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$meetingKey" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="hostUrl" id="$hostUrl">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#32" title="Go to source code"><var>$hostUrl</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$hostUrl" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="joinUrl" id="$joinUrl">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#33" title="Go to source code"><var>$joinUrl</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$joinUrl" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="historyDetails" id="$historyDetails">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.WebEx.Meeting.html#35-40" title="Go to source code"><var>$historyDetails</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$historyDetails" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>History details is an array of the actual meeting usage data for a meeting
+that has taken place. The expected fields are startTime, endTime, duration,
+totalParticipants, totalPeopleMinutes, totalVoip, totalPhone</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>History details is an array of the actual meeting usage data for a meeting
+that has taken place. The expected fields are startTime, endTime, duration,
+totalParticipants, totalPeopleMinutes, totalVoip, totalPhone</p>
+
+
+			</div>
+		</div></td>
 	</tr>
 	</table>
+
 
 
 

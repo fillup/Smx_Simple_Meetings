@@ -19,12 +19,9 @@
  * Base classes are required for all service providers
  */
 require_once 'Interfaces.php';
-require_once 'adapters/BaseClasses/Site.php';
-require_once 'adapters/BaseClasses/Meeting.php';
-require_once 'adapters/BaseClasses/Attendee.php';
-require_once 'adapters/BaseClasses/User.php';
-require_once 'adapters/BaseClasses/ItemList.php';
-require_once 'adapters/BaseClasses/HttpRequest.php';
+require_once 'adapters/Shared/Account.php';
+require_once 'adapters/Shared/ItemList.php';
+require_once 'adapters/Shared/HttpRequest.php';
 
 // Removing dependency on Zend\Http for now due to problems with composer
 /*if(!class_exists('\\Zend\\Http\\Client')){
@@ -44,6 +41,7 @@ require_once 'adapters/Factory.php';
  * WebEx classes.
  * This section can be commented out if you do not plan to use WebEx.
  */
+require_once 'adapters/WebEx/Account.php';
 require_once 'adapters/WebEx/Attendee.php';
 require_once 'adapters/WebEx/Meeting.php';
 require_once 'adapters/WebEx/User.php';

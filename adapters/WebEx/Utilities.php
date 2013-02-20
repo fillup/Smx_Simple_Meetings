@@ -8,7 +8,7 @@
  */
 
 namespace Smx\SimpleMeetings\WebEx;
-use Smx\SimpleMeetings\Base\HttpRequest;
+use Smx\SimpleMeetings\Shared\HttpRequest;
 
 /**
  * Utilities class to perform common functions for WebEx API activities.
