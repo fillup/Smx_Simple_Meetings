@@ -38,6 +38,7 @@ class User extends Site
     public $userId = null;
     public $status = User::STATUS_ACTIVE;
     public $loginUrl = null;
+    public $sendWelcomeEmail = false;
     
     public function __construct($username = false, $password = false, $sitename = false, $options = false) {
         parent::__construct($username, $password, $sitename);

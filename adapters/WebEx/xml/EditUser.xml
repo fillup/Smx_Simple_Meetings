@@ -10,11 +10,6 @@
     <body>
         <bodyContent xsi:type=
 "java:com.webex.service.binding.user.SetUser"> 
-            <firstName></firstName>
-            <lastName></lastName>
-            <webExId></webExId> 
-            <email></email>
-            <password></password> 
             <privilege>
                 <host>true</host>
                 <siteAdmin>false</siteAdmin>

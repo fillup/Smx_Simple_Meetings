@@ -40,6 +40,9 @@ class User extends UserBase implements \Smx\SimpleMeetings\User
                 if($this->role == User::ROLE_ADMIN){
                     $xml->body->bodyContent->privilege->siteAdmin = true;
                 }
+                if($this->sendWelcomeEmail){
+                    $xml->body->bodyContent->sendWelcome = true;
+                }
                 
                 $results = $this->callApi($xml->asXML());
                 if($results){
@@ -119,6 +122,23 @@ class User extends UserBase implements \Smx\SimpleMeetings\User
             if($xml){
                 $xml->body->bodyContent->webExId = $this->username;
                 $results = $this->callApi($xml->asXML());
+                return $results;
+            }
+        }
+    }
+    
+    public function deactivate($username=false)
+    {
+        if($username){
+            $this->username = $username;
+        }
+        if(!is_null($this->username)){
+            $xml = $this->loadXml('EditUser');
+            if($xml){
+                $xml->body->bodyContent->webExId = $this->username;
+                $xml->body->bodyContent->active = 'DEACTIVATED';
+                $results = $this->callApi($xml->asXML());
+                $this->status = User::STATUS_INACTIVE;
                 return $results;
             }
         }

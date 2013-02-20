@@ -53,4 +53,5 @@ interface User
     public function loginUser($urlOnly=false);
     public function getServerUserDetails($username=false);
     public function getUserList($options=false);
+    public function deactivate($username=false);
 }

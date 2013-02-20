@@ -20,6 +20,12 @@
                 <siteAdmin>false</siteAdmin>
             </privilege> 
             <active>ACTIVATED</active>
+            <supportedServices>
+                <meetingCenter>true</meetingCenter>
+            </supportedServices>
+            <sessionOptions>
+                <defaultServiceType>MeetingCenter</defaultServiceType>
+            </sessionOptions>
         </bodyContent>
     </body> 
 </message>
