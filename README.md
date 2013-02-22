@@ -1,4 +1,4 @@
-Smx_Simple_Meetings
+smx/simplemeetings
 ===================
 
 ## Brief Description ##
@@ -14,6 +14,7 @@ Class library and abstraction layer for integrating with web meetings providers 
       * [Archive Download](#section_Download)
    * [Usage](#section_Usage)
       * [Simple Example](#section_SimpleExample)
+   * [Citrix Notes](#section_citrix)
    * [Feedback / Support](#section_Feedback)
 
 <a name='section_Purpose'></a>
@@ -25,7 +26,7 @@ The purpose of the SmxSimple_Meetings library is to provide a simple and consist
 Below is the initial list of service providers we intend to support with this library. It is our hope that by developing this library as open source that additional service providers or developers will extend the functionality.
 
 1. WebEx Meeting Center [COMPLETE]
-2. Citrix GoToMeeting [NOT STARTED]
+2. Citrix GoToMeeting [90% Complete - Missing create/edit user features. Need an admin account to dev/test with.]
 3. BigBlueButton [NOT STARTED]
 
 <a name='section_Todo'></a>
@@ -135,6 +136,52 @@ echo "Meeting is scheduled, meeting key: " . $meeting->meetingKey;
 
 ````
 More comprehensive API documentation is under development, but for now just read the Interfaces.php to understand what methods are available.
+
+<a name='section_citrix'></a>
+## Citrix Notes ##
+Citrix uses oAuth for authencitation and uses an access token to authorize any API calls. If you've integrated with other oAuth providers then you're already familiar with the flow.
+
+To call Citrix APIs you'll also need an API Key. You can get one of these by registering at http://developer.citrixonline.com/. Make sure your application URL is the same domain that you'll be hosting your application. For oAuth the user can only be redirected to URLs on the same domain.
+
+Assuming you do not already know your user's access token:
+
+1. Get new object from factory.
+2. Get Auth URL
+3. Redirect user to Auth URL
+4. After user logs in and grants access to your application they will be redirected back to your site with a parameter ?code= which will be a responseKey
+5. Get a new object from factory again and call the authForAccessToken method with the response key
+6. Your object will now have the accessToken and organizerKey attributes set, you may want to store these to save the user from logging in again in the future, but be responsible of course.
+
+Example:
+````php
+$authInfo = array(
+    'apiKey' => 'YOUR_API_KEY_HERE'
+);
+$account = Factory::SmxSimpleMeeting('Citrix', 'Account', $authInfo);
+$authUrl = $meeting->getAuthUrl();
+// Redirect User to Auth URL
+// ...
+// User has returned with ?code=123456789
+$responseKey = $_GET['code'];
+$authInfo = array(
+    'apiKey' => 'YOUR_API_KEY_HERE'
+);
+$account = Factory::SmxSimpleMeeting('Citrix', 'Account', $authInfo);
+$account->authForAccessToken($responseKey);
+echo 'Access token: '.$account->getAccessToken();
+echo 'Organizer Key: '.$account->organizerKey;
+// Future calls
+$authInfo = array(
+    'apiKey' => 'YOUR_API_KEY_HERE',
+    'accessToken' => 'YOUR_ACCESS_TOKEN_HERE',
+    'organizerKey' => 'YOUR_ORGANIZER_KEY_HERE'
+);
+$options = array(
+    'meetingName' => 'My First Meeting'
+);     
+$meeting = Factory::SmxSimpleMeeting('Citrix', 'Meeting', $authInfo, $options);
+$meeting->createMeeting();
+````
 
 <a name='section_Feedback'></a>
 ## Feedback / Support ##
