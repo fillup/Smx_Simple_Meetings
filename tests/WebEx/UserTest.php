@@ -4,6 +4,7 @@ namespace Smx\SimpleMeetings\Tests\WebEx;
 require_once __DIR__.'/../../SmxSimpleMeetings.php';
 
 use Smx\SimpleMeetings\Factory;
+use Smx\SimpleMeetings\WebEx\User;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
@@ -73,7 +74,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 //            'lastName' => 'User',
 //            'email' => $email,
 //            'password' => 'TestPassword!',
-//            'role' => BaseUser::ROLE_HOST
+//            'role' => User::ROLE_HOST
 //        );
 //
 //        $user->createUser($userInfo);
@@ -113,7 +114,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 //            'lastName' => 'User',
 //            'email' => "smxtestuser$num@nodomain1234.com",
 //            'password' => 'TestPassword!',
-//            'role' => BaseUser::ROLE_ADMIN
+//            'role' => User::ROLE_ADMIN
 //        );
 //
 //        $user->createUser($userInfo);

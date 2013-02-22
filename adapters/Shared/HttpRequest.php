@@ -36,28 +36,51 @@ class HttpRequest
      *   response as a string.
      * @throws \ErrorException On error making the HTTP request.
      */
-    public static function request($uri,$method='GET',$postfields=false) {
+    public static function request($uri,$method='GET',$postfields=false,$headers=false) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_URL, $uri);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+        /**
+         * Added for debugging with Charles proxy
+         */
+//        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
+//        curl_setopt($ch, CURLOPT_PROXYPORT, '8888');
+//        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         
         $method = strtoupper($method);
         if($method == 'GET'){
             curl_setopt($ch, CURLOPT_HTTPGET, true);
-        } else {
+        } elseif($method == 'POST') {
             curl_setopt($ch, CURLOPT_POST, true);
+        } elseif($method == 'PUT'){
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        } elseif($method == 'DELETE'){
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
         }
         
-        if($postfields && $method == 'POST'){
+        if($postfields && ($method == 'POST' || $method == 'PUT')){
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postfields);
+        }
+        if($headers && is_array($headers)){
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         }
         
         $response = curl_exec($ch);
         if($response){
             return $response;
         } else {
-            throw new \ErrorException('Http Request Failed with error: '.  
+            $info = curl_getinfo($ch);
+            if($info['http_code'] == 204){
+                $result = array(
+                    'success' => true
+                );
+                return json_encode($result);
+            } else {
+                throw new \ErrorException('Http Request Failed with error: '.  
                     curl_error($ch),  curl_errno($ch));
+            }
         }
     }
 }

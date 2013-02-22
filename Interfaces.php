@@ -16,6 +16,7 @@ interface Account
     public function setAuthInfo($authInfo);
     public function getAuthType();
     public function setAuthType($authType);
+    public function isAuthenticated();
 }
 
 interface Meeting

@@ -62,4 +62,18 @@ class Account extends AccountBase implements \Smx\SimpleMeetings\Account
     public function setPassword($password) {
         $this->password = $password;
     }
+    
+    /**
+     * Check if necessary credentials are in place for making API calls
+     * 
+     * @return boolean
+     */
+    public function isAuthenticated()
+    {
+        if(isset($this->username) && isset($this->password) && isset($this->sitename)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

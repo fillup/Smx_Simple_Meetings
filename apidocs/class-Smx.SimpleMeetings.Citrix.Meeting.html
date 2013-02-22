@@ -7,7 +7,7 @@
 	<title>Class Smx\SimpleMeetings\Citrix\Meeting | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?3607129735"></script>
+	<script type="text/javascript" src="elementlist.js?3666544568"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -35,6 +35,8 @@
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.html">Tests<span></span></a>
 						<ul>
+				<li><a href="namespace-Smx.SimpleMeetings.Tests.Citrix.html">Citrix</a>
+						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.Shared.html">Shared</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.WebEx.html">WebEx</a>
@@ -52,7 +54,11 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-Smx.SimpleMeetings.Citrix.Account.html">Account</a></li>
+				<li><a href="class-Smx.SimpleMeetings.Citrix.Attendee.html">Attendee</a></li>
 				<li class="active"><a href="class-Smx.SimpleMeetings.Citrix.Meeting.html">Meeting</a></li>
+				<li><a href="class-Smx.SimpleMeetings.Citrix.User.html">User</a></li>
+				<li><a href="class-Smx.SimpleMeetings.Citrix.Utilities.html">Utilities</a></li>
 			</ul>
 
 
@@ -103,18 +109,27 @@
 
 	<div class="description">
 	
-<p>Citrix Meetings class to extend base meeting. Adds functionality for calling
-Citrix REST APIs.</p>
+<p>Citrix Meetings class. Adds functionality for calling Citrix REST APIs.</p>
 
 	</div>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-Smx\SimpleMeetings\Base\Meeting
+			<a href="class-Smx.SimpleMeetings.Base.Account.html"><span>Smx\SimpleMeetings\Base\Account</span></a>
+			
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Smx.SimpleMeetings.Citrix.Account.html"><span>Smx\SimpleMeetings\Citrix\Account</span></a>
+			
+			 implements 
+				<a href="class-Smx.SimpleMeetings.Account.html"><span>Smx\SimpleMeetings\Account</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
 			<img src="resources/inherit.png" alt="Extended by" />
 <b><span>Smx\SimpleMeetings\Citrix\Meeting</span></b>			
 			 implements 
@@ -140,7 +155,7 @@ Smx\SimpleMeetings\Base\Meeting
 				<b>Author:</b>
 				Phillip Shipley &lt;<a
 href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#14-62" title="Go to source code">src/adapters/Citrix/Meeting.php</a><br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#16-393" title="Go to source code">src/adapters/Citrix/Meeting.php</a><br />
 	</div>
 
 
@@ -158,7 +173,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#24-26" title="Go to source code">__construct</a>( <span>mixed <var>$username</var></span>, <span>mixed <var>$password</var></span>, <span>mixed <var>$sitename</var></span>, <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#46-59" title="Go to source code">__construct</a>( <span>mixed <var>$authInfo</var></span>, <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -172,6 +187,8 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Smx.SimpleMeetings.Citrix.Account.html#___construct">Smx\SimpleMeetings\Citrix\Account::__construct()</a></code></div>
 
 		</div>
 		</div></td>
@@ -187,7 +204,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#28-30" title="Go to source code">createMeeting</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#61-102" title="Go to source code">createMeeting</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -218,7 +235,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getServerMeetingDetails">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#32" title="Go to source code">getServerMeetingDetails</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#104-121" title="Go to source code">getServerMeetingDetails</a>( )</code>
 
 		<div class="description short">
 			
@@ -249,7 +266,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getMeetingList">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#33" title="Go to source code">getMeetingList</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#123-162" title="Go to source code">getMeetingList</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -280,7 +297,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_startMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#34" title="Go to source code">startMeeting</a>( <span>mixed <var>$urlOnly</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#164-182" title="Go to source code">startMeeting</a>( <span>mixed <var>$urlOnly</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -311,7 +328,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_joinMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#35-36" title="Go to source code">joinMeeting</a>( <span>mixed <var>$urlOnly</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$attendeeName</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$attendeeEmail</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$meetingPassword</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#184-203" title="Go to source code">joinMeeting</a>( <span>mixed <var>$urlOnly</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$attendeeName</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$attendeeEmail</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$meetingPassword</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -342,7 +359,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_editMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#37" title="Go to source code">editMeeting</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#205-244" title="Go to source code">editMeeting</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -373,7 +390,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_deleteMeeting">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#38" title="Go to source code">deleteMeeting</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#246-264" title="Go to source code">deleteMeeting</a>( )</code>
 
 		<div class="description short">
 			
@@ -397,24 +414,36 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Smx.SimpleMeetings.Shared.ItemList.html">Smx\SimpleMeetings\Shared\ItemList</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getActiveMeetings">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#39" title="Go to source code">getActiveMeetings</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#266-277" title="Go to source code">getActiveMeetings</a>( )</code>
 
 		<div class="description short">
 			
+<p>Unsupported method, returns an empty list</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Unsupported method, returns an empty list</p>
+
+<p>Although the Citrix APIs claim to support returning the status of meetings,
+after testing it was not working, so this method just returns an empty list
+instead.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Smx.SimpleMeetings.Shared.ItemList.html">Smx\SimpleMeetings\Shared\ItemList</a></code></code><br />
+				</div>
 
 
 
@@ -428,24 +457,35 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Smx.SimpleMeetings.Shared.ItemList.html">Smx\SimpleMeetings\Shared\ItemList</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getRecordingList">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#40" title="Go to source code">getRecordingList</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#279-289" title="Go to source code">getRecordingList</a>( <span>mixed <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Unsupported method, returns an empty list</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Unsupported method, returns an empty list</p>
+
+<p>GoToMeeting recordings are stored locally on the host's computer, so there is
+no way to get a list of recordings from the server.</p>
 
 
 
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Smx.SimpleMeetings.Shared.ItemList.html">Smx\SimpleMeetings\Shared\ItemList</a></code></code><br />
+				</div>
 
 
 
@@ -459,24 +499,44 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="attributes"><code>
 			 public 
-			
+			boolean
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addAttendee">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#41" title="Go to source code">addAttendee</a>( <span>mixed <var>$name</var></span>, <span>mixed <var>$email</var></span>, <span>mixed <var>$sendInvite</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#291-304" title="Go to source code">addAttendee</a>( <span>string <var>$name</var> = <span class="php-keyword1">false</span></span>, <span>string <var>$email</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$sendInvite</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Unsupported method, returns false</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Unsupported method, returns false</p>
+
+<p>GoToMeeting APIs do not provide the ability to add an attendee to a meeting
+so this method only returns false</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$email</var></dt>
+					<dd><code>string</code><br>$email</dd>
+					<dt><var>$sendInvite</var></dt>
+					<dd><code>boolean</code><br>$sendInvite</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
 
 
 
@@ -497,7 +557,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttendeeList">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#42" title="Go to source code">getAttendeeList</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#306-323" title="Go to source code">getAttendeeList</a>( )</code>
 
 		<div class="description short">
 			
@@ -521,25 +581,50 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="attributes"><code>
 			 public 
-			
+			<code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|Smx\SimpleMeetings\Base\ItemList
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getMeetingHistory">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#43" title="Go to source code">getMeetingHistory</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#325-351" title="Go to source code">getMeetingHistory</a>( <span>boolean <var>$onlyThisMeeting</var> = <span class="php-keyword1">true</span></span>, <span>array|false <var>$options</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
+<p>Retrieve meeting usage history and store in $this-&gt;historyDetails.</p>
+
 		</div>
 
 		<div class="description detailed hidden">
 			
+<p>Retrieve meeting usage history and store in $this-&gt;historyDetails.</p>
+
+<p>If $onlyThisMeeting is true, only this one meeting will be returned. If it is
+false, a list of meetings will be returned ordered by start time.</p>
 
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$onlyThisMeeting</var></dt>
+					<dd><code>boolean</code><br>$onlyThisMeeting If true, the history call will only get history details for
+this meeting, if false, you can use $options to specify search criteria for
+multiple meetings. If false this method returns an ItemList of meetings.</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>array|false</code><br>$options Search options when wanting to retrieve history for more meetings than
+just this one. Valid options are: startTimeRangeStart and startTimeRangeEnd</dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Smx.SimpleMeetings.WebEx.Meeting.html">Smx\SimpleMeetings\WebEx\Meeting</a></code>|Smx\SimpleMeetings\Base\ItemList</code><br>If $onlyThisMeeting is false, returns ItemList of meetings.<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-ErrorException.html">ErrorException</a></code></code><br>In case of API failure<br />
+				</div>
 
 
 
@@ -559,7 +644,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAttendeeHistory">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#44" title="Go to source code">getAttendeeHistory</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#353-355" title="Go to source code">getAttendeeHistory</a>( )</code>
 
 		<div class="description short">
 			
@@ -590,7 +675,36 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getLastError">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#46-48" title="Go to source code">getLastError</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#357-359" title="Go to source code">getLastError</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadFromServer" id="_loadFromServer">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadFromServer">#</a>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#361-379" title="Go to source code">loadFromServer</a>( <span>mixed <var>$meetingKey</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -619,7 +733,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isReady">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#50-61" title="Go to source code">isReady</a>( )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#381-392" title="Go to source code">isReady</a>( )</code>
 
 		<div class="description short">
 			
@@ -639,6 +753,32 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 	</tr>
 	</table>
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.Citrix.Account.html#methods">Smx\SimpleMeetings\Citrix\Account</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Smx.SimpleMeetings.Citrix.Account.html#_authForAccessToken">authForAccessToken()</a>, 
+			<a href="class-Smx.SimpleMeetings.Citrix.Account.html#_getAccessToken">getAccessToken()</a>, 
+			<a href="class-Smx.SimpleMeetings.Citrix.Account.html#_getAuthUrl">getAuthUrl()</a>, 
+			<a href="class-Smx.SimpleMeetings.Citrix.Account.html#_getOrganizerKey">getOrganizerKey()</a>, 
+			<a href="class-Smx.SimpleMeetings.Citrix.Account.html#_isAuthenticated">isAuthenticated()</a>, 
+			<a href="class-Smx.SimpleMeetings.Citrix.Account.html#_setAuthInfo">setAuthInfo()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Smx.SimpleMeetings.Base.Account.html#methods">Smx\SimpleMeetings\Base\Account</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getAuthInfo">getAuthInfo()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getAuthType">getAuthType()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_getOption">getOption()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setAuthType">setAuthType()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setOption">setOption()</a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#_setOptions">setOptions()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -647,6 +787,15 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 
 
+	<table class="summary inherited">
+	<caption>Constants inherited from <a href="class-Smx.SimpleMeetings.Base.Account.html#constants">Smx\SimpleMeetings\Base\Account</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#AUTH_OAUTH"><b>AUTH_OAUTH</b></a>, 
+			<a href="class-Smx.SimpleMeetings.Base.Account.html#AUTH_SHAREDSECRET"><b>AUTH_SHAREDSECRET</b></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -659,7 +808,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#22" title="Go to source code"><var>$error</var></a>
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#23" title="Go to source code"><var>$error</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -671,6 +820,359 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 			<div class="description detailed hidden">
 				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="isPublic" id="$isPublic">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#24" title="Go to source code"><var>$isPublic</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$isPublic" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="enforcePassword" id="$enforcePassword">
+		<td class="attributes"><code>
+			public  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#25" title="Go to source code"><var>$enforcePassword</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">true</span></code></td>
+		<td class="description"><div>
+			<a href="#$enforcePassword" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="meetingPassword" id="$meetingPassword">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#26" title="Go to source code"><var>$meetingPassword</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$meetingPassword" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="meetingName" id="$meetingName">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#27" title="Go to source code"><var>$meetingName</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$meetingName" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="startTime" id="$startTime">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#28" title="Go to source code"><var>$startTime</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$startTime" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="duration" id="$duration">
+		<td class="attributes"><code>
+			public  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#29" title="Go to source code"><var>$duration</var></a>
+		</td>
+		<td class="value"><code><span class="php-num">60</span></code></td>
+		<td class="description"><div>
+			<a href="#$duration" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="meetingKey" id="$meetingKey">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#30" title="Go to source code"><var>$meetingKey</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$meetingKey" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="hostUrl" id="$hostUrl">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#31" title="Go to source code"><var>$hostUrl</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$hostUrl" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="joinUrl" id="$joinUrl">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#32" title="Go to source code"><var>$joinUrl</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$joinUrl" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="telephonyType" id="$telephonyType">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#33" title="Go to source code"><var>$telephonyType</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">'Hybrid'</span></code></td>
+		<td class="description"><div>
+			<a href="#$telephonyType" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="telephonyInfo" id="$telephonyInfo">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#34" title="Go to source code"><var>$telephonyInfo</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$telephonyInfo" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="meetingType" id="$meetingType">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#35" title="Go to source code"><var>$meetingType</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">'Scheduled'</span></code></td>
+		<td class="description"><div>
+			<a href="#$meetingType" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="uniqueMeetingId" id="$uniqueMeetingId">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#36" title="Go to source code"><var>$uniqueMeetingId</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$uniqueMeetingId" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="organizerKey" id="$organizerKey">
+		<td class="attributes"><code>
+			public  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#37" title="Go to source code"><var>$organizerKey</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$organizerKey" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="historyDetails" id="$historyDetails">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Smx.SimpleMeetings.Citrix.Meeting.html#39-44" title="Go to source code"><var>$historyDetails</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$historyDetails" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>History details is an array of the actual meeting usage data for a meeting
+that has taken place. The expected fields are startTime, endTime, duration,
+totalParticipants, totalPeopleMinutes, totalVoip, totalPhone</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>History details is an array of the actual meeting usage data for a meeting
+that has taken place. The expected fields are startTime, endTime, duration,
+totalParticipants, totalPeopleMinutes, totalVoip, totalPhone</p>
+
 
 			</div>
 		</div></td>

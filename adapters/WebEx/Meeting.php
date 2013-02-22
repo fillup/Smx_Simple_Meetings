@@ -413,8 +413,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
      */
     public function addAttendee($name, $email, $sendInvite=false){
         if(!is_null($this->meetingKey)){
-            $attendee = new Attendee($this->getUsername(), $this->getPassword(),
-                    $this->getSitename(), array(
+            $attendee = new Attendee($this->getAuthInfo(), array(
                         'name' => $name,
                         'email' => $email,
                         'meetingKey' => $this->meetingKey

@@ -38,7 +38,8 @@ require_once 'adapters/Shared/HttpRequest.php';
 require_once 'adapters/Factory.php';
 
 /**
- * WebEx classes.
+ * WebEx Classes
+ * 
  * This section can be commented out if you do not plan to use WebEx.
  */
 require_once 'adapters/WebEx/Account.php';
@@ -46,3 +47,14 @@ require_once 'adapters/WebEx/Attendee.php';
 require_once 'adapters/WebEx/Meeting.php';
 require_once 'adapters/WebEx/User.php';
 require_once 'adapters/WebEx/Utilities.php';
+
+/**
+ * Citrix Classes
+ * 
+ * This section can be commented out if you do not plan to use Citrix.
+ */
+require_once 'adapters/Citrix/Account.php';
+require_once 'adapters/Citrix/Utilities.php';
+require_once 'adapters/Citrix/Meeting.php';
+require_once 'adapters/Citrix/Attendee.php';
+require_once 'adapters/Citrix/User.php';

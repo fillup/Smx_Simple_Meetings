@@ -7,7 +7,7 @@
 	<title>Class Smx\SimpleMeetings\Shared\HttpRequest | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?3607129735"></script>
+	<script type="text/javascript" src="elementlist.js?3666544568"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -35,6 +35,8 @@
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.html">Tests<span></span></a>
 						<ul>
+				<li><a href="namespace-Smx.SimpleMeetings.Tests.Citrix.html">Citrix</a>
+						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.Shared.html">Shared</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.WebEx.html">WebEx</a>
@@ -131,7 +133,7 @@ curl_exec.</p>
 				<b>Author:</b>
 				Phillip Shipley &lt;<a
 href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.com</a>&gt;<br />
-		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Shared.HttpRequest.html#12-63" title="Go to source code">src/adapters/Shared/HttpRequest.php</a><br />
+		<b>Located at</b> <a href="source-class-Smx.SimpleMeetings.Shared.HttpRequest.html#12-86" title="Go to source code">src/adapters/Shared/HttpRequest.php</a><br />
 	</div>
 
 
@@ -149,7 +151,7 @@ href="mailto:phillip&#64;phillipshipley.com">phillip&#64;<!---->phillipshipley.c
 
 		<td class="name"><div>
 		<a class="anchor" href="#_request">#</a>
-		<code><a href="source-class-Smx.SimpleMeetings.Shared.HttpRequest.html#24-62" title="Go to source code">request</a>( <span>string <var>$uri</var></span>, <span>string <var>$method</var> = <span class="php-quote">'GET'</span></span>, <span>string|array <var>$postfields</var> = <span class="php-keyword1">false</span></span> )</code>
+		<code><a href="source-class-Smx.SimpleMeetings.Shared.HttpRequest.html#24-85" title="Go to source code">request</a>( <span>string <var>$uri</var></span>, <span>string <var>$method</var> = <span class="php-quote">'GET'</span></span>, <span>string|array <var>$postfields</var> = <span class="php-keyword1">false</span></span>, <span>mixed <var>$headers</var> = <span class="php-keyword1">false</span></span> )</code>
 
 		<div class="description short">
 			
@@ -174,6 +176,8 @@ parameters. This is passed as the CURLOPT_URL</dd>
 					<dd><code>string</code><br>$method Set to either GET (default) or POST</dd>
 					<dt><var>$postfields</var></dt>
 					<dd><code>string|array</code><br>$postfields If using POST, this parameter will be set as CURLOPT_POSTFIELDS</dd>
+					<dt><var>$headers</var></dt>
+					<dd></dd>
 				</dl></div>
 
 				<h4>Returns</h4>
