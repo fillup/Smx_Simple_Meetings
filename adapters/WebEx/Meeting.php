@@ -50,7 +50,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
             $this->meetingName = $this->getUsername()."'s meeting";
         }
         if(is_null($this->startTime)){
-            $this->startTime = date('m/d/Y H:i:00',time()+300);
+            $this->startTime = time()+300;
         }
     }
     
@@ -58,7 +58,8 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
      * This method accepts an array of meeting settings. It calls the API
      * to schedule the meeting.
      * 
-     * @param array $options If false, API will still be called with current properties
+     * @param array $options If false, API will still be called with current 
+     *   properties, note that startTime should be a unix timestamp
      * @return \Smx\SimpleMeetings\WebEx\Meeting
      * @throws \ErrorException on API call failure
      */
@@ -68,10 +69,14 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
                 $this->$option = $value;
             }
         }
+        
+        if(!$this->isValidTimestamp($this->startTime)){
+            $this->startTime = time()+900;
+        }
        
         $xml = $this->loadXml('CreateMeeting');
         $xml->body->bodyContent->metaData->confName = $this->meetingName;
-        $xml->body->bodyContent->schedule->startDate = $this->startTime;
+        $xml->body->bodyContent->schedule->startDate = date('m/d/Y H:i:00',$this->startTime);
         $xml->body->bodyContent->schedule->duration = $this->duration;
         $xml->body->bodyContent->accessControl->isPublic = $this->isPublic;
         $xml->body->bodyContent->accessControl->enforcePassword = $this->enforcePassword;
@@ -252,11 +257,15 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
                 $this->$option = $value;
             }
         }
+        
+        if(!$this->isValidTimestamp($this->startTime)){
+            $this->startTime = time()+900;
+        }
        
         $xml = $this->loadXml('EditMeeting');
         $xml->body->bodyContent->meetingkey = $this->meetingKey;
         $xml->body->bodyContent->metaData->confName = $this->meetingName;
-        $xml->body->bodyContent->schedule->startDate = $this->startTime;
+        $xml->body->bodyContent->schedule->startDate = date('m/d/Y H:i:00',$this->startTime);
         $xml->body->bodyContent->schedule->duration = $this->duration;
         $xml->body->bodyContent->accessControl->isPublic = $this->isPublic;
         $xml->body->bodyContent->accessControl->enforcePassword = $this->enforcePassword;
@@ -378,7 +387,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
                             'meetingKey' => $meet->sessionKey->__toString(),
                             'meetingName' => $meet->name->__toString(),
                             'hostUsername' => $meet->hostWebExID->__toString(),
-                            'startTime' => $meet->createTime->__toString(),
+                            'startTime' => strtotime($meet->createTime->__toString()),
                             'sitename' => $this->getSitename(),
                             'hostUrl' => $meet->fileURL->__toString(),
                             'joinUrl' => $meet->streamURL->__toString()
@@ -500,8 +509,8 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
                                 $meet->totalCallOutDomestic->__toString() +
                                 $meet->totalCallOutInternational->__toString();
                         $this->historyDetails = array(
-                            'startTime' => $meet->meetingStartTime->__toString(), 
-                            'endTime' => $meet->meetingEndTime->__toString(), 
+                            'startTime' => strtotime($meet->meetingStartTime->__toString()), 
+                            'endTime' => strtotime($meet->meetingEndTime->__toString()), 
                             'duration' => $meet->duration->__toString(),
                             'totalParticipants' => $meet->totalParticipants->__toString(), 
                             'totalPeopleMinutes' => $meet->totalPeopleMinutes->__toString(), 
@@ -521,13 +530,13 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
                                 'meetingKey' => $meet->sessionKey->__toString(),
                                 'meetingName' => $meet->confName->__toString(),
                                 'hostUsername' => $meet->hostWebExID->__toString(),
-                                'startTime' => $meet->meetingStartTime->__toString(),
+                                'startTime' => strtotime($meet->meetingStartTime->__toString()),
                                 'duration' => $meet->duration->__toString(),
                                 'sitename' => $this->getSitename()
                             );
                                                         
                             $historyDetails = array(
-                                'startTime' => $meet->meetingStartTime->__toString(), 
+                                'startTime' => strtotime($meet->meetingStartTime->__toString()), 
                                 'endTime' => $meet->meetingEndTime->__toString(), 
                                 'duration' => $meet->duration->__toString(),
                                 'totalParticipants' => $meet->totalParticipants->__toString(), 
@@ -606,8 +615,8 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
                     if($onlyThisMeeting){
                         $meet = $results->meetingAttendeeHistory;
                         $this->attendeeHistoryDetails = array(
-                            'joinTime' => $meet->joinTime->__toString(), 
-                            'leaveTime' => $meet->leaveTime->__toString(), 
+                            'joinTime' => strtotime($meet->joinTime->__toString()), 
+                            'leaveTime' => strtotime($meet->leaveTime->__toString()), 
                             'duration' => $meet->duration->__toString(),
                             'name' => $meet->name->__toString(), 
                             'email' => $meet->email->__toString(), 
@@ -620,14 +629,14 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
                             $mtgDetails = array(
                                 'meetingKey' => $meet->meetingKey->__toString(),
                                 'meetingName' => $meet->confName->__toString(),
-                                'startTime' => $meet->joinTime->__toString(),
+                                'startTime' => strtotime($meet->joinTime->__toString()),
                                 'duration' => $meet->duration->__toString(),
                                 'sitename' => $this->getSitename()
                             );
                                                         
                             $attendeeDetails = array(
-                                'joinTime' => $meet->joinTime->__toString(), 
-                                'leaveTime' => $meet->leaveTime->__toString(), 
+                                'joinTime' => strtotime($meet->joinTime->__toString()), 
+                                'leaveTime' => strtotime($meet->leaveTime->__toString()), 
                                 'duration' => $meet->duration->__toString(),
                                 'name' => $meet->name->__toString(), 
                                 'email' => $meet->email->__toString(), 
@@ -656,8 +665,42 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
         return $this;
     }
     
+    public function isValidTimestamp($timestamp){
+        $now = time()+900;
+        if(is_numeric($timestamp) && $timestamp > $now){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function getLastError(){
         return $this->error;
+    }
+    
+    public function loadFromServer($meetingKey=false){
+        if($meetingKey){
+            $this->meetingKey = $meetingKey;
+        }
+        
+        $serverDetails = $this->getServerMeetingDetails();
+        if($serverDetails){
+            $this->meetingName = $serverDetails->confName->__toString();
+            $this->startTime = strtotime($serverDetails->startDate->__toString());
+            $this->duration = strtotime($serverDetails->duration->__toString());
+            if($serverDetails->accessControl->meetingPassword){
+                $this->meetingPassword = $serverDetails->accessControl->meetingPassword->__toString();
+            }
+            if($serverDetails->listStatus->__toString == 'PUBLIC'){
+                $this->isPublic = true;
+            } else {
+                $this->isPublic = false;
+            }
+            
+            return true;
+        }
+        
+        return false;
     }
     
     private function isReady(){

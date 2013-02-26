@@ -44,6 +44,14 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         return $meeting;
     }
     
+    public function testGetServerMeetingDetails()
+    {
+        $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
+        $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
+        $details = $meeting->getServerMeetingDetails();
+        $this->assertInstanceOf('\\SimpleXMLElement', $details);
+    }
+    
     /*
      * @depends testCreateMeetingWithDefaults
      */

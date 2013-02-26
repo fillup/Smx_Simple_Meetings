@@ -35,6 +35,7 @@ interface Meeting
     public function getAttendeeList();
     public function getMeetingHistory();
     public function getAttendeeHistory();
+    public function isValidTimestamp($timestamp);
 }
 
 interface Attendee

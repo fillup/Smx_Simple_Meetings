@@ -354,6 +354,15 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
         
     }
     
+    public function isValidTimestamp($timestamp){
+        $now = time()+900;
+        if(is_numeric($timestamp) && $timestamp > $now){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     public function getLastError(){
         return $this->error;
     }

@@ -65,9 +65,13 @@ class Account extends AccountBase implements \Smx\SimpleMeetings\Account
         }
     }
     
-    public function getAuthUrl()
+    public function getAuthUrl($redirectUrl=false)
     {
-        return $this->authUrlBase . '?client_id=' . $this->apiKey;
+        $url = $this->authUrlBase . '?client_id=' . $this->apiKey;
+        if($redirectUrl){
+            $url .= '&redirect_uri='.$redirectUrl;
+        }
+        return $url;
     }
     
     public function getAccessToken()
