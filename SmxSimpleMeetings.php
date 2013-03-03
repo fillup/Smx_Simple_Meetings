@@ -22,6 +22,7 @@ require_once 'Interfaces.php';
 require_once 'adapters/Shared/Account.php';
 require_once 'adapters/Shared/ItemList.php';
 require_once 'adapters/Shared/HttpRequest.php';
+require_once 'adapters/Shared/Time.php';
 
 // Removing dependency on Zend\Http for now due to problems with composer
 /*if(!class_exists('\\Zend\\Http\\Client')){

@@ -9,6 +9,7 @@
 
 namespace Smx\SimpleMeetings\Citrix;
 use Smx\SimpleMeetings\Shared\ItemList;
+use Smx\SimpleMeetings\Shared\Time;
 use Smx\SimpleMeetings\Citrix\Account;
 use Smx\SimpleMeetings\Citrix\Utilities;
 use Smx\SimpleMeetings\Citrix\Attendee;
@@ -67,9 +68,12 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
         
         if($this->isAuthenticated() && $this->isReady()){
             $url = 'https://api.citrixonline.com/G2M/rest/meetings';
-
-            $startTime = date('c',$this->startTime);
-            $endTime = date('c',$this->startTime + $this->duration*60);
+            
+            $startTime = Time::getUtcTimestamp($this->startTime);
+            $startTime = date('c',$startTime);
+            
+            $endTime = Time::getUtcTimestamp($this->startTime + $this->duration*60);
+            $endTime = date('c',$endTime);
 
             $data = array(
                 'subject' => $this->meetingName,

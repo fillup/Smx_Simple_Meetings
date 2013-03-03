@@ -85,13 +85,16 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     public function testEditMeeting()
     {
         $options = array(
-            'meetingKey' => '567099397',
-            'meetingName' => 'EDITED-'.__FUNCTION__
+            'meetingName' => __FUNCTION__
         );
         $meeting = Factory::SmxSimpleMeeting('Citrix', 'Meeting', 
                 $this->authInfo, $options);
+        $meeting->createMeeting();
+        $newName = 'EDITED-'.__FUNCTION__;
+        $meeting->setOption('meetingName',$newName);
         $meeting->editMeeting();
-        $this->assertEquals($options['meetingName'],$meeting->meetingName);
+        $meeting->loadFromServer();
+        $this->assertEquals($newName,$meeting->meetingName);
     }
     
     public function testGetActiveMeetings()
@@ -104,10 +107,11 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     
     public function testGetAttendeeList()
     {
-        $options = array('meetingKey' => '657883645');
+        $options = array('meetingName' => __FUNCTION__);
         $meeting = Factory::SmxSimpleMeeting('Citrix', 'Meeting', 
                 $this->authInfo,$options);
+        $meeting->createMeeting();
         $attendees = $meeting->getAttendeeList();
-        $this->assertTrue(true);
+        $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $attendees);
     }
 }
