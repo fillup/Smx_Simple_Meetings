@@ -59,3 +59,12 @@ require_once 'adapters/Citrix/Utilities.php';
 require_once 'adapters/Citrix/Meeting.php';
 require_once 'adapters/Citrix/Attendee.php';
 require_once 'adapters/Citrix/User.php';
+
+/**
+ * Join.Me Classes
+ * 
+ * This section can be commented out if you do not plan to use Join.Me
+ */
+require_once 'adapters/JoinMe/Account.php';
+require_once 'adapters/JoinMe/Meeting.php';
+require_once 'adapters/JoinMe/Utilities.php';

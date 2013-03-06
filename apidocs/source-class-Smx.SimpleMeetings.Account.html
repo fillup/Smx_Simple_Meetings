@@ -8,7 +8,7 @@
 	<title>File src/Interfaces.php | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?3666544568"></script>
+	<script type="text/javascript" src="elementlist.js?104318"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -32,11 +32,15 @@
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Citrix.html">Citrix</a>
 						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.JoinMe.html">JoinMe</a>
+						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Shared.html">Shared</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.html">Tests<span></span></a>
 						<ul>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.Citrix.html">Citrix</a>
+						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Tests.JoinMe.html">JoinMe</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Tests.Shared.html">Shared</a>
 						</li>
@@ -145,24 +149,25 @@
 </span><span id="35" class="l"><a class="l" href="#35">35: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAttendeeList" href="#_getAttendeeList">getAttendeeList</a>();
 </span><span id="36" class="l"><a class="l" href="#36">36: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getMeetingHistory" href="#_getMeetingHistory">getMeetingHistory</a>();
 </span><span id="37" class="l"><a class="l" href="#37">37: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAttendeeHistory" href="#_getAttendeeHistory">getAttendeeHistory</a>();
-</span><span id="38" class="l"><a class="l" href="#38">38: </a>}
-</span><span id="39" class="l"><a class="l" href="#39">39: </a>
-</span><span id="40" class="l"><a class="l" href="#40">40: </a><span class="php-keyword1">interface</span> <a id="Attendee" href="#Attendee">Attendee</a>
-</span><span id="41" class="l"><a class="l" href="#41">41: </a>{
-</span><span id="42" class="l"><a class="l" href="#42">42: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_addAttendee" href="#_addAttendee">addAttendee</a>(<span class="php-var">$options</span>=<span class="php-keyword1">false</span>);
-</span><span id="43" class="l"><a class="l" href="#43">43: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAttendeeList" href="#_getAttendeeList">getAttendeeList</a>();
-</span><span id="44" class="l"><a class="l" href="#44">44: </a>}
-</span><span id="45" class="l"><a class="l" href="#45">45: </a>
-</span><span id="46" class="l"><a class="l" href="#46">46: </a><span class="php-keyword1">interface</span> <a id="User" href="#User">User</a>
-</span><span id="47" class="l"><a class="l" href="#47">47: </a>{
-</span><span id="48" class="l"><a class="l" href="#48">48: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_createUser" href="#_createUser">createUser</a>(<span class="php-var">$options</span>=<span class="php-keyword1">false</span>);
-</span><span id="49" class="l"><a class="l" href="#49">49: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_editUser" href="#_editUser">editUser</a>(<span class="php-var">$options</span>=<span class="php-keyword1">false</span>);
-</span><span id="50" class="l"><a class="l" href="#50">50: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_loginUser" href="#_loginUser">loginUser</a>(<span class="php-var">$urlOnly</span>=<span class="php-keyword1">false</span>);
-</span><span id="51" class="l"><a class="l" href="#51">51: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getServerUserDetails" href="#_getServerUserDetails">getServerUserDetails</a>(<span class="php-var">$username</span>=<span class="php-keyword1">false</span>);
-</span><span id="52" class="l"><a class="l" href="#52">52: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getUserList" href="#_getUserList">getUserList</a>(<span class="php-var">$options</span>=<span class="php-keyword1">false</span>);
-</span><span id="53" class="l"><a class="l" href="#53">53: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_deactivate" href="#_deactivate">deactivate</a>(<span class="php-var">$username</span>=<span class="php-keyword1">false</span>);
-</span><span id="54" class="l"><a class="l" href="#54">54: </a>}
-</span><span id="55" class="l"><a class="l" href="#55">55: </a></span></code></pre>
+</span><span id="38" class="l"><a class="l" href="#38">38: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_isValidTimestamp" href="#_isValidTimestamp">isValidTimestamp</a>(<span class="php-var">$timestamp</span>);
+</span><span id="39" class="l"><a class="l" href="#39">39: </a>}
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>
+</span><span id="41" class="l"><a class="l" href="#41">41: </a><span class="php-keyword1">interface</span> <a id="Attendee" href="#Attendee">Attendee</a>
+</span><span id="42" class="l"><a class="l" href="#42">42: </a>{
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_addAttendee" href="#_addAttendee">addAttendee</a>(<span class="php-var">$options</span>=<span class="php-keyword1">false</span>);
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getAttendeeList" href="#_getAttendeeList">getAttendeeList</a>();
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>}
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>
+</span><span id="47" class="l"><a class="l" href="#47">47: </a><span class="php-keyword1">interface</span> <a id="User" href="#User">User</a>
+</span><span id="48" class="l"><a class="l" href="#48">48: </a>{
+</span><span id="49" class="l"><a class="l" href="#49">49: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_createUser" href="#_createUser">createUser</a>(<span class="php-var">$options</span>=<span class="php-keyword1">false</span>);
+</span><span id="50" class="l"><a class="l" href="#50">50: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_editUser" href="#_editUser">editUser</a>(<span class="php-var">$options</span>=<span class="php-keyword1">false</span>);
+</span><span id="51" class="l"><a class="l" href="#51">51: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_loginUser" href="#_loginUser">loginUser</a>(<span class="php-var">$urlOnly</span>=<span class="php-keyword1">false</span>);
+</span><span id="52" class="l"><a class="l" href="#52">52: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getServerUserDetails" href="#_getServerUserDetails">getServerUserDetails</a>(<span class="php-var">$username</span>=<span class="php-keyword1">false</span>);
+</span><span id="53" class="l"><a class="l" href="#53">53: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_getUserList" href="#_getUserList">getUserList</a>(<span class="php-var">$options</span>=<span class="php-keyword1">false</span>);
+</span><span id="54" class="l"><a class="l" href="#54">54: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_deactivate" href="#_deactivate">deactivate</a>(<span class="php-var">$username</span>=<span class="php-keyword1">false</span>);
+</span><span id="55" class="l"><a class="l" href="#55">55: </a>}
+</span><span id="56" class="l"><a class="l" href="#56">56: </a></span></code></pre>
 
 	<div id="footer">
 		SmxSimple_Meetings API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
