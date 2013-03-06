@@ -15,6 +15,7 @@ Class library and abstraction layer for integrating with web meetings providers 
    * [Usage](#section_Usage)
       * [Simple Example](#section_SimpleExample)
    * [Citrix Notes](#section_citrix)
+   * [Join.Me Notes](#section_joinme)
    * [Feedback / Support](#section_Feedback)
 
 <a name='section_Purpose'></a>
@@ -28,6 +29,7 @@ Below is the initial list of service providers we intend to support with this li
 1. WebEx Meeting Center [COMPLETE]
 2. Citrix GoToMeeting [90% Complete - Missing create/edit user features. Need an admin account to dev/test with.]
 3. BigBlueButton [NOT STARTED]
+4. Join.Me [COMPLETE] - Note that this is a very basic service with limited functionality and an even more limited API.
 
 <a name='section_Todo'></a>
 ## Improvement Ideas / TODO ##
@@ -182,6 +184,17 @@ $options = array(
 $meeting = Factory::SmxSimpleMeeting('Citrix', 'Meeting', $authInfo, $options);
 $meeting->createMeeting();
 ````
+
+<a name='section_joinme'></a>
+## Join.Me Notes ##
+Join.Me (http://join.me/) is a very simple and easy to use desktop sharing service. They also have an even more basic API to provide limited integration capabilities with their product. There are pretty much only two APIs:
+
+1. Authenticate a user and get an authCode returned
+2. Create a meeting/session and get a code and ticket to use to start it
+
+You can checkout their APIs at http://help.join.me/knowledgebase/topics/26996-join-me-api
+
+One thing to note is that their concept of an authCode is based at a user level, but not also at an app level. So if you generate an authCode for a user using this library, and then that user uses some other service that calls the same API, it will invalidate the previous authCode. So just something to be aware of.
 
 <a name='section_Feedback'></a>
 ## Feedback / Support ##
