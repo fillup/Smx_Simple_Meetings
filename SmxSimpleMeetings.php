@@ -68,3 +68,12 @@ require_once 'adapters/Citrix/User.php';
 require_once 'adapters/JoinMe/Account.php';
 require_once 'adapters/JoinMe/Meeting.php';
 require_once 'adapters/JoinMe/Utilities.php';
+
+/**
+ * BigBlueButton Classes
+ * 
+ * This section can be commented out if you do not plan to use BigBlueButton
+ */
+require_once 'adapters/BigBlueButton/Account.php';
+require_once 'adapters/BigBlueButton/Meeting.php';
+require_once 'adapters/BigBlueButton/Utilities.php';

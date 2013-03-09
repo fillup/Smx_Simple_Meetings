@@ -6,6 +6,7 @@ require_once 'Shared/AllTests.php';
 require_once 'WebEx/AllTests.php';
 require_once 'Citrix/AllTests.php';
 require_once 'JoinMe/AllTests.php';
+require_once 'BigBlueButton/AllTests.php';
 
 class AllTests
 {
@@ -17,6 +18,7 @@ class AllTests
         $suite->addTest(\Smx\SimpleMeetings\Tests\WebEx\WebEx_AllTests::suite());
         $suite->addTest(\Smx\SimpleMeetings\Tests\Citrix\Citrix_AllTests::suite());
         $suite->addTest(\Smx\SimpleMeetings\Tests\JoinMe\JoinMe_AllTests::suite());
+        $suite->addTest(\Smx\SimpleMeetings\Tests\BigBlueButton\BigBlueButton_AllTests::suite());
         
         return $suite;
     }

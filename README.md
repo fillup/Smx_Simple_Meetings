@@ -28,7 +28,7 @@ Below is the initial list of service providers we intend to support with this li
 
 1. WebEx Meeting Center [COMPLETE]
 2. Citrix GoToMeeting [90% Complete - Missing create/edit user features. Need an admin account to dev/test with.]
-3. BigBlueButton [NOT STARTED]
+3. BigBlueButton [COMPLETE]
 4. Join.Me [COMPLETE] - Note that this is a very basic service with limited functionality and an even more limited API.
 
 <a name='section_Todo'></a>
@@ -36,6 +36,7 @@ Below is the initial list of service providers we intend to support with this li
 
 1. Create Smx\SimpleMeetings\Exception to create consistent error reporting and exception interface. Primarily to ensure errors from service providers are translated and returned to developer consistently.
 2. ~~Create Smx\SimpleMeetings\Base\Time class to create consistent/standard way to handle dates internally and require each service provider to convert them to proper format.~~ Added \Smx\SimpleMeetings\Shared\Time utility class for getting current local timestamp in UTC and it is now expected that times be unixtimestamps in objects and then converted to proper string formatting in each adapter as necessary for each API.
+3. Need another developer to perform a code review and help identify areas of inconsistency.
 
 <a name='section_Installation'></a>
 ## Installation ##
