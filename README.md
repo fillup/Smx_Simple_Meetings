@@ -14,6 +14,7 @@ Class library and abstraction layer for integrating with web meetings providers 
       * [Archive Download](#section_Download)
    * [Usage](#section_Usage)
       * [Simple Example](#section_SimpleExample)
+      * [Variations in Authentication](#section_authentication)
    * [Citrix Notes](#section_citrix)
    * [Join.Me Notes](#section_joinme)
    * [Feedback / Support](#section_Feedback)
@@ -139,6 +140,90 @@ echo "Meeting is scheduled, meeting key: " . $meeting->meetingKey;
 
 ````
 More comprehensive API documentation is under development, but for now just read the Interfaces.php to understand what methods are available.
+
+<a name='section_authentication'></a>
+### Variations in Authentication ###
+Each service provider API requires a different authentication approach and therefore your application will need a little knowlege of the differences. As a consumer of smx/simplemenetings you only need to pass the authentication information as an array into the factory and each adapter will handle the rest, but you will need to know what format is required for each adpater. Here are some examples for each service provider:
+````php
+/**
+* WebEx AuthInfo
+* 
+* Sitename is the subdomain for your webex site, so for 
+*   http://mycompany.webex.com/, the sitename is mycompany
+* 
+* Password is sent in clear text, although over https, so it 
+*   is recommended to store this in an encrypted format for at 
+*   least a little safety
+*/
+$webexAuthInfo = array(
+    'sitename' => 'mycompany',
+    'username' => 'myusername',
+    'password' => 'mypassword'
+);
+
+/**
+*  Citrix AuthInfo
+*  
+*  Citrix uses oAuth for authentication of users. This means you 
+*  need a unique API Key for your application as well as an access 
+*  token for your user. smx/simplemeetings can help with this process,
+*  all you need to provide is the API key, the library can give you an 
+*  auth url for the user to visit and authenticate. When the user 
+*  is redirected to your application you can call the library again 
+*  with the provided response code and the library will handle getting
+*  the access token used for further API calls. The access token is valid
+*  until invalidated by the user, so you should store this somewhere safe.
+*  Also after retreiving the auth token, the user's organizer key (think
+*  of this as their unique user id) will be returned, so store this as well.
+*
+*/
+$citrixAuthInfo = array(
+    'apiKey' => '123456789098765432101234567890ab',
+    'accessToken' => 'ab123456789098765432101234567890',
+    'organizerKey' => 'abcdef1234567890eefab'
+)
+
+/**
+* BigBlueButton AuthInfo
+* 
+* BigBlueButton (BBB) is maybe the weirdest of them all in terms of how it 
+* authenticates API calls. Rather than use individual user credentials,
+* it uses an API Security Salt. With BBB all meetings are instant and 
+* users either join using a moderator password or an attendee password and 
+* the system assigns rights based on the password provided. BBB assumes you 
+* already have an application full of users and that you'll manage the association
+* between users and meetings. When creating a meeting it is possible to supply
+* your own meta data including a user id that you can use to link data for reporting.
+* 
+* Base URL is the API endpoint to be called, since BBB is open source you
+* can host it wherever you like.
+*/
+$bbbAuthInfo = array(
+    'baseUrl' => 'https://bbb.mycompany.com/bigbluebutton/api/',
+    'salt' => 'ab123456789098765432101234567890'
+);
+
+/**
+* Join.Me AuthInfo
+* 
+* Join.Me is similar to WebEx in that it uses a user's username and password
+* for authentication. It is slightly different however in that it uses the
+* username and password to generate an auth token for use with further API
+* calls. The thing that is odd about Join.Me though is that the auth token
+* is created for a user, not a user+application level, so if another application
+* generates an auth token for the same user, the previous token you generated
+* will be invalidated. For this reason we recommend you always just use
+* the user's username and password and let the library fetch a new auth
+* code for you with each use. You could also store just the auth token and 
+* require your user to re-authenticate if the token is ever invalidated, it is
+* up to you.
+*/
+$joinmeAuthInfo = array(
+    'email' => 'me@company.com',
+    'password' => 'mypassword',
+    'authCode' => 'ab123456789098765432101234567890'
+);
+````
 
 <a name='section_citrix'></a>
 ## Citrix Notes ##
