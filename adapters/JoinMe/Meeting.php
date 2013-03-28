@@ -23,13 +23,13 @@ use Smx\SimpleMeetings\Shared\ItemList;
  */
 class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
 {
-    public $code = null;
-    public $ticket = null;
+    public $meetingKey = null;
+    public $meetingPassword = null;
+    public $hostPassword = null;
     public $hostUrl = null;
     public $joinUrl = null;
     
     // Not needed for JoinMe but present for cross compatibility
-    public $meetingKey = null;
     public $meetingName = null;
     public $startTime = null;
     public $duration = null;
@@ -60,14 +60,12 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
             $results = Utilities::callApi($url);
             $success = preg_match('/CODE: (\d+)[\n]TICKET: (\d+)/', $results, $details);
             if($success){
-                $this->code = $details[1];
                 $this->meetingKey = $details[1];
-                $this->ticket = $details[2];
-
-                $this->hostUrl = 'https://secure.join.me/download.aspx?webdownload=true'.
-                        '&code='.$this->code.'&ticket='.$this->ticket;
-
-                $this->joinUrl = 'https://join.me/'.$this->code;
+                $this->meetingPassword = $details[2];
+                $this->hostPassword = $details[2];
+                
+                $this->startMeeting();
+                $this->joinMeeting();
 
                 return $this;
             } else {
@@ -105,6 +103,8 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
      * @return \Smx\SimpleMeetings\JoinMe\Meeting|string
      */
     public function startMeeting($urlOnly=false){
+        $this->hostUrl = 'https://secure.join.me/download.aspx?webdownload=true'.
+                        '&code='.$this->meetingKey.'&ticket='.$this->meetingPassword;
         if($urlOnly){
             return $this->hostUrl;
         } else {
@@ -123,6 +123,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
      */
     public function joinMeeting($urlOnly=false,$attendeeName=false,
             $attendeeEmail=false,$meetingPassword=false){
+        $this->joinUrl = 'https://join.me/'.$this->meetingKey;
         if($urlOnly){
             return $this->joinUrl;
         } else {
