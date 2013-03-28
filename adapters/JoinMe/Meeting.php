@@ -23,6 +23,7 @@ use Smx\SimpleMeetings\Shared\ItemList;
  */
 class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
 {
+    public $meetingKey = null;
     public $code = null;
     public $ticket = null;
     public $hostUrl = null;
@@ -50,6 +51,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
             $success = preg_match('/CODE: (\d+)[\n]TICKET: (\d+)/', $results, $details);
             if($success){
                 $this->code = $details[1];
+                $this->meetingKey = $details[1];
                 $this->ticket = $details[2];
 
                 $this->hostUrl = 'https://secure.join.me/download.aspx?webdownload=true'.
