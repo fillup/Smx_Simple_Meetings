@@ -23,11 +23,16 @@ use Smx\SimpleMeetings\Shared\ItemList;
  */
 class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
 {
-    public $meetingKey = null;
     public $code = null;
     public $ticket = null;
     public $hostUrl = null;
     public $joinUrl = null;
+    
+    // Not needed for JoinMe but present for cross compatibility
+    public $meetingKey = null;
+    public $meetingName = null;
+    public $startTime = null;
+    public $duration = null;
     
     public function __construct($authInfo) {
         parent::__construct($authInfo);
@@ -45,6 +50,11 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
      * @return \Smx\SimpleMeetings\JoinMe\Meeting A copy of $this
      */
     public function createMeeting($options=false){
+        if($options && is_array($options)){
+            foreach($options as $name => $value){
+                $this->$name = $value;
+            }
+        }
         if($this->isAuthenticated()){
             $url = 'https://secure.join.me/API/requestCode?authcode='.$this->getAuthCode();
             $results = Utilities::callApi($url);
