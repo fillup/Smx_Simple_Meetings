@@ -35,6 +35,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
     public $inProgress = false;
     public $recordingId = null;
     public $enableRecording = true;
+    public $exitUrl = false;
     
     public function __construct($authInfo, $options=false) {
         parent::__construct($authInfo);
@@ -75,6 +76,10 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
             'duration' => $this->duration,
             'record' => (string)$this->enableRecording
         );
+        
+        if($this->exitUrl){
+            $meetingOptions['logoutURL'] = $this->exitUrl;
+        }
         
         $request = Utilities::callApi($this->baseUrl, $meetingOptions, 
                 'create', $this->salt);

@@ -58,7 +58,11 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     public function testGetHostJoinUrls()
     {
         $meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $this->authInfo);
-        $meeting->createMeeting(array('meetingPassword'=>'Sumi123', 'meetingName' => __FUNCTION__));
+        $meeting->createMeeting(array(
+            'meetingPassword'=>'Sumi123', 
+            'meetingName' => __FUNCTION__,
+            'exitUrl' => 'https://github.com/fillup/Smx_Simple_Meetings'
+        ));
         
         $hostUrl = $meeting->startMeeting(true);
         $this->assertStringStartsWith('http', $hostUrl);
@@ -69,6 +73,9 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         $specificJoinUrl = $meeting->joinMeeting(true,'Phillip',
                 'phillips@corp.sumilux.com','Sumi123');
         $this->assertStringStartsWith('http', $specificJoinUrl);
+        
+        //echo "Host: $hostUrl\nGeneric Join: $genericJoinUrl\nJoin: $specificJoinUrl";
+        
     }
     
     public function testEditMeeting()

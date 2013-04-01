@@ -31,6 +31,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
     public $meetingKey = null;
     public $hostUrl = null;
     public $joinUrl = null;
+    public $exitUrl = false;
     
     /**
      * History details is an array of the actual meeting usage data for a meeting
@@ -194,6 +195,10 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
             $result = $this->callApi($xml->asXML());
             if($result){
                 $this->hostUrl = $result->hostMeetingURL->__toString();
+                if($this->exitUrl){
+                    $this->hostUrl .= urlencode("&BU=".$this->exitUrl).
+                            '&BU='.  urlencode($this->exitUrl);
+                }
                 if($urlOnly){
                     return $this->hostUrl;
                 }
@@ -234,6 +239,9 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
             $result = $this->callApi($xml->asXML());
             if($result){
                 $this->joinUrl = $result->joinMeetingURL->__toString();
+                if($this->exitUrl){
+                    $this->joinUrl .= "&BU=".urlencode($this->exitUrl);
+                }
                 if($urlOnly){
                     return $this->joinUrl;
                 }

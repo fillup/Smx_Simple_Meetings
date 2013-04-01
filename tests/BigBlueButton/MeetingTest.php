@@ -58,7 +58,8 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         $meetingOptions = array(
             'meetingName' => __FUNCTION__,
             'hostPassword' => 'adminpass',
-            'meetingPassword' => 'attendeepass'
+            'meetingPassword' => 'attendeepass',
+            'exitUrl' => 'https://github.com/fillup/Smx_Simple_Meetings'
         );
         $meeting->createMeeting($meetingOptions);
         $meeting->startMeeting(false, array('name' => 'meeting host'));
