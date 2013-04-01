@@ -33,7 +33,7 @@ class Account extends AccountBase implements \Smx\SimpleMeetings\Account
     public function setAuthInfo($authInfo){
         parent::setAuthInfo($authInfo);
         $this->baseUrl = isset($authInfo['baseUrl']) ? 
-                $authInfo['baseUrl'] : null;
+                $this->checkAndFixBaseUrl($authInfo['baseUrl']) : null;
         $this->salt = isset($authInfo['salt']) ? 
                 $authInfo['salt'] : null;
     }
@@ -44,5 +44,16 @@ class Account extends AccountBase implements \Smx\SimpleMeetings\Account
         } else {
             return false;
         }
+    }
+    
+    public function checkAndFixBaseUrl($baseUrl){
+        if(!preg_match('/^http[s]{0,1}\:\/\//',$baseUrl)){
+            $baseUrl = 'http://'.$baseUrl;
+        }
+        if(substr($baseUrl,-1) != '/'){
+            $baseUrl .= '/';
+        }
+        
+        return $baseUrl;
     }
 }
