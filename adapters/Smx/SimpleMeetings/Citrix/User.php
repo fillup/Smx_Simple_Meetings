@@ -17,7 +17,7 @@ use Smx\SimpleMeetings\Citrix\Utilities;
  * 
  * @author Phillip Shipley <phillip@phillipshipley.com>
  */
-class User extends Account implements \Smx\SimpleMeetings\User
+class User extends Account implements \Smx\SimpleMeetings\Interfaces\User
 {
     const ROLE_HOST = 'HOST';
     const ROLE_ADMIN = 'ADMIN';

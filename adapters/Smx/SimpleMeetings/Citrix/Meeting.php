@@ -19,7 +19,7 @@ use Smx\SimpleMeetings\Citrix\Attendee;
  * 
  * @author Phillip Shipley <phillip@phillipshipley.com>
  */
-class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
+class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
 {
     private $error = null;
     public $isPublic = false;

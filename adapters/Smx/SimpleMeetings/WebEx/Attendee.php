@@ -18,7 +18,7 @@ use Smx\SimpleMeetings\WebEx\Account;
  * 
  * @author Phillip Shipley <phillip@phillipshipley.com>
  */
-class Attendee extends Account implements \Smx\SimpleMeetings\Attendee
+class Attendee extends Account implements \Smx\SimpleMeetings\Interfaces\Attendee
 {
     public $name = null;
     public $email = null;

@@ -9,7 +9,7 @@
 
 
 namespace Smx\SimpleMeetings\Citrix;
-use Smx\SimpleMeetings\Base\Account as AccountBase;
+use Smx\SimpleMeetings\Shared\Account as AccountBase;
 use Smx\SimpleMeetings\Citrix\Utilities;
 
 /**
@@ -18,7 +18,7 @@ use Smx\SimpleMeetings\Citrix\Utilities;
  * @author Phillip Shipley <phillip@phillipshipley.com>
  * 
  */
-class Account extends AccountBase implements \Smx\SimpleMeetings\Account
+class Account extends AccountBase implements \Smx\SimpleMeetings\Interfaces\Account
 {
     private $apiKey = null;
     private $responseKey = null;

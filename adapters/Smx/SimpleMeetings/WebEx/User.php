@@ -12,7 +12,7 @@ use Smx\SimpleMeetings\WebEx\Account;
 use Smx\SimpleMeetings\Shared\ItemList;
 use Smx\SimpleMeetings\WebEx\Utilities;
 
-class User extends Account implements \Smx\SimpleMeetings\User
+class User extends Account implements \Smx\SimpleMeetings\Interfaces\User
 {
     const ROLE_HOST = 'HOST';
     const ROLE_ADMIN = 'ADMIN';

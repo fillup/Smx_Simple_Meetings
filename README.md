@@ -106,24 +106,26 @@ To update the library using this method you'll need to download the latest tag a
 
 <a name='section_Usage'></a>
 ## Usage Instructions ##
-The purpose for Smx\SimpleMeetings is to make interacting with web meetings service providers very easy and consitent.
+The purpose for Smx\SimpleMeetings is to make interacting with web meetings service providers very easy and consistent.
 
-At this time we only provide a single file for you to include and then you have access to all the features. We plan to also provide configurations for common autoloaders so that you dont need to include anything but rather just update our autoloader configuration. We also plan to update the composer descriptor to define the autoloader details to make it autoloader capabilities available to anyone using composer, regardless if they are also using another framework like Zend Framework or Yii.
+In order to include Smx\SimpleMeetings into your application, you have two options: Standard Composer autoloader, or a single include file. If you used composer to install, we recommend you just include the vendor/autoload.php file that contains autoloaders for other composer libraries you may be using. If you did not use composer or do not wish to use the included autoloader, simply include the SmxSimpleMeetings.php file. We plan to also provide configurations for common autoloaders so that you don't need to include anything but rather just update our autoloader configuration. 
 
 <a name='section_SimpleExample'></a>
 Simple example of how to schedule a WebEx meeting:
 ````php
 <?php
-require_once 'path/to/vendor/SmxSimpleMeetings.php';
-$username = 'exampleuser';
-$password = 'MyP@ss!';
+require_once 'path/to/vendor/autoload.php';
+
 /**
 * Sitename is the webex subdomain your account is on, 
 * like http://meet.webex.com/ (you can get a free account there)
-*/
-$sitename = 'companyname'; 
-$meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', 
-                $username, $password, $sitename);
+$webexAuthInfo = array(
+    'sitename' => 'mycompany',
+    'username' => 'myusername',
+    'password' => 'mypassword'
+);
+
+$meeting = Factory::SmxSimpleMeeting('WebEx', 'Meeting', $authInfo);
 /*
 * All meeting options are optional, except maybe 
 * meetingPassword if your site requires a password.
@@ -139,7 +141,7 @@ $meeting->createMeeting(array(
 echo "Meeting is scheduled, meeting key: " . $meeting->meetingKey;
 
 ````
-More comprehensive API documentation is under development, but for now just read the Interfaces.php to understand what methods are available.
+More comprehensive API documentation is under development, but for now just read through the interfaces defined in adapters/Smx/SimpleMeetings/Interfaces/ to understand what methods are available.
 
 <a name='section_authentication'></a>
 ### Variations in Authentication ###
@@ -227,7 +229,7 @@ $joinmeAuthInfo = array(
 
 <a name='section_citrix'></a>
 ## Citrix Notes ##
-Citrix uses oAuth for authencitation and uses an access token to authorize any API calls. If you've integrated with other oAuth providers then you're already familiar with the flow.
+Citrix uses oAuth for authentication and uses an access token to authorize any API calls. If you've integrated with other oAuth providers then you're already familiar with the flow.
 
 To call Citrix APIs you'll also need an API Key. You can get one of these by registering at http://developer.citrixonline.com/. Make sure your application URL is the same domain that you'll be hosting your application. For oAuth the user can only be redirected to URLs on the same domain.
 
@@ -284,4 +286,4 @@ One thing to note is that their concept of an authCode is based at a user level,
 
 <a name='section_Feedback'></a>
 ## Feedback / Support ##
-Please use the GitHub ticket system to raise feature requests and bugs. We want this to be an extremenly easy yet flexible library for you to use so please let us know how we can improve on it. We would also love for anyone to join the project to help provide adapters for additional service providers and extend the ones we already have.
+Please use the GitHub ticket system to raise feature requests and bugs. We want this to be an extremely easy yet flexible library for you to use so please let us know how we can improve on it. We would also love for anyone to join the project to help provide adapters for additional service providers and extend the ones we already have.

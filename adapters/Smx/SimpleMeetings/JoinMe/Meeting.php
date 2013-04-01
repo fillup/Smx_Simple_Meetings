@@ -21,7 +21,7 @@ use Smx\SimpleMeetings\Shared\ItemList;
  * 
  * @author Phillip Shipley <phillip@phillipshipley.com>
  */
-class Meeting extends Account implements \Smx\SimpleMeetings\Meeting
+class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
 {
     public $meetingKey = null;
     public $meetingPassword = null;

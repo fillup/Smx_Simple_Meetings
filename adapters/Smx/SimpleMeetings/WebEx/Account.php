@@ -9,7 +9,7 @@
 
 
 namespace Smx\SimpleMeetings\WebEx;
-use Smx\SimpleMeetings\Base\Account as AccountBase;
+use Smx\SimpleMeetings\Shared\Account as AccountBase;
 
 /**
  * 
@@ -17,7 +17,7 @@ use Smx\SimpleMeetings\Base\Account as AccountBase;
  * @author Phillip Shipley <phillip@phillipshipley.com>
  * 
  */
-class Account extends AccountBase implements \Smx\SimpleMeetings\Account
+class Account extends AccountBase implements \Smx\SimpleMeetings\Interfaces\Account
 {
     private $username;
     private $password;

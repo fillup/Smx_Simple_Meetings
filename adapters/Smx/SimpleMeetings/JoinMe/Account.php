@@ -9,7 +9,7 @@
 
 
 namespace Smx\SimpleMeetings\JoinMe;
-use Smx\SimpleMeetings\Base\Account as AccountBase;
+use Smx\SimpleMeetings\Shared\Account as AccountBase;
 use Smx\SimpleMeetings\JoinMe\Utilities;
 
 /**
@@ -19,7 +19,7 @@ use Smx\SimpleMeetings\JoinMe\Utilities;
  * @author Phillip Shipley <phillip@phillipshipley.com>
  * 
  */
-class Account extends AccountBase implements \Smx\SimpleMeetings\Account
+class Account extends AccountBase implements \Smx\SimpleMeetings\Interfaces\Account
 {
     private $email = null;
     private $password = null;

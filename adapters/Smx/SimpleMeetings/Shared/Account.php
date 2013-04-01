@@ -8,7 +8,7 @@
  */
 
 
-namespace Smx\SimpleMeetings\Base;
+namespace Smx\SimpleMeetings\Shared;
 
 /**
  * 

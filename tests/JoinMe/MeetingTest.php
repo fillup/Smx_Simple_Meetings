@@ -1,7 +1,7 @@
 <?php
 namespace Smx\SimpleMeetings\Tests\JoinMe;
 
-require_once __DIR__.'/../../SmxSimpleMeetings.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
 use Smx\SimpleMeetings\Factory;
 
@@ -24,8 +24,8 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
     {
         $meeting = Factory::SmxSimpleMeeting('JoinMe', 'Meeting', $this->authInfo);
         $meeting->createMeeting();
-        $this->assertRegExp('/^[0-9]{9}$/', $meeting->code);
-        $this->assertRegExp('/^[0-9]{9}$/', $meeting->ticket);
+        $this->assertRegExp('/^[0-9]{9}$/', $meeting->meetingKey);
+        $this->assertRegExp('/^[0-9]{9}$/', $meeting->meetingPassword);
         $this->assertStringStartsWith('http', $meeting->joinUrl);
         $this->assertStringStartsWith('http', $meeting->hostUrl);
     }

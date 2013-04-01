@@ -9,10 +9,6 @@
 
 namespace Smx\SimpleMeetings;
 
-if(!class_exists('\\Smx\\SimpleMeetings\\Base\\Account')){
-    require_once __DIR__.'/../SmxSimpleMeetings.php';
-}
-
 class Factory
 {
     public static function SmxSimpleMeeting($ServiceProvider, $ObjectType, 

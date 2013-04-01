@@ -7,17 +7,7 @@
  * @license   GPLv2+
  */
 
-namespace Smx\SimpleMeetings;
-
-interface Account
-{
-    public function __construct($authInfo);
-    public function getAuthInfo();
-    public function setAuthInfo($authInfo);
-    public function getAuthType();
-    public function setAuthType($authType);
-    public function isAuthenticated();
-}
+namespace Smx\SimpleMeetings\Interfaces;
 
 interface Meeting
 {
@@ -36,20 +26,4 @@ interface Meeting
     public function getMeetingHistory();
     public function getAttendeeHistory();
     public function isValidTimestamp($timestamp);
-}
-
-interface Attendee
-{
-    public function addAttendee($options=false);
-    public function getAttendeeList();
-}
-
-interface User
-{
-    public function createUser($options=false);
-    public function editUser($options=false);
-    public function loginUser($urlOnly=false);
-    public function getServerUserDetails($username=false);
-    public function getUserList($options=false);
-    public function deactivate($username=false);
 }

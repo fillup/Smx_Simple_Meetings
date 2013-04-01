@@ -1,7 +1,7 @@
 <?php
 namespace Smx\SimpleMeetings\Tests\WebEx;
 
-require_once __DIR__.'/../../SmxSimpleMeetings.php';
+require_once __DIR__.'/../../vendor/autoload.php';
 
 use Smx\SimpleMeetings\Factory;
 use Smx\SimpleMeetings\WebEx\User;
