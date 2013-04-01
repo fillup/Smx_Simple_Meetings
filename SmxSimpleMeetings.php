@@ -18,11 +18,14 @@
 /**
  * Base classes are required for all service providers
  */
-require_once 'Interfaces.php';
-require_once 'adapters/Shared/Account.php';
-require_once 'adapters/Shared/ItemList.php';
-require_once 'adapters/Shared/HttpRequest.php';
-require_once 'adapters/Shared/Time.php';
+require_once 'adapters/Smx/SimpleMeetings/Interfaces/Account.php';
+require_once 'adapters/Smx/SimpleMeetings/Interfaces/Meeting.php';
+require_once 'adapters/Smx/SimpleMeetings/Interfaces/User.php';
+require_once 'adapters/Smx/SimpleMeetings/Interfaces/Attendee.php';
+require_once 'adapters/Smx/SimpleMeetings/Shared/Account.php';
+require_once 'adapters/Smx/SimpleMeetings/Shared/ItemList.php';
+require_once 'adapters/Smx/SimpleMeetings/Shared/HttpRequest.php';
+require_once 'adapters/Smx/SimpleMeetings/Shared/Time.php';
 
 // Removing dependency on Zend\Http for now due to problems with composer
 /*if(!class_exists('\\Zend\\Http\\Client')){
@@ -36,44 +39,44 @@ require_once 'adapters/Shared/Time.php';
 /**
  * Factory class is required
  */
-require_once 'adapters/Factory.php';
+require_once 'adapters/Smx/SimpleMeetings/Factory.php';
 
 /**
  * WebEx Classes
  * 
  * This section can be commented out if you do not plan to use WebEx.
  */
-require_once 'adapters/WebEx/Account.php';
-require_once 'adapters/WebEx/Attendee.php';
-require_once 'adapters/WebEx/Meeting.php';
-require_once 'adapters/WebEx/User.php';
-require_once 'adapters/WebEx/Utilities.php';
+require_once 'adapters/Smx/SimpleMeetings/WebEx/Account.php';
+require_once 'adapters/Smx/SimpleMeetings/WebEx/Attendee.php';
+require_once 'adapters/Smx/SimpleMeetings/WebEx/Meeting.php';
+require_once 'adapters/Smx/SimpleMeetings/WebEx/User.php';
+require_once 'adapters/Smx/SimpleMeetings/WebEx/Utilities.php';
 
 /**
  * Citrix Classes
  * 
  * This section can be commented out if you do not plan to use Citrix.
  */
-require_once 'adapters/Citrix/Account.php';
-require_once 'adapters/Citrix/Utilities.php';
-require_once 'adapters/Citrix/Meeting.php';
-require_once 'adapters/Citrix/Attendee.php';
-require_once 'adapters/Citrix/User.php';
+require_once 'adapters/Smx/SimpleMeetings/Citrix/Account.php';
+require_once 'adapters/Smx/SimpleMeetings/Citrix/Utilities.php';
+require_once 'adapters/Smx/SimpleMeetings/Citrix/Meeting.php';
+require_once 'adapters/Smx/SimpleMeetings/Citrix/Attendee.php';
+require_once 'adapters/Smx/SimpleMeetings/Citrix/User.php';
 
 /**
  * Join.Me Classes
  * 
  * This section can be commented out if you do not plan to use Join.Me
  */
-require_once 'adapters/JoinMe/Account.php';
-require_once 'adapters/JoinMe/Meeting.php';
-require_once 'adapters/JoinMe/Utilities.php';
+require_once 'adapters/Smx/SimpleMeetings/JoinMe/Account.php';
+require_once 'adapters/Smx/SimpleMeetings/JoinMe/Meeting.php';
+require_once 'adapters/Smx/SimpleMeetings/JoinMe/Utilities.php';
 
 /**
  * BigBlueButton Classes
  * 
  * This section can be commented out if you do not plan to use BigBlueButton
  */
-require_once 'adapters/BigBlueButton/Account.php';
-require_once 'adapters/BigBlueButton/Meeting.php';
-require_once 'adapters/BigBlueButton/Utilities.php';
+require_once 'adapters/Smx/SimpleMeetings/BigBlueButton/Account.php';
+require_once 'adapters/Smx/SimpleMeetings/BigBlueButton/Meeting.php';
+require_once 'adapters/Smx/SimpleMeetings/BigBlueButton/Utilities.php';
