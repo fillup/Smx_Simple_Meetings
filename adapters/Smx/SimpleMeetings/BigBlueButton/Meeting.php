@@ -166,9 +166,13 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
         $name = $attendeeName ? $attendeeName : 'Attendee';
         $queryParams = array(
             'meetingID' => $this->meetingKey,
-            'password' => $this->meetingPassword,
             'fullName' => $name
         );
+        if($meetingPassword){
+            $queryParams['password'] = $meetingPassword;
+        } elseif($this->meetingPassword){
+            $queryParams['password'] = $this->meetingPassword;
+        }
         $this->joinUrl = Utilities::callApi($this->baseUrl, $queryParams, 
                 'join', $this->salt, 'GET', null, true);
         if($urlOnly){
