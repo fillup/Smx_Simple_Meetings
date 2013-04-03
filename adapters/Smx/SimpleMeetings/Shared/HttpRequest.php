@@ -44,10 +44,10 @@ class HttpRequest
         /**
          * Added for debugging with Charles proxy
          */
-//        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
-//        curl_setopt($ch, CURLOPT_PROXYPORT, '8888');
-//        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
+        curl_setopt($ch, CURLOPT_PROXYPORT, '8888');
+        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         
         $method = strtoupper($method);
         if($method == 'GET'){
@@ -78,8 +78,14 @@ class HttpRequest
                 );
                 return json_encode($result);
             } else {
-                throw new \ErrorException('Http Request Failed with error: '.  
-                    curl_error($ch),  curl_errno($ch));
+                $curl_errno = curl_errno($ch);
+                if($curl_errno == 0){
+                    $code = $info['http_code'];
+                } else {
+                    $code = $curl_errno;
+                }
+                throw new \ErrorException('Http Request Failed (HTTP Status: '.$info['http_code'].') with error: '.  
+                    curl_error($ch), $code);
             }
         }
     }

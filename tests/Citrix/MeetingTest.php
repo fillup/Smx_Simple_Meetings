@@ -114,4 +114,23 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         $attendees = $meeting->getAttendeeList();
         $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $attendees);
     }
+    
+    public function testDeleteMeeting()
+    {
+        $options = array(
+            'meetingName' => __FUNCTION__
+        );
+        
+        $meeting = Factory::SmxSimpleMeeting('Citrix', 'Meeting', 
+                $this->authInfo, $options);
+        
+        $meeting->createMeeting();
+        $this->assertNotEmpty($meeting->meetingKey);
+        $meeting->deleteMeeting();
+        try {
+            $details = $meeting->getServerMeetingDetails();
+        } catch (\ErrorException $e){
+            $this->assertEquals(404, $e->getCode());
+        }
+    }
 }

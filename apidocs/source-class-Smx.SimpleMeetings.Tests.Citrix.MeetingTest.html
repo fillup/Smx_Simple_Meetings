@@ -8,7 +8,7 @@
 	<title>File src/tests/Citrix/MeetingTest.php | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?7068580"></script>
+	<script type="text/javascript" src="elementlist.js?2167766904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -28,11 +28,11 @@
 						<ul>
 				<li class="active"><a href="namespace-Smx.SimpleMeetings.html">SimpleMeetings<span></span></a>
 						<ul>
-				<li><a href="namespace-Smx.SimpleMeetings.Base.html">Base</a>
-						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.BigBlueButton.html">BigBlueButton</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Citrix.html">Citrix</a>
+						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Interfaces.html">Interfaces</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.JoinMe.html">JoinMe</a>
 						</li>
@@ -115,7 +115,7 @@
 <pre><code><span id="1" class="l"><a class="l" href="#1">  1: </a><span class="xlang">&lt;?php</span>
 </span><span id="2" class="l"><a class="l" href="#2">  2: </a><span class="php-keyword1">namespace</span> Smx\SimpleMeetings\Tests\Citrix;
 </span><span id="3" class="l"><a class="l" href="#3">  3: </a>
-</span><span id="4" class="l"><a class="l" href="#4">  4: </a><span class="php-keyword1">require_once</span> __DIR__.<span class="php-quote">'/../../SmxSimpleMeetings.php'</span>;
+</span><span id="4" class="l"><a class="l" href="#4">  4: </a><span class="php-keyword1">require_once</span> __DIR__.<span class="php-quote">'/../../vendor/autoload.php'</span>;
 </span><span id="5" class="l"><a class="l" href="#5">  5: </a>
 </span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-keyword1">use</span> Smx\SimpleMeetings\Factory;
 </span><span id="7" class="l"><a class="l" href="#7">  7: </a>
@@ -228,7 +228,26 @@
 </span><span id="114" class="l"><a class="l" href="#114">114: </a>        <span class="php-var">$attendees</span> = <span class="php-var">$meeting</span>-&gt;getAttendeeList();
 </span><span id="115" class="l"><a class="l" href="#115">115: </a>        <span class="php-var">$this</span>-&gt;assertInstanceOf(<span class="php-quote">'\\Smx\\SimpleMeetings\\Shared\\ItemList'</span>, <span class="php-var">$attendees</span>);
 </span><span id="116" class="l"><a class="l" href="#116">116: </a>    }
-</span><span id="117" class="l"><a class="l" href="#117">117: </a></span>}</code></pre>
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>    
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_testDeleteMeeting" href="#_testDeleteMeeting">testDeleteMeeting</a>()
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>    {
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>        <span class="php-var">$options</span> = <span class="php-keyword1">array</span>(
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>            <span class="php-quote">'meetingName'</span> =&gt; __FUNCTION__
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>        );
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>        
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>        <span class="php-var">$meeting</span> = Factory::SmxSimpleMeeting(<span class="php-quote">'Citrix'</span>, <span class="php-quote">'Meeting'</span>, 
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>                <span class="php-var">$this</span>-&gt;authInfo, <span class="php-var">$options</span>);
+</span><span id="126" class="l"><a class="l" href="#126">126: </a>        
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>        <span class="php-var">$meeting</span>-&gt;createMeeting();
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>        <span class="php-var">$this</span>-&gt;assertNotEmpty(<span class="php-var">$meeting</span>-&gt;meetingKey);
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>        <span class="php-var">$meeting</span>-&gt;deleteMeeting();
+</span><span id="130" class="l"><a class="l" href="#130">130: </a>        <span class="php-keyword1">try</span> {
+</span><span id="131" class="l"><a class="l" href="#131">131: </a>            <span class="php-var">$details</span> = <span class="php-var">$meeting</span>-&gt;getServerMeetingDetails();
+</span><span id="132" class="l"><a class="l" href="#132">132: </a>        } <span class="php-keyword1">catch</span> (\ErrorException <span class="php-var">$e</span>){
+</span><span id="133" class="l"><a class="l" href="#133">133: </a>            <span class="php-var">$this</span>-&gt;assertEquals(<span class="php-num">404</span>, <span class="php-var">$e</span>-&gt;getCode());
+</span><span id="134" class="l"><a class="l" href="#134">134: </a>        }
+</span><span id="135" class="l"><a class="l" href="#135">135: </a>    }
+</span><span id="136" class="l"><a class="l" href="#136">136: </a></span>}</code></pre>
 
 	<div id="footer">
 		SmxSimple_Meetings API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

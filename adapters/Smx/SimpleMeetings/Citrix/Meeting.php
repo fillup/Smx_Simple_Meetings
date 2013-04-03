@@ -250,7 +250,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
     public function deleteMeeting(){
         if($this->isAuthenticated() && isset($this->meetingKey)){
             $url = 'https://api.citrixonline.com/G2M/rest/meetings/'.$this->meetingKey;
-            $response = Utilities::callApi($url, $this->getAccessToken(), 'DELETE', $data);
+            $response = Utilities::callApi($url, $this->getAccessToken(), 'DELETE');
             if($response){
                 if($response->success){
                     return $this;

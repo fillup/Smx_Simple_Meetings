@@ -5,10 +5,10 @@
 	<meta name="generator" content="ApiGen 2.8.0" />
 	<meta name="robots" content="noindex" />
 
-	<title>File src/adapters/Citrix/Meeting.php | SmxSimple_Meetings</title>
+	<title>File src/adapters/Smx/SimpleMeetings/Citrix/Meeting.php | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?7068580"></script>
+	<script type="text/javascript" src="elementlist.js?2167766904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -28,11 +28,11 @@
 						<ul>
 				<li class="active"><a href="namespace-Smx.SimpleMeetings.html">SimpleMeetings<span></span></a>
 						<ul>
-				<li><a href="namespace-Smx.SimpleMeetings.Base.html">Base</a>
-						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.BigBlueButton.html">BigBlueButton</a>
 						</li>
 				<li class="active"><a href="namespace-Smx.SimpleMeetings.Citrix.html">Citrix</a>
+						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Interfaces.html">Interfaces</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.JoinMe.html">JoinMe</a>
 						</li>
@@ -134,7 +134,7 @@
 </span></span><span id="19" class="l"><a class="l" href="#19"> 19: </a><span class="php-comment"> * 
 </span></span><span id="20" class="l"><a class="l" href="#20"> 20: </a><span class="php-comment"> * @author Phillip Shipley &lt;phillip@phillipshipley.com&gt;
 </span></span><span id="21" class="l"><a class="l" href="#21"> 21: </a><span class="php-comment"> */</span>
-</span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-keyword1">class</span> <a id="Meeting" href="#Meeting">Meeting</a> <span class="php-keyword1">extends</span> Account <span class="php-keyword1">implements</span> \Smx\SimpleMeetings\Meeting
+</span><span id="22" class="l"><a class="l" href="#22"> 22: </a><span class="php-keyword1">class</span> <a id="Meeting" href="#Meeting">Meeting</a> <span class="php-keyword1">extends</span> Account <span class="php-keyword1">implements</span> \Smx\SimpleMeetings\Interfaces\Meeting
 </span><span id="23" class="l"><a class="l" href="#23"> 23: </a>{
 </span><span id="24" class="l"><a class="l" href="#24"> 24: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$error" href="#$error">$error</a></span> = <span class="php-keyword1">null</span>;
 </span><span id="25" class="l"><a class="l" href="#25"> 25: </a>    <span class="php-keyword1">public</span> <span class="php-var"><a id="$isPublic" href="#$isPublic">$isPublic</a></span> = <span class="php-keyword1">false</span>;
@@ -365,7 +365,7 @@
 </span><span id="250" class="l"><a class="l" href="#250">250: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_deleteMeeting" href="#_deleteMeeting">deleteMeeting</a>(){
 </span><span id="251" class="l"><a class="l" href="#251">251: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;isAuthenticated() &amp;&amp; <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;meetingKey)){
 </span><span id="252" class="l"><a class="l" href="#252">252: </a>            <span class="php-var">$url</span> = <span class="php-quote">'https://api.citrixonline.com/G2M/rest/meetings/'</span>.<span class="php-var">$this</span>-&gt;meetingKey;
-</span><span id="253" class="l"><a class="l" href="#253">253: </a>            <span class="php-var">$response</span> = Utilities::callApi(<span class="php-var">$url</span>, <span class="php-var">$this</span>-&gt;getAccessToken(), <span class="php-quote">'DELETE'</span>, <span class="php-var">$data</span>);
+</span><span id="253" class="l"><a class="l" href="#253">253: </a>            <span class="php-var">$response</span> = Utilities::callApi(<span class="php-var">$url</span>, <span class="php-var">$this</span>-&gt;getAccessToken(), <span class="php-quote">'DELETE'</span>);
 </span><span id="254" class="l"><a class="l" href="#254">254: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$response</span>){
 </span><span id="255" class="l"><a class="l" href="#255">255: </a>                <span class="php-keyword1">if</span>(<span class="php-var">$response</span>-&gt;success){
 </span><span id="256" class="l"><a class="l" href="#256">256: </a>                    <span class="php-keyword1">return</span> <span class="php-var">$this</span>;

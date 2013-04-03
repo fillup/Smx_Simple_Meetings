@@ -5,10 +5,10 @@
 	<meta name="generator" content="ApiGen 2.8.0" />
 	<meta name="robots" content="noindex" />
 
-	<title>File src/adapters/JoinMe/Account.php | SmxSimple_Meetings</title>
+	<title>File src/adapters/Smx/SimpleMeetings/JoinMe/Account.php | SmxSimple_Meetings</title>
 
 	<script type="text/javascript" src="resources/combined.js?3460612076"></script>
-	<script type="text/javascript" src="elementlist.js?7068580"></script>
+	<script type="text/javascript" src="elementlist.js?2167766904"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -28,11 +28,11 @@
 						<ul>
 				<li class="active"><a href="namespace-Smx.SimpleMeetings.html">SimpleMeetings<span></span></a>
 						<ul>
-				<li><a href="namespace-Smx.SimpleMeetings.Base.html">Base</a>
-						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.BigBlueButton.html">BigBlueButton</a>
 						</li>
 				<li><a href="namespace-Smx.SimpleMeetings.Citrix.html">Citrix</a>
+						</li>
+				<li><a href="namespace-Smx.SimpleMeetings.Interfaces.html">Interfaces</a>
 						</li>
 				<li class="active"><a href="namespace-Smx.SimpleMeetings.JoinMe.html">JoinMe</a>
 						</li>
@@ -122,7 +122,7 @@
 </span><span id="9" class="l"><a class="l" href="#9"> 9: </a>
 </span><span id="10" class="l"><a class="l" href="#10">10: </a>
 </span><span id="11" class="l"><a class="l" href="#11">11: </a><span class="php-keyword1">namespace</span> Smx\SimpleMeetings\JoinMe;
-</span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-keyword1">use</span> Smx\SimpleMeetings\Base\Account <span class="php-keyword1">as</span> AccountBase;
+</span><span id="12" class="l"><a class="l" href="#12">12: </a><span class="php-keyword1">use</span> Smx\SimpleMeetings\Shared\Account <span class="php-keyword1">as</span> AccountBase;
 </span><span id="13" class="l"><a class="l" href="#13">13: </a><span class="php-keyword1">use</span> Smx\SimpleMeetings\JoinMe\Utilities;
 </span><span id="14" class="l"><a class="l" href="#14">14: </a>
 </span><span id="15" class="l"><a class="l" href="#15">15: </a><span class="php-comment">/**
@@ -132,7 +132,7 @@
 </span></span><span id="19" class="l"><a class="l" href="#19">19: </a><span class="php-comment"> * @author Phillip Shipley &lt;phillip@phillipshipley.com&gt;
 </span></span><span id="20" class="l"><a class="l" href="#20">20: </a><span class="php-comment"> * 
 </span></span><span id="21" class="l"><a class="l" href="#21">21: </a><span class="php-comment"> */</span>
-</span><span id="22" class="l"><a class="l" href="#22">22: </a><span class="php-keyword1">class</span> <a id="Account" href="#Account">Account</a> <span class="php-keyword1">extends</span> AccountBase <span class="php-keyword1">implements</span> \Smx\SimpleMeetings\Account
+</span><span id="22" class="l"><a class="l" href="#22">22: </a><span class="php-keyword1">class</span> <a id="Account" href="#Account">Account</a> <span class="php-keyword1">extends</span> AccountBase <span class="php-keyword1">implements</span> \Smx\SimpleMeetings\Interfaces\Account
 </span><span id="23" class="l"><a class="l" href="#23">23: </a>{
 </span><span id="24" class="l"><a class="l" href="#24">24: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$email" href="#$email">$email</a></span> = <span class="php-keyword1">null</span>;
 </span><span id="25" class="l"><a class="l" href="#25">25: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$password" href="#$password">$password</a></span> = <span class="php-keyword1">null</span>;
