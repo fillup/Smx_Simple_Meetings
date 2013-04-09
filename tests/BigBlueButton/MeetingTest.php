@@ -98,4 +98,14 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $attendeeList);
     }
     
+    public function testEndMeeting()
+    {
+        $meetingKey = '562147';
+        $hostPassword = 'adminpass';
+        $meeting = Factory::SmxSimpleMeeting('BigBlueButton', 'Meeting', $this->authInfo, 
+                array('meetingKey' => $meetingKey, 'hostPassword' => $hostPassword));
+        $meeting->endMeeting();
+        $this->assertTrue(true);
+    }
+    
 }

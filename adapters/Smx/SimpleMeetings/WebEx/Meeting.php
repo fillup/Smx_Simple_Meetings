@@ -732,5 +732,14 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
     public function callApi($xml){
         return Utilities::callApi($xml, $this->getSitename());
     }
+    
+    /**
+     * Dummy function to satisfy interface
+     * @return boolean
+     */
+    public function endMeeting()
+    {
+        return true;
+    }
 }
 

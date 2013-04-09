@@ -403,4 +403,13 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
             
         return $ready;
     }
+    
+    /**
+     * Dummy function to satisfy interface
+     * @return boolean
+     */
+    public function endMeeting()
+    {
+        return true;
+    }
 }

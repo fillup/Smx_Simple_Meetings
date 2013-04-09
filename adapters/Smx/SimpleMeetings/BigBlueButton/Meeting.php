@@ -284,5 +284,24 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
         return true;
     }
     
+    public function endMeeting(){
+        if($this->meetingKey && $this->hostPassword){
+            $queryParams = array(
+                'meetingID' => $this->meetingKey,
+                'password' => $this->hostPassword
+            );
+            $request = Utilities::callApi($this->baseUrl, $queryParams, 
+                'end', $this->salt);
+            if($request){
+                if($request->messageKey->__toString() == 'sentEndMeetingRequest'){
+                    return true;
+                } else {
+                    throw new \ErrorException('Unable to end meeting. Error: '.$request->message->__toString(),307);
+                }
+            }
+        } else {
+            throw new \ErrorException('A meeting key and host password are required to end a meeting.',308);
+        }
+    }
 
 }

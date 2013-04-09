@@ -26,4 +26,5 @@ interface Meeting
     public function getMeetingHistory();
     public function getAttendeeHistory();
     public function isValidTimestamp($timestamp);
+    public function endMeeting();
 }

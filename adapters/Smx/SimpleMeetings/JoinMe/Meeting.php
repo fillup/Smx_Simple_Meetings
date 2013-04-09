@@ -218,4 +218,13 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
         return true;
     }
     
+    /**
+     * Dummy function to satisfy interface
+     * @return boolean
+     */
+    public function endMeeting()
+    {
+        return true;
+    }
+    
 }
