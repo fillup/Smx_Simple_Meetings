@@ -29,11 +29,12 @@ class AccountTest extends \PHPUnit_Framework_TestCase
     public function testValidateCredentialsInvalid()
     {
         $invalidSalt = array(
-            'baseUrl' => $this->authInfo['baseUrl'],
+            'baseUrl' => $this->authInfo['baseUrl'].'asdf',
             'salt' => ';lakjdsfl;akjdgflkajdflkja'
         );
         $account = Factory::SmxSimpleMeeting('BigBlueButton', 'Account', $invalidSalt);
-        $this->assertFalse($account->validateCredentials());
+        $result = $account->validateCredentials();
+        $this->assertFalse($result);
     }
     
 }

@@ -68,10 +68,10 @@ class HttpRequest
         }
         
         $response = curl_exec($ch);
-        if($response){
+        $info = curl_getinfo($ch);
+        if($response && !($info['http_code'] >= 400)){
             return $response;
         } else {
-            $info = curl_getinfo($ch);
             if($info['http_code'] == 204){
                 $result = array(
                     'success' => true
