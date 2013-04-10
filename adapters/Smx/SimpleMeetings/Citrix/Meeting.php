@@ -36,6 +36,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
     public $meetingType = 'Scheduled';
     public $uniqueMeetingId;
     public $organizerKey;
+    public $inProgress = false;
     
     /**
      * History details is an array of the actual meeting usage data for a meeting

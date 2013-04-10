@@ -28,6 +28,22 @@ class AccountTest extends \PHPUnit_Framework_TestCase
         $this->assertStringStartsWith('http', $authUrl);
     }
     
+    public function testValidateCredentialsValid()
+    {
+        $account = Factory::SmxSimpleMeeting('Citrix', 'Account', $this->authInfo);
+        $this->assertTrue($account->validateCredentials());
+    }
+    
+    public function testValidateCredentialsInvalid()
+    {
+        $invalid = array(
+            'apiKey' => $this->authInfo['apiKey'],
+            'accessToken' => ';lakjdsfl;akjdgflkajdflkja'
+        );
+        $account = Factory::SmxSimpleMeeting('Citrix', 'Account', $invalid);
+        $this->assertFalse($account->validateCredentials());
+    }
+    
     /**
      * This test is commented out because it requires a one time use responseKey
      * that must be obtained manually via a browser.

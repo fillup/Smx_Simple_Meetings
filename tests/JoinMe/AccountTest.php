@@ -25,4 +25,25 @@ class AccountTest extends \PHPUnit_Framework_TestCase
         $account = Factory::SmxSimpleMeeting('JoinMe', 'Account', $this->authInfo);
         $this->assertRegExp('/[0-9a-zA-z]{32}/', $account->getAuthCode());
     }
+    
+    public function testValidateCredentialsValid()
+    {
+        $account = Factory::SmxSimpleMeeting('JoinMe', 'Account', $this->authInfo);
+        $this->assertTrue($account->validateCredentials());
+    }
+    
+    public function testValidateCredentialsInvalid()
+    {
+        $invalid = array(
+            'email' => 'user@somedomain.com',
+            'password' => ';lakjdsfl;akjdgflkajdflkja'
+        );
+        try {
+            $account = Factory::SmxSimpleMeeting('JoinMe', 'Account', $invalid);
+            $result = true;
+        } catch (\ErrorException $e) {
+            $result = false;
+        }
+        $this->assertFalse($result);
+    }
 }

@@ -135,12 +135,13 @@ class User extends Account implements \Smx\SimpleMeetings\Interfaces\User
     public function getServerUserDetails($username=false)
     {
         if($username){
-            $this->username = $username;
+            $this->setUsername($username);
         }
-        if(!is_null($this->username)){
+        
+        if(!is_null($this->getUsername())){
             $xml = $this->loadXml('GetUser');
             if($xml){
-                $xml->body->bodyContent->webExId = $this->username;
+                $xml->body->bodyContent->webExId = $this->getUsername();
                 $results = $this->callApi($xml->asXML());
                 return $results;
             }
@@ -150,12 +151,12 @@ class User extends Account implements \Smx\SimpleMeetings\Interfaces\User
     public function deactivate($username=false)
     {
         if($username){
-            $this->username = $username;
+            $this->setUsername($username);
         }
-        if(!is_null($this->username)){
+        if(!is_null($this->getUsername())){
             $xml = $this->loadXml('EditUser');
             if($xml){
-                $xml->body->bodyContent->webExId = $this->username;
+                $xml->body->bodyContent->webExId = $this->getUsername();
                 $xml->body->bodyContent->active = 'DEACTIVATED';
                 $results = $this->callApi($xml->asXML());
                 $this->status = User::STATUS_INACTIVE;

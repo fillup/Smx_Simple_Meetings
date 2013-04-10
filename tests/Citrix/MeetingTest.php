@@ -52,6 +52,7 @@ class MeetingTest extends \PHPUnit_Framework_TestCase
         $meeting = Factory::SmxSimpleMeeting('Citrix', 'Meeting', 
                 $this->authInfo);
         $response = $meeting->getMeetingList();
+        //print_r($response);
         $this->assertInstanceOf('\\Smx\\SimpleMeetings\\Shared\\ItemList', $response);
     }
     

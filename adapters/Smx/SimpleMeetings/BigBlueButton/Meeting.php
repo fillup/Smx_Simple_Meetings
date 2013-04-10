@@ -126,7 +126,8 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
                         'meetingName' => $meeting->meetingName->__toString(),
                         'startTime' => $meeting->createTime->__toString(),
                         'meetingPassword' => $meeting->attendeePW->__toString(),
-                        'hostPassword' => $meeting->moderatorPW->__toString()
+                        'hostPassword' => $meeting->moderatorPW->__toString(),
+                        'exitUrl' => $meeting->logoutURL->__toString()
                     );
                     $inProgress = $meeting->running->__toString();
                     if($inProgress == 'true'){

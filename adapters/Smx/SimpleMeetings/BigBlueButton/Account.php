@@ -56,4 +56,28 @@ class Account extends AccountBase implements \Smx\SimpleMeetings\Interfaces\Acco
         
         return $baseUrl;
     }
+    
+    /**
+     * Test baseUrl and Salt to ensure they are valid
+     * 
+     * @return boolean True/false - success/fail
+     */
+    public function validateCredentials()
+    {
+        if($this->isAuthenticated()){
+            $meeting = \Smx\SimpleMeetings\Factory::SmxSimpleMeeting(
+                    'BigBlueButton', 'Meeting', array(
+                    'baseUrl' => $this->baseUrl,
+                    'salt' => $this->salt
+                ));
+            try {
+                $list = $meeting->getMeetingList();
+                return true;
+            } catch (\ErrorException $e) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

@@ -20,12 +20,20 @@ class AccountTest extends \PHPUnit_Framework_TestCase
         }
     }
     
-    public function testGetAuthUrl()
+    public function testValidateCredentialsValid()
     {
-        $meeting = Factory::SmxSimpleMeeting('Citrix', 'Account', $this->authInfo);
-        
-        $authUrl = $meeting->getAuthUrl();
-        $this->assertStringStartsWith('http', $authUrl);
+        $account = Factory::SmxSimpleMeeting('BigBlueButton', 'Account', $this->authInfo);
+        $this->assertTrue($account->validateCredentials());
+    }
+    
+    public function testValidateCredentialsInvalid()
+    {
+        $invalidSalt = array(
+            'baseUrl' => $this->authInfo['baseUrl'],
+            'salt' => ';lakjdsfl;akjdgflkajdflkja'
+        );
+        $account = Factory::SmxSimpleMeeting('BigBlueButton', 'Account', $invalidSalt);
+        $this->assertFalse($account->validateCredentials());
     }
     
 }

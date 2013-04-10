@@ -76,4 +76,29 @@ class Account extends AccountBase implements \Smx\SimpleMeetings\Interfaces\Acco
             return false;
         }
     }
+    
+    /**
+     * Test that the username/password/sitename provided are valid
+     * 
+     * @return boolean
+     */
+    public function validateCredentials() 
+    {
+        if($this->isAuthenticated()){
+            $user = \Smx\SimpleMeetings\Factory::SmxSimpleMeeting(
+                    'WebEx', 'User', array(
+                    'sitename' => $this->sitename,
+                    'username' => $this->username,
+                    'password' => $this->password
+            ));
+            try {
+                $details = $user->getServerUserDetails();
+                return true;
+            } catch (\ErrorException $e){
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }

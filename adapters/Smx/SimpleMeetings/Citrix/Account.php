@@ -97,4 +97,26 @@ class Account extends AccountBase implements \Smx\SimpleMeetings\Interfaces\Acco
             return false;
         }
     }
+    
+    /**
+     * Test apiKey and accessToken to ensure they are valid
+     * 
+     * @return boolean True/false - success/fail
+     */
+    public function validateCredentials() 
+    {
+        if($this->isAuthenticated()){
+            $meeting = \Smx\SimpleMeetings\Factory::SmxSimpleMeeting(
+                    'Citrix', 'Meeting', array(
+                    'apiKey' => $this->apiKey,
+                    'accessToken' => $this->accessToken
+            ));
+            try {
+                $list = $meeting->getMeetingList();
+                return true;
+            } catch (\ErrorException $e) {
+                return false;
+            }
+        }
+    }
 }

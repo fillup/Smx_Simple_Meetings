@@ -17,4 +17,5 @@ interface Account
     public function getAuthType();
     public function setAuthType($authType);
     public function isAuthenticated();
+    public function validateCredentials();
 }

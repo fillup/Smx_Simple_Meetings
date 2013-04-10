@@ -88,4 +88,13 @@ class Account extends AccountBase implements \Smx\SimpleMeetings\Interfaces\Acco
             return false;
         }
     }
+    
+    public function validateCredentials() 
+    {
+        if($this->isAuthenticated()){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
