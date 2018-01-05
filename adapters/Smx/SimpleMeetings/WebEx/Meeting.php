@@ -32,6 +32,7 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
     public $hostUrl = null;
     public $joinUrl = null;
     public $exitUrl = false;
+    public $timeZoneID = null;
     
     /**
      * History details is an array of the actual meeting usage data for a meeting
@@ -83,6 +84,9 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
         $xml->body->bodyContent->accessControl->enforcePassword = $this->enforcePassword;
         if(!is_null($this->meetingPassword)){
             $xml->body->bodyContent->accessControl->meetingPassword = $this->meetingPassword;
+        }
+        if(!is_null($this->timeZoneID)) {
+            $xml->body->bodyContent->schedule->timeZoneID = $this->timeZoneID;
         }
         
         $result = $this->callApi($xml->asXML());
@@ -279,6 +283,9 @@ class Meeting extends Account implements \Smx\SimpleMeetings\Interfaces\Meeting
         $xml->body->bodyContent->accessControl->enforcePassword = $this->enforcePassword;
         if(!is_null($this->meetingPassword)){
             $xml->body->bodyContent->accessControl->meetingPassword = $this->meetingPassword;
+        }
+        if(!is_null($this->timeZoneID)) {
+            $xml->body->bodyContent->schedule->timeZoneID = $this->timeZoneID;
         }
         
         $result = $this->callApi($xml->asXML());
